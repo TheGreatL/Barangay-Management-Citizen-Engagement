@@ -1,0 +1,55 @@
+{
+  "name": "react-supabase-boilerplate",
+  "version": "1.0.0",
+  "description": "A generic full-stack React + Node.js boilerplate",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npm run docker:dev",
+    "docker:up": "docker-compose up -d --build",
+    "docker:dev": "docker-compose up --build",
+    "docker:start": "docker-compose up",
+    "docker:stop": "docker-compose stop",
+    "docker:logs": "docker-compose logs -f",
+    "docker:restart": "docker-compose restart",
+    "docker:down": "docker-compose down",
+    "docker:migrate": "docker exec -it boilerplate_api npm run db:migrate",
+    "docker:studio": "docker exec -it boilerplate_api npm run db:studio",
+    "docker:seed": "docker exec -it boilerplate_api npm run db:seed",
+    "test": "npm run test:client && npm run test:server",
+    "test:client": "npm --prefix client run test",
+    "test:server": "npm --prefix server run test",
+    "test:e2e": "npx playwright test --config=e2e/playwright.config.ts",
+    "docker:reset": "docker exec -it boilerplate_api npm run db:reset",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,css,md}\"",
+    "prepare": "husky"
+  },
+  "url": "https://github.com/TheGreatL/react-supabase-boilerplate",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/TheGreatL/react-supabase-boilerplate/issues"
+  },
+  "homepage": "",
+  "dependencies": {
+    "express-rate-limit": "^8.3.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "@types/node": "^25.5.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.3.4",
+    "prettier": "^3.8.1",
+    "prettier-plugin-tailwindcss": "^0.7.2"
+  },
+  "lint-staged": {
+    "client/src/**/*.{ts,tsx}": [
+      "npx --prefix client prettier --write",
+      "npx --prefix client eslint --fix"
+    ],
+    "server/src/**/*.ts": [
+      "npx --prefix server eslint --fix"
+    ]
+  }
+}
