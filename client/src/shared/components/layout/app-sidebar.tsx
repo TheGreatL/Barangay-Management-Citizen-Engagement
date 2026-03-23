@@ -16,6 +16,10 @@ import {
   FileText,
   UserCheck,
   History,
+  ChevronsUpDown,
+  Sparkles,
+  BadgeCheck,
+  CreditCard,
 } from 'lucide-react'
 import { useAuthStore } from '@/shared/stores/auth.store'
 import { cn } from '@/shared/lib/utils'
@@ -29,14 +33,35 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarSeparator,
+  SidebarGroup,
+  SidebarGroupLabel,
+  SidebarGroupContent,
 } from '@/shared/components/ui/sidebar'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/shared/components/ui/dropdown-menu'
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from '@/shared/components/ui/avatar'
 
 interface NavItem {
-  label?: string
-  href?: string
-  icon?: React.ReactNode
+  label: string
+  href: string
+  icon: React.ReactNode
   badge?: number
-  divider?: boolean
+}
+
+interface NavGroup {
+  label: string
+  items: NavItem[]
 }
 
 export function AppSidebar() {
@@ -47,62 +72,75 @@ export function AppSidebar() {
   const isActive = (href: string) => location.pathname === href
 
   // Get navigation items based on role
-  const getNavItems = (): NavItem[] => {
+  const getNavGroups = (): NavGroup[] => {
     const role = user?.role.toLowerCase()
 
     if (role === 'admin') {
       return [
         {
-          label: 'Dashboard',
-          href: '/admin/dashboard',
-          icon: <LayoutDashboard className="h-4 w-4" />,
+          label: 'Platform',
+          items: [
+            {
+              label: 'Dashboard',
+              href: '/admin/dashboard',
+              icon: <LayoutDashboard className="h-4 w-4" />,
+            },
+            {
+              label: 'User Management',
+              href: '/admin/users',
+              icon: <Users className="h-4 w-4" />,
+            },
+            {
+              label: 'Resident Records',
+              href: '/admin/residents',
+              icon: <UserCheck className="h-4 w-4" />,
+            },
+          ],
         },
         {
-          label: 'User Management',
-          href: '/admin/users',
-          icon: <Users className="h-4 w-4" />,
+          label: 'System Control',
+          items: [
+            {
+              label: 'Role & RBAC',
+              href: '/admin/roles',
+              icon: <ShieldCheck className="h-4 w-4" />,
+            },
+            {
+              label: 'Activity Logs',
+              href: '/admin/activity-logs',
+              icon: <History className="h-4 w-4" />,
+            },
+            {
+              label: 'System Settings',
+              href: '/admin/settings',
+              icon: <Settings className="h-4 w-4" />,
+            },
+          ],
         },
         {
-          label: 'Resident Records',
-          href: '/admin/residents',
-          icon: <UserCheck className="h-4 w-4" />,
-        },
-        {
-          label: 'Role & RBAC',
-          href: '/admin/roles',
-          icon: <ShieldCheck className="h-4 w-4" />,
-        },
-        { divider: true },
-        {
-          label: 'Announcements',
-          href: '/admin/announcements',
-          icon: <Bell className="h-4 w-4" />,
-        },
-        {
-          label: 'Community Reports',
-          href: '/admin/complaints',
-          icon: <AlertCircle className="h-4 w-4" />,
-        },
-        {
-          label: 'Certificates',
-          href: '/admin/certificates',
-          icon: <FileText className="h-4 w-4" />,
-        },
-        {
-          label: 'System Analytics',
-          href: '/admin/analytics',
-          icon: <BarChart3 className="h-4 w-4" />,
-        },
-        { divider: true },
-        {
-          label: 'Activity Logs',
-          href: '/admin/activity-logs',
-          icon: <History className="h-4 w-4" />,
-        },
-        {
-          label: 'System Settings',
-          href: '/admin/settings',
-          icon: <Settings className="h-4 w-4" />,
+          label: 'Community Services',
+          items: [
+            {
+              label: 'Announcements',
+              href: '/admin/announcements',
+              icon: <Bell className="h-4 w-4" />,
+            },
+            {
+              label: 'Complaints',
+              href: '/admin/complaints',
+              icon: <AlertCircle className="h-4 w-4" />,
+            },
+            {
+              label: 'Certificates',
+              href: '/admin/certificates',
+              icon: <FileText className="h-4 w-4" />,
+            },
+            {
+              label: 'Analytics',
+              href: '/admin/analytics',
+              icon: <BarChart3 className="h-4 w-4" />,
+            },
+          ],
         },
       ]
     }
@@ -110,35 +148,49 @@ export function AppSidebar() {
     if (role === 'barangay_official') {
       return [
         {
-          label: 'Dashboard',
-          href: '/official/dashboard',
-          icon: <LayoutDashboard className="h-4 w-4" />,
+          label: 'Core Operations',
+          items: [
+            {
+              label: 'Dashboard',
+              href: '/official/dashboard',
+              icon: <LayoutDashboard className="h-4 w-4" />,
+            },
+            {
+              label: 'Resident Directory',
+              href: '/official/residents',
+              icon: <Users className="h-4 w-4" />,
+            },
+          ],
         },
         {
-          label: 'Resident Directory',
-          href: '/official/residents',
-          icon: <Users className="h-4 w-4" />,
+          label: 'Management',
+          items: [
+            {
+              label: 'Document Requests',
+              href: '/official/documents',
+              icon: <FolderOpen className="h-4 w-4" />,
+            },
+            {
+              label: 'Community Cases',
+              href: '/official/complaints',
+              icon: <ClipboardList className="h-4 w-4" />,
+            },
+          ],
         },
         {
-          label: 'Document Requests',
-          href: '/official/documents',
-          icon: <FolderOpen className="h-4 w-4" />,
-        },
-        {
-          label: 'Community Cases',
-          href: '/official/complaints',
-          icon: <ClipboardList className="h-4 w-4" />,
-        },
-        {
-          label: 'Official Reports',
-          href: '/official/reports',
-          icon: <BarChart3 className="h-4 w-4" />,
-        },
-        { divider: true },
-        {
-          label: 'Account Settings',
-          href: '/settings',
-          icon: <Settings className="h-4 w-4" />,
+          label: 'Analytics & Account',
+          items: [
+            {
+              label: 'Official Reports',
+              href: '/official/reports',
+              icon: <BarChart3 className="h-4 w-4" />,
+            },
+            {
+              label: 'Settings',
+              href: '/settings',
+              icon: <Settings className="h-4 w-4" />,
+            },
+          ],
         },
       ]
     }
@@ -146,45 +198,59 @@ export function AppSidebar() {
     // Citizen navigation (default)
     return [
       {
-        label: 'My Dashboard',
-        href: '/citizen/dashboard',
-        icon: <LayoutDashboard className="h-4 w-4" />,
+        label: 'My Workspace',
+        items: [
+          {
+            label: 'Dashboard',
+            href: '/citizen/dashboard',
+            icon: <LayoutDashboard className="h-4 w-4" />,
+          },
+          {
+            label: 'Announcements',
+            href: '/citizen/announcements',
+            icon: <Bell className="h-4 w-4" />,
+          },
+        ],
       },
       {
-        label: 'My Documents',
-        href: '/citizen/documents',
-        icon: <FolderOpen className="h-4 w-4" />,
+        label: 'Personal Services',
+        items: [
+          {
+            label: 'Documents',
+            href: '/citizen/documents',
+            icon: <FolderOpen className="h-4 w-4" />,
+          },
+          {
+            label: 'Complaints',
+            href: '/citizen/complaints',
+            icon: <ClipboardList className="h-4 w-4" />,
+          },
+        ],
       },
       {
-        label: 'My Complaints',
-        href: '/citizen/complaints',
-        icon: <ClipboardList className="h-4 w-4" />,
-      },
-      {
-        label: 'Announcements',
-        href: '/citizen/announcements',
-        icon: <Bell className="h-4 w-4" />,
-      },
-      {
-        label: 'Interactive Map',
-        href: '/citizen/map',
-        icon: <Map className="h-4 w-4" />,
-      },
-      {
-        label: 'Barangay Services',
-        href: '/citizen/services',
-        icon: <Wrench className="h-4 w-4" />,
-      },
-      { divider: true },
-      {
-        label: 'My Profile',
-        href: '/citizen/profile',
-        icon: <UserCircle className="h-4 w-4" />,
+        label: 'Community',
+        items: [
+          {
+            label: 'Interactive Map',
+            href: '/citizen/map',
+            icon: <Map className="h-4 w-4" />,
+          },
+          {
+            label: 'Services',
+            href: '/citizen/services',
+            icon: <Wrench className="h-4 w-4" />,
+          },
+          {
+            label: 'My Profile',
+            href: '/citizen/profile',
+            icon: <UserCircle className="h-4 w-4" />,
+          },
+        ],
       },
     ]
   }
 
-  const navItems = getNavItems()
+  const navGroups = getNavGroups()
 
   // Get header content based on role
   const getHeaderContent = () => {
@@ -197,19 +263,23 @@ export function AppSidebar() {
   }
 
   const header = getHeaderContent()
+  const userInitials = user?.email.slice(0, 2).toUpperCase() || 'BM'
 
   return (
-    <Sidebar className="border-sidebar-border bg-sidebar text-sidebar-foreground">
-      <SidebarHeader className="border-sidebar-border border-b p-6">
+    <Sidebar
+      collapsible="icon"
+      className="border-sidebar-border bg-sidebar text-sidebar-foreground"
+    >
+      <SidebarHeader className="border-sidebar-border border-b p-4">
         <div className="flex items-center gap-3">
-          <div className="bg-primary text-primary-foreground flex h-11 w-11 items-center justify-center rounded-xl font-black shadow-lg">
+          <div className="bg-primary text-primary-foreground flex h-9 w-9 shrink-0 items-center justify-center rounded-lg font-bold shadow-sm">
             BM
           </div>
-          <div className="flex-1">
-            <h1 className="mb-1 text-sm leading-none font-black tracking-tight uppercase">
+          <div className="flex-1 overflow-hidden group-data-[collapsible=icon]:hidden">
+            <h1 className="mb-0.5 truncate text-lg leading-tight font-bold">
               {header.title}
             </h1>
-            <p className="text-muted-foreground text-[10px] font-bold tracking-wide uppercase">
+            <p className="text-muted-foreground truncate text-xs font-medium">
               {header.subtitle}
             </p>
           </div>
@@ -217,69 +287,142 @@ export function AppSidebar() {
       </SidebarHeader>
 
       <SidebarContent className="p-0">
-        <ScrollArea className="h-full px-4">
-          <SidebarMenu className="space-y-1 py-6">
-            {navItems.map((item, idx) => {
-              if (item.divider) {
-                return (
-                  <SidebarSeparator
-                    key={`sep-${idx}`}
-                    className="bg-sidebar-border my-4"
-                  />
-                )
-              }
-
-              if (!item.href) return null
-
-              const active = isActive(item.href)
-              return (
-                <SidebarMenuItem key={item.href}>
-                  <SidebarMenuButton
-                    asChild
-                    isActive={active}
-                    className={cn(
-                      'h-12 w-full justify-start rounded-xl px-4 font-bold transition-all duration-200 active:scale-95',
-                      active
-                        ? 'bg-sidebar-primary text-sidebar-primary-foreground shadow-primary/10 hover:bg-sidebar-primary/90 shadow-lg'
-                        : 'text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground',
-                    )}
-                  >
-                    <Link to={item.href}>
-                      <span
-                        className={cn(
-                          'mr-3 transition-transform group-hover/menu-button:scale-110',
-                          active
-                            ? 'text-sidebar-primary-foreground'
-                            : 'text-sidebar-foreground/50 group-hover/menu-button:text-sidebar-accent-foreground',
-                        )}
-                      >
-                        {item.icon}
-                      </span>
-                      <span className="flex-1 truncate">{item.label}</span>
-                      {item.badge && (
-                        <span className="bg-error text-error-foreground ml-auto rounded-full px-2 py-0.5 text-[10px] font-black">
-                          {item.badge}
-                        </span>
-                      )}
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              )
-            })}
+        <ScrollArea className="h-full">
+          <SidebarMenu className="px-2 py-4">
+            {navGroups.map((group, groupIdx) => (
+              <SidebarGroup key={group.label}>
+                <SidebarGroupLabel className="px-3 text-sm font-bold group-data-[collapsible=icon]:hidden">
+                  {group.label}
+                </SidebarGroupLabel>
+                <SidebarGroupContent>
+                  <SidebarMenu className="space-y-0.5">
+                    {group.items.map((item) => {
+                      const active = isActive(item.href)
+                      return (
+                        <SidebarMenuItem key={item.href}>
+                          <SidebarMenuButton
+                            asChild
+                            isActive={active}
+                            tooltip={item.label}
+                            className="w-full justify-start rounded-md px-3 transition-colors duration-200"
+                          >
+                            <Link to={item.href}>
+                              <span
+                                className={cn(
+                                  'mr-2.5 transition-colors',
+                                  active
+                                    ? 'text-sidebar-accent-foreground'
+                                    : 'text-sidebar-foreground/60 group-hover/menu-button:text-sidebar-accent-foreground',
+                                )}
+                              >
+                                {item.icon}
+                              </span>
+                              <span className="flex-1 truncate text-sm font-medium group-data-[collapsible=icon]:hidden">
+                                {item.label}
+                              </span>
+                              {item.badge && (
+                                <span className="bg-primary/10 text-primary ml-auto flex h-5 min-w-5 items-center justify-center rounded-md px-1 text-xs font-bold group-data-[collapsible=icon]:hidden">
+                                  {item.badge}
+                                </span>
+                              )}
+                            </Link>
+                          </SidebarMenuButton>
+                        </SidebarMenuItem>
+                      )
+                    })}
+                  </SidebarMenu>
+                </SidebarGroupContent>
+                {groupIdx < navGroups.length - 1 && (
+                  <SidebarSeparator className="bg-sidebar-border/50 my-4 group-data-[collapsible=icon]:hidden" />
+                )}
+              </SidebarGroup>
+            ))}
           </SidebarMenu>
         </ScrollArea>
       </SidebarContent>
 
-      <SidebarFooter className="border-sidebar-border space-y-4 border-t p-6">
+      <SidebarFooter className="border-sidebar-border border-t p-4">
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton
-              onClick={logout}
-              className="hover:bg-error/10 hover:text-error text-muted-foreground h-12 w-full justify-start rounded-xl px-4 font-bold transition-all active:scale-95"
-            >
-              <LogOut className="mr-3 h-4 w-4" />
-              <span>Sign Out</span>
-            </SidebarMenuButton>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <SidebarMenuButton
+                  size="lg"
+                  className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+                >
+                  <Avatar className="h-8 w-8 rounded-lg">
+                    <AvatarImage src={user?.avatar || ''} alt={user?.email} />
+                    <AvatarFallback className="rounded-lg">
+                      {userInitials}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div className="grid flex-1 text-left text-sm leading-tight group-data-[collapsible=icon]:hidden">
+                    <span className="truncate font-semibold">
+                      {user?.email || 'User'}
+                    </span>
+                    <span className="text-muted-foreground truncate text-xs">
+                      {user?.email || 'm@example.com'}
+                    </span>
+                  </div>
+                  <ChevronsUpDown className="ml-auto size-4 group-data-[collapsible=icon]:hidden" />
+                </SidebarMenuButton>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent
+                className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg"
+                side="top"
+                align="end"
+                sideOffset={4}
+              >
+                <DropdownMenuLabel className="p-0 font-normal">
+                  <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
+                    <Avatar className="h-8 w-8 rounded-lg">
+                      <AvatarImage src={user?.avatar || ''} alt={user?.email} />
+                      <AvatarFallback className="rounded-lg">
+                        {userInitials}
+                      </AvatarFallback>
+                    </Avatar>
+                    <div className="grid flex-1 text-left text-sm leading-tight">
+                      <span className="truncate font-semibold">
+                        {user?.email || 'User'}
+                      </span>
+                      <span className="text-muted-foreground truncate text-xs">
+                        {user?.email || 'm@example.com'}
+                      </span>
+                    </div>
+                  </div>
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuGroup>
+                  <DropdownMenuItem>
+                    <Sparkles className="mr-2 size-4" />
+                    Upgrade to Pro
+                  </DropdownMenuItem>
+                </DropdownMenuGroup>
+                <DropdownMenuSeparator />
+                <DropdownMenuGroup>
+                  <DropdownMenuItem>
+                    <BadgeCheck className="mr-2 size-4" />
+                    Account
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <CreditCard className="mr-2 size-4" />
+                    Billing
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Bell className="mr-2 size-4" />
+                    Notifications
+                  </DropdownMenuItem>
+                </DropdownMenuGroup>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem
+                  onClick={logout}
+                  className="text-destructive focus:bg-destructive/10 focus:text-destructive"
+                >
+                  <LogOut className="mr-2 size-4" />
+                  Log out
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarFooter>

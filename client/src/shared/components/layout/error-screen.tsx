@@ -26,7 +26,7 @@ export function ErrorScreen({ error }: ErrorScreenProps) {
 
         {process.env.NODE_ENV === 'development' && error.stack && (
           <div className="max-h-40 overflow-auto rounded-lg bg-slate-100 p-4 text-left">
-            <pre className="font-mono text-[10px] text-slate-700 italic">
+            <pre className="font-mono text-xs text-slate-700 italic">
               {error.stack}
             </pre>
           </div>

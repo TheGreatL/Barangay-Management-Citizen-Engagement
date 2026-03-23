@@ -51,7 +51,7 @@ function LoginComponent() {
 
           {/* Developer Bypass (Mock Mode) */}
           <div className="rounded-lg border border-dashed border-slate-200 p-6">
-            <h4 className="mb-4 text-center text-xs font-semibold uppercase tracking-wider text-slate-500">
+            <h4 className="mb-4 text-center text-xs font-semibold text-slate-500">
               Developer Bypass (Mock Mode)
             </h4>
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
@@ -74,7 +74,7 @@ function LoginComponent() {
                 Mock Citizen
               </button>
             </div>
-            <p className="mt-4 text-center text-[10px] text-slate-400">
+            <p className="mt-4 text-center  text-slate-400">
               Use these buttons to bypass authentication when backend is not
               running.
             </p>
@@ -97,7 +97,7 @@ function LoginComponent() {
               Now smarter & faster
             </div>
 
-            <h2 className="animate-in fade-in slide-in-from-left-4 text-4xl font-bold tracking-tight delay-200 duration-700">
+            <h2 className="animate-in fade-in slide-in-from-left-4 text-4xl font-bold delay-200 duration-700">
               Build your next big idea with our powerful platform.
             </h2>
 

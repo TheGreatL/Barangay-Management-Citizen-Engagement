@@ -73,7 +73,7 @@ function AdminComplaintsComponent() {
       cell: ({ row }) => {
         const category = row.original.category
         return (
-          <Badge variant="secondary" className="bg-slate-100 text-slate-700 uppercase text-[10px]">
+          <Badge variant="secondary" className="bg-slate-100 text-slate-700 text-xs">
             {category}
           </Badge>
         )
@@ -91,7 +91,7 @@ function AdminComplaintsComponent() {
           URGENT: 'bg-red-100 text-red-700 font-bold',
         }
         return (
-          <Badge variant="outline" className={cn('text-[10px]', colors[priority])}>
+          <Badge variant="outline" className={cn('text-xs', colors[priority])}>
             {priority}
           </Badge>
         )
@@ -109,7 +109,7 @@ function AdminComplaintsComponent() {
           CLOSED: 'bg-slate-100 text-slate-700',
         }
         return (
-          <Badge variant="outline" className={cn('text-[10px]', colors[status])}>
+          <Badge variant="outline" className={cn('text-xs', colors[status])}>
             {status.replace(/_/g, ' ')}
           </Badge>
         )
@@ -159,7 +159,7 @@ function AdminComplaintsComponent() {
     <div className="space-y-6 p-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Complaint & Case Management</h1>
+          <h1 className="text-3xl font-bold">Complaint & Case Management</h1>
           <p className="text-muted-foreground mt-1">Track and resolve community issues and reports.</p>
         </div>
         <div className="flex gap-2">
@@ -173,28 +173,28 @@ function AdminComplaintsComponent() {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <Card className="flex flex-col justify-between h-25 p-4">
           <div className="flex items-center justify-between">
-            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">New Today</p>
+            <p className="text-xs font-semibold text-muted-foreground">New Today</p>
             <Plus className="h-4 w-4 text-blue-600" />
           </div>
           <p className="text-3xl font-bold">5</p>
         </Card>
         <Card className="flex flex-col justify-between h-25 p-4">
           <div className="flex items-center justify-between">
-            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">In Progress</p>
+            <p className="text-xs font-semibold text-muted-foreground">In Progress</p>
             <Clock className="h-4 w-4 text-orange-600" />
           </div>
           <p className="text-3xl font-bold">18</p>
         </Card>
         <Card className="flex flex-col justify-between h-25 p-4">
           <div className="flex items-center justify-between">
-            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Resolved</p>
+            <p className="text-xs font-semibold text-muted-foreground">Resolved</p>
             <CheckCircle2 className="h-4 w-4 text-green-600" />
           </div>
           <p className="text-3xl font-bold">142</p>
         </Card>
         <Card className="flex flex-col justify-between h-25 p-4">
           <div className="flex items-center justify-between">
-            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Pending</p>
+            <p className="text-xs font-semibold text-muted-foreground">Pending</p>
             <AlertCircle className="h-4 w-4 text-yellow-600" />
           </div>
           <p className="text-3xl font-bold">12</p>

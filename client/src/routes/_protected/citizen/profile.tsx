@@ -54,7 +54,7 @@ function CitizenProfileComponent() {
             </button>
           </div>
           <div className="flex-1 text-center md:text-left space-y-3">
-            <h1 className="text-5xl font-black tracking-tighter text-slate-900">{profile.firstName} {profile.lastName}</h1>
+            <h1 className="text-5xl font-black text-slate-900">{profile.firstName} {profile.lastName}</h1>
             <div className="flex flex-wrap items-center justify-center md:justify-start gap-4">
               <BadgeSmall icon={Shield} label="Verified Citizen" color="green" />
               <BadgeSmall icon={MapPin} label="District 4" color="blue" />
@@ -113,11 +113,11 @@ function CitizenProfileComponent() {
                 <div className="absolute -top-10 -right-10 w-32 h-32 bg-white/10 rounded-full blur-3xl" />
                 <div className="flex justify-between items-start">
                   <div className="h-10 w-10 bg-white/20 rounded-lg" />
-                  <span className="text-[10px] font-black uppercase tracking-widest opacity-60">Barangay ID</span>
+                  <span className="text-xs font-black opacity-60">Barangay ID</span>
                 </div>
                 <div className="space-y-1">
-                  <p className="text-sm font-black tracking-tight">{profile.firstName} {profile.lastName}</p>
-                  <p className="text-[10px] opacity-60 font-medium">BGY-MNL-2024-4291</p>
+                  <p className="text-sm font-black">{profile.firstName} {profile.lastName}</p>
+                  <p className="text-xs opacity-60 font-medium">BGY-MNL-2024-4291</p>
                 </div>
               </div>
               <Button className="w-full h-14 rounded-2xl bg-white text-primary font-black hover:bg-white/90">
@@ -151,7 +151,7 @@ function InfoItem({ icon: Icon, label, value }: { icon: any; label: string; valu
     <div className="space-y-2">
       <div className="flex items-center gap-2 text-slate-400">
         <Icon className="h-4 w-4" />
-        <span className="text-xs font-black uppercase tracking-widest">{label}</span>
+        <span className="text-xs font-black">{label}</span>
       </div>
       <p className="text-lg font-bold text-slate-800">{value}</p>
     </div>
@@ -166,13 +166,13 @@ function ActivityRow({ icon: Icon, label, date, title, status }: { icon: any; la
           <Icon className="h-5 w-5" />
         </div>
         <div>
-          <p className="text-xs font-black text-slate-400 uppercase tracking-widest">{label}</p>
+          <p className="text-xs font-black text-slate-400">{label}</p>
           <p className="font-bold text-slate-800">{title}</p>
         </div>
       </div>
       <div className="text-right">
         <p className="text-xs font-bold text-slate-400">{date}</p>
-        <p className="text-xs font-black text-green-600 uppercase tracking-tighter">{status}</p>
+        <p className="text-xs font-black text-green-600">{status}</p>
       </div>
     </div>
   )

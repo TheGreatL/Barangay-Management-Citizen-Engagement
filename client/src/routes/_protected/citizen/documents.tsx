@@ -122,7 +122,7 @@ function DocumentsComponent() {
     <div className="space-y-6 p-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Document Requests</h1>
+          <h1 className="text-3xl font-bold">Document Requests</h1>
           <p className="text-muted-foreground mt-1">Request and manage your official barangay documents.</p>
         </div>
         <Link to="/citizen/documents-new">
@@ -166,7 +166,7 @@ function StatusCard({ title, value, icon: Icon, color }: { title: string; value:
   return (
     <div className={cn('rounded-xl border p-4 shadow-sm flex items-center justify-between', colors[color])}>
       <div>
-        <p className="text-xs font-bold uppercase tracking-widest opacity-80">{title}</p>
+        <p className="text-xs font-bold opacity-80">{title}</p>
         <p className="text-2xl font-bold">{value}</p>
       </div>
       <Icon className="h-8 w-8 opacity-20" />

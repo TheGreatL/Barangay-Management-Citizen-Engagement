@@ -1,6 +1,11 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { BarChart, TrendingUp, Users, AlertCircle } from 'lucide-react'
-import { Card, CardContent, CardHeader, CardTitle } from '@/shared/components/ui/card'
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from '@/shared/components/ui/card'
 import { Button } from '@/shared/components/ui/button'
 
 export const Route = createFileRoute('/_protected/admin/analytics')({
@@ -37,20 +42,15 @@ function AdminAnalyticsComponent() {
   return (
     <div className="space-y-6 p-6">
       <div>
-        <h1 className="text-3xl font-bold tracking-tight">System Analytics</h1>
-        <p className="mt-1 text-muted-foreground">
+        <h1 className="text-3xl font-bold">System Analytics</h1>
+        <p className="text-muted-foreground mt-1">
           Comprehensive system-wide analytics and performance metrics.
         </p>
       </div>
 
       <div className="flex gap-2">
         {timeframes.map((tf) => (
-          <Button
-            key={tf}
-            variant="outline"
-            size="sm"
-            className="h-9 px-4"
-          >
+          <Button key={tf} variant="outline" size="sm" className="h-9 px-4">
             {tf}
           </Button>
         ))}
@@ -64,11 +64,11 @@ function AdminAnalyticsComponent() {
               <CardContent className="p-6">
                 <div className="flex items-start justify-between">
                   <div>
-                    <p className="text-sm font-medium text-muted-foreground">
+                    <p className="text-muted-foreground text-sm font-medium">
                       {metric.title}
                     </p>
                     <p className="mt-2 text-3xl font-bold">{metric.value}</p>
-                    <p className="mt-2 text-xs text-green-600 font-medium">
+                    <p className="mt-2 text-xs font-medium text-green-600">
                       {metric.change}
                     </p>
                   </div>
@@ -85,11 +85,11 @@ function AdminAnalyticsComponent() {
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         <Card>
           <CardHeader className="flex flex-row items-center gap-2 space-y-0">
-            <BarChart className="h-5 w-5 text-muted-foreground" />
+            <BarChart className="text-muted-foreground h-5 w-5" />
             <CardTitle>User Growth Trend</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="h-64 bg-slate-50/50 rounded-lg border border-dashed flex items-center justify-center text-muted-foreground text-sm font-medium">
+            <div className="text-muted-foreground flex h-64 items-center justify-center rounded-lg border border-dashed bg-slate-50/50 text-sm font-medium">
               Chart visualization would be rendered here
             </div>
           </CardContent>
@@ -97,11 +97,11 @@ function AdminAnalyticsComponent() {
 
         <Card>
           <CardHeader className="flex flex-row items-center gap-2 space-y-0">
-            <TrendingUp className="h-5 w-5 text-muted-foreground" />
+            <TrendingUp className="text-muted-foreground h-5 w-5" />
             <CardTitle>Service Usage Distribution</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="h-64 bg-slate-50/50 rounded-lg border border-dashed flex items-center justify-center text-muted-foreground text-sm font-medium">
+            <div className="text-muted-foreground flex h-64 items-center justify-center rounded-lg border border-dashed bg-slate-50/50 text-sm font-medium">
               Chart visualization would be rendered here
             </div>
           </CardContent>
@@ -110,11 +110,11 @@ function AdminAnalyticsComponent() {
 
       <Card>
         <CardHeader className="flex flex-row items-center gap-2 space-y-0">
-          <BarChart className="h-5 w-5 text-muted-foreground" />
+          <BarChart className="text-muted-foreground h-5 w-5" />
           <CardTitle>Complaints Timeline</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="h-80 bg-slate-50/50 rounded-lg border border-dashed flex items-center justify-center text-muted-foreground text-sm font-medium">
+          <div className="text-muted-foreground flex h-80 items-center justify-center rounded-lg border border-dashed bg-slate-50/50 text-sm font-medium">
             Chart visualization would be rendered here
           </div>
         </CardContent>

@@ -92,7 +92,7 @@ function CitizenComplaintsComponent() {
       <div className="bg-white border-b px-6 py-8 sm:px-8">
         <div className="mx-auto w-full max-w-6xl flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="space-y-1">
-            <h1 className="text-3xl font-black tracking-tight text-slate-900 flex items-center gap-3">
+            <h1 className="text-3xl font-black text-slate-900 flex items-center gap-3">
               <MessageSquare className="h-8 w-8 text-primary" />
               Complaints & Feedback
             </h1>
@@ -176,7 +176,7 @@ function StatsCard({ label, value, icon: Icon, color }: { label: string; value: 
         <Icon className="h-6 w-6" />
       </div>
       <div>
-        <p className="text-xs font-bold text-slate-500 uppercase tracking-wider leading-none mb-1">{label}</p>
+        <p className="text-xs font-bold text-slate-500 leading-none mb-1">{label}</p>
         <p className="text-2xl font-black text-slate-900">{value}</p>
       </div>
     </div>

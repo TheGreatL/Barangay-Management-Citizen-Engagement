@@ -8,7 +8,7 @@ export function NotFoundScreen() {
           <AlertTriangle size={48} />
         </div>
         <div className="space-y-2">
-          <h1 className="text-4xl font-bold tracking-tight text-slate-900">
+          <h1 className="text-4xl font-bold text-slate-900">
             404
           </h1>
           <h2 className="text-xl font-semibold text-slate-600">

@@ -5,7 +5,11 @@ import { Button } from '@/shared/components/ui/button'
 import { Badge } from '@/shared/components/ui/badge'
 import * as React from 'react'
 import { DataTable } from '@/shared/components/ui/DataTable'
-import type { ColumnDef, PaginationState, SortingState } from '@tanstack/react-table'
+import type {
+  ColumnDef,
+  PaginationState,
+  SortingState,
+} from '@tanstack/react-table'
 import { getActivityLogs } from '@/mock/activity-log-service'
 import { Card } from '@/shared/components/ui/card'
 
@@ -28,7 +32,9 @@ function AdminActivityLogsComponent() {
     pageIndex: 0,
     pageSize: 10,
   })
-  const [sorting, setSorting] = React.useState<SortingState>([{ id: 'timestamp', desc: true }])
+  const [sorting, setSorting] = React.useState<SortingState>([
+    { id: 'timestamp', desc: true },
+  ])
   const [searchValue, setSearchValue] = React.useState('')
 
   const { data, isLoading } = useQuery({
@@ -52,7 +58,9 @@ function AdminActivityLogsComponent() {
         return (
           <div className="flex flex-col">
             <span className="font-medium">{date.toLocaleDateString()}</span>
-            <span className="text-xs text-muted-foreground">{date.toLocaleTimeString()}</span>
+            <span className="text-muted-foreground text-xs">
+              {date.toLocaleTimeString()}
+            </span>
           </div>
         )
       },
@@ -62,10 +70,10 @@ function AdminActivityLogsComponent() {
       header: 'User',
       cell: ({ row }) => (
         <div className="flex items-center gap-2">
-          <div className="h-6 w-6 rounded-full bg-slate-100 flex items-center justify-center">
+          <div className="flex h-6 w-6 items-center justify-center rounded-full bg-slate-100">
             <User className="h-3 w-3 text-slate-600" />
           </div>
-          <span className="font-medium text-sm">{row.original.user}</span>
+          <span className="text-sm font-medium">{row.original.user}</span>
         </div>
       ),
     },
@@ -75,7 +83,10 @@ function AdminActivityLogsComponent() {
       cell: ({ row }) => {
         const action = row.original.action
         return (
-          <Badge variant="outline" className="text-[10px] font-mono border-slate-200 bg-slate-50 uppercase">
+          <Badge
+            variant="outline"
+            className="border-slate-200 bg-slate-50 font-mono text-xs"
+          >
             {action}
           </Badge>
         )
@@ -87,7 +98,7 @@ function AdminActivityLogsComponent() {
       cell: ({ row }) => {
         const module = row.original.module
         return (
-          <div className="flex items-center gap-1.5 text-xs font-semibold text-muted-foreground">
+          <div className="text-muted-foreground flex items-center gap-1.5 text-xs font-semibold">
             <Terminal className="h-3 w-3" />
             {module}
           </div>
@@ -97,12 +108,20 @@ function AdminActivityLogsComponent() {
     {
       accessorKey: 'details',
       header: 'Details',
-      cell: ({ row }) => <span className="text-sm truncate max-w-[300px] block">{row.original.details}</span>,
+      cell: ({ row }) => (
+        <span className="block max-w-[300px] truncate text-sm">
+          {row.original.details}
+        </span>
+      ),
     },
     {
       accessorKey: 'ipAddress',
       header: 'IP Address',
-      cell: ({ row }) => <span className="text-xs font-mono text-muted-foreground">{row.getValue('ipAddress')}</span>,
+      cell: ({ row }) => (
+        <span className="text-muted-foreground font-mono text-xs">
+          {row.getValue('ipAddress')}
+        </span>
+      ),
     },
   ]
 
@@ -110,11 +129,13 @@ function AdminActivityLogsComponent() {
     <div className="space-y-6 p-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight flex items-center gap-3">
+          <h1 className="flex items-center gap-3 text-3xl font-bold">
             <Activity className="text-primary h-8 w-8" />
             System Activity Logs
           </h1>
-          <p className="text-muted-foreground mt-1">Audit trail for all system actions and security events.</p>
+          <p className="text-muted-foreground mt-1">
+            Audit trail for all system actions and security events.
+          </p>
         </div>
         <div className="flex gap-2">
           <Button variant="outline">Export CSV</Button>
@@ -124,24 +145,30 @@ function AdminActivityLogsComponent() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Card className="border-blue-200 bg-blue-50 text-blue-600 p-4 flex items-center justify-between shadow-sm">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+        <Card className="flex items-center justify-between border-blue-200 bg-blue-50 p-4 text-blue-600 shadow-sm">
           <div>
-            <p className="text-xs font-bold uppercase tracking-widest opacity-70 mb-1">Login Events</p>
+            <p className="mb-1 text-xs font-bold opacity-70">
+              Login Events
+            </p>
             <p className="text-2xl font-black">1,245</p>
           </div>
           <Shield className="h-8 w-8 opacity-20" />
         </Card>
-        <Card className="border-orange-200 bg-orange-50 text-orange-600 p-4 flex items-center justify-between shadow-sm">
+        <Card className="flex items-center justify-between border-orange-200 bg-orange-50 p-4 text-orange-600 shadow-sm">
           <div>
-            <p className="text-xs font-bold uppercase tracking-widest opacity-70 mb-1">Data Mutations</p>
+            <p className="mb-1 text-xs font-bold opacity-70">
+              Data Mutations
+            </p>
             <p className="text-2xl font-black">452</p>
           </div>
           <Database className="h-8 w-8 opacity-20" />
         </Card>
-        <Card className="border-red-200 bg-red-50 text-red-600 p-4 flex items-center justify-between shadow-sm">
+        <Card className="flex items-center justify-between border-red-200 bg-red-50 p-4 text-red-600 shadow-sm">
           <div>
-            <p className="text-xs font-bold uppercase tracking-widest opacity-70 mb-1">Security Alerts</p>
+            <p className="mb-1 text-xs font-bold opacity-70">
+              Security Alerts
+            </p>
             <p className="text-2xl font-black">3</p>
           </div>
           <Shield className="h-8 w-8 opacity-20" />
@@ -164,4 +191,3 @@ function AdminActivityLogsComponent() {
     </div>
   )
 }
-

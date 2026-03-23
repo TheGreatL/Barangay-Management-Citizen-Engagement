@@ -36,7 +36,7 @@ export function PageHeader({
           )}
           <div>
             <h1
-              className="text-3xl font-bold tracking-tight"
+              className="text-3xl font-bold"
               style={{ color: 'var(--color-text-primary)' }}
             >
               {title}

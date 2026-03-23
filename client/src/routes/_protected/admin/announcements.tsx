@@ -35,7 +35,7 @@ function AdminAnnouncementsComponent() {
     <div className="space-y-6 p-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight text-slate-900">
+          <h1 className="text-3xl font-bold text-slate-900">
             Manage Announcements
           </h1>
           <p className="mt-2 text-slate-600">
@@ -61,13 +61,17 @@ function AdminAnnouncementsComponent() {
         ))}
       </div>
 
-      {isLoading && <div className="text-center text-slate-500">Loading...</div>}
+      {isLoading && (
+        <div className="text-center text-slate-500">Loading...</div>
+      )}
 
       {error && (
         <div className="rounded-lg bg-red-50 p-6">
           <div className="flex items-start gap-3">
             <AlertCircle className="mt-0.5 h-5 w-5 text-red-600" />
-            <h3 className="font-medium text-red-900">Failed to load announcements</h3>
+            <h3 className="font-medium text-red-900">
+              Failed to load announcements
+            </h3>
           </div>
         </div>
       )}
@@ -99,7 +103,9 @@ function AdminAnnouncementsComponent() {
                   </p>
                   <p className="mt-2 text-xs text-slate-500">
                     Published:{' '}
-                    {new Date(announcement.publishedAt || announcement.createdAt).toLocaleDateString()}
+                    {new Date(
+                      announcement.publishedAt || announcement.createdAt,
+                    ).toLocaleDateString()}
                   </p>
                 </div>
               </div>

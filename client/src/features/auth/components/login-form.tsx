@@ -67,7 +67,7 @@ export default function LoginForm() {
   return (
     <div className="animate-in fade-in slide-in-from-bottom-4 w-full max-w-md space-y-8 duration-700">
       <div className="space-y-2 text-center">
-        <h1 className="bg-linear-to-r from-indigo-500 to-purple-600 bg-clip-text text-3xl font-bold tracking-tight text-transparent">
+        <h1 className="bg-linear-to-r from-indigo-500 to-purple-600 bg-clip-text text-3xl font-bold text-transparent">
           Welcome Back
         </h1>
         <p className="text-muted-foreground">

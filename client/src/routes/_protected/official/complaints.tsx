@@ -74,15 +74,15 @@ function OfficialComplaintsComponent() {
       header: 'Incident Details',
       cell: ({ row }) => (
         <div className="flex max-w-md flex-col">
-          <span className="leading-tight font-bold text-slate-900">
+          <span className="font-semibold text-slate-900">
             {row.original.title}
           </span>
           <div className="mt-1 flex items-center gap-2">
-            <span className="text-[10px] font-black tracking-widest text-slate-400 uppercase">
+            <span className="text-xs font-medium text-slate-400">
               {row.original.category}
             </span>
-            <span className="h-1 w-1 rounded-full bg-slate-300" />
-            <span className="text-[10px] font-bold text-slate-500">
+            <span className="h-1 w-1 rounded-full bg-slate-200" />
+            <span className="text-xs font-medium text-slate-500">
               ID: {row.original.id.slice(0, 8)}
             </span>
           </div>
@@ -93,11 +93,11 @@ function OfficialComplaintsComponent() {
       accessorKey: 'complainant',
       header: 'Reported By',
       cell: ({ row }) => (
-        <div className="flex items-center gap-3">
-          <div className="flex h-8 w-8 items-center justify-center rounded-full border bg-slate-100 text-slate-500">
-            <User className="h-4 w-4" />
+        <div className="flex items-center gap-2">
+          <div className="flex h-7 w-7 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-slate-500">
+            <User className="h-3.5 w-3.5" />
           </div>
-          <span className="text-sm font-bold text-slate-700">
+          <span className="text-sm font-medium text-slate-700">
             {row.original.complainant}
           </span>
         </div>
@@ -108,26 +108,18 @@ function OfficialComplaintsComponent() {
       header: 'Priority',
       cell: ({ row }) => {
         const priorities = {
-          low: 'text-slate-500 bg-slate-50',
-          medium: 'text-blue-600 bg-blue-50',
-          high: 'text-orange-600 bg-orange-50',
-          urgent: 'text-red-600 bg-red-50 animate-pulse',
+          low: 'text-slate-500 bg-slate-50 border-slate-100',
+          medium: 'text-blue-600 bg-blue-50 border-blue-100',
+          high: 'text-orange-600 bg-orange-50 border-orange-100',
+          urgent: 'text-red-600 bg-red-50 border-red-100 animate-pulse',
         }
         return (
           <div
             className={cn(
-              'flex w-fit items-center gap-1.5 rounded-lg border border-transparent px-2.5 py-1 text-[10px] font-black tracking-tighter uppercase',
+              'flex w-fit items-center gap-1.5 rounded px-2 py-0.5 text-xs font-bold border',
               priorities[row.original.priority],
             )}
           >
-            <div
-              className={cn(
-                'h-1.5 w-1.5 rounded-full',
-                row.original.priority === 'urgent'
-                  ? 'bg-red-600'
-                  : 'bg-current',
-              )}
-            />
             {row.original.priority}
           </div>
         )
@@ -138,14 +130,14 @@ function OfficialComplaintsComponent() {
       header: 'Status',
       cell: ({ row }) => {
         const statuses = {
-          pending: 'bg-amber-100 text-amber-700 border-amber-200',
-          investigating: 'bg-blue-100 text-blue-700 border-blue-200',
-          resolved: 'bg-green-100 text-green-700 border-green-200',
+          pending: 'bg-amber-50 text-amber-700 border-amber-100',
+          investigating: 'bg-blue-50 text-blue-700 border-blue-100',
+          resolved: 'bg-green-50 text-green-700 border-green-100',
         }
         return (
           <Badge
             className={cn(
-              'border px-3 py-1 text-[10px] font-black capitalize shadow-xs',
+              'border px-2 py-0 text-xs font-medium capitalize',
               statuses[row.original.status],
             )}
             variant="outline"
@@ -157,13 +149,11 @@ function OfficialComplaintsComponent() {
     },
     {
       accessorKey: 'createdAt',
-      header: 'Reported Date',
+      header: 'Date',
       cell: ({ row }) => (
-        <div className="flex flex-col">
-          <span className="text-sm font-bold text-slate-600">
-            {new Date(row.original.createdAt).toLocaleDateString()}
-          </span>
-          <span className="text-[10px] font-medium text-slate-400">
+        <div className="flex flex-col text-sm text-slate-600">
+          <span>{new Date(row.original.createdAt).toLocaleDateString()}</span>
+          <span className="text-xs text-slate-400">
             {new Date(row.original.createdAt).toLocaleTimeString([], {
               hour: '2-digit',
               minute: '2-digit',
@@ -179,25 +169,24 @@ function OfficialComplaintsComponent() {
           <Button
             variant="outline"
             size="sm"
-            className="text-primary border-primary/20 hover:bg-primary/5 h-9 rounded-xl bg-white px-4 font-bold transition-all"
+            className="h-8 rounded-lg px-3 text-xs font-semibold"
           >
-            Manage Case
+            Manage
           </Button>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button
                 variant="ghost"
-                className="h-9 w-9 rounded-xl p-0 hover:bg-slate-100"
+                className="h-8 w-8 p-0"
               >
                 <MoreHorizontal className="h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent
               align="end"
-              className="w-56 overflow-hidden rounded-2xl border-slate-200 p-1 font-bold shadow-2xl"
+              className="w-56"
             >
               <DropdownMenuItem
-                className="group cursor-pointer rounded-xl py-3"
                 onClick={() =>
                   updateStatusMutation.mutate({
                     id: row.original.id,
@@ -205,11 +194,10 @@ function OfficialComplaintsComponent() {
                   })
                 }
               >
-                <ShieldAlert className="mr-3 h-4 w-4 text-blue-500 transition-transform group-hover:scale-110" />{' '}
+                <ShieldAlert className="mr-2 h-4 w-4 text-blue-500" />{' '}
                 Mark as Investigating
               </DropdownMenuItem>
               <DropdownMenuItem
-                className="group cursor-pointer rounded-xl py-3"
                 onClick={() =>
                   updateStatusMutation.mutate({
                     id: row.original.id,
@@ -217,16 +205,12 @@ function OfficialComplaintsComponent() {
                   })
                 }
               >
-                <CheckCircle2 className="mr-3 h-4 w-4 text-green-500 transition-transform group-hover:scale-110" />{' '}
+                <CheckCircle2 className="mr-2 h-4 w-4 text-green-500" />{' '}
                 Mark as Resolved
               </DropdownMenuItem>
-              <DropdownMenuItem className="group mt-1 cursor-pointer rounded-xl border-t py-3">
-                <MapPin className="mr-3 h-4 w-4 text-slate-500 transition-transform group-hover:scale-110" />{' '}
+              <DropdownMenuItem className="border-t mt-1">
+                <MapPin className="mr-2 h-4 w-4 text-slate-500" />{' '}
                 View Location
-              </DropdownMenuItem>
-              <DropdownMenuItem className="group cursor-pointer rounded-xl py-3">
-                <ExternalLink className="mr-3 h-4 w-4 text-slate-500 transition-transform group-hover:scale-110" />{' '}
-                Export Record
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -236,88 +220,60 @@ function OfficialComplaintsComponent() {
   ]
 
   return (
-    <div className="flex flex-col bg-slate-50/10">
-      <div className="border-b bg-white px-10 py-12">
-        <div className="mx-auto flex max-w-425 flex-col justify-between gap-10 xl:flex-row xl:items-center">
-          <div className="space-y-3">
-            <h1 className="flex items-center gap-5 text-5xl font-black tracking-tighter text-slate-900">
-              <div className="flex h-14 w-14 items-center justify-center rounded-3xl bg-red-600 text-white shadow-xl shadow-red-200">
-                <ShieldAlert className="h-8 w-8" />
-              </div>
-              Incident & Complaint Center
+    <div className="animate-in fade-in slide-in-from-top-4 space-y-8 p-8 duration-500">
+      <div className="mx-auto w-full max-w-6xl space-y-8">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <h1 className="text-3xl font-bold text-slate-900">
+              Incident & Complaints
             </h1>
-            <p className="max-w-2xl text-xl leading-relaxed font-medium text-slate-500">
-              Investigate and resolve community issues with transparency and
-              efficiency. Coordinate with relevant departments for faster
-              resolution.
+            <p className="text-slate-500 mt-1">
+              Investigate and resolve community issues with transparency and efficiency.
             </p>
           </div>
-          <div className="flex flex-wrap items-center gap-4">
+          <div className="flex items-center gap-3">
             <StatSmall label="Action Needed" value="12" color="red" />
             <StatSmall label="Avg Response" value="1.5h" color="blue" />
-            <Button className="shadow-primary/30 h-16 rounded-2xl bg-slate-900 px-10 text-xl font-black shadow-2xl transition-all hover:scale-105 active:scale-95">
-              Generate Weekly Analysis
-            </Button>
           </div>
         </div>
-      </div>
 
-      <div className="flex-1 p-10">
-        <div className="mx-auto max-w-425 space-y-10">
-          <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
-            <div className="relative w-full md:max-w-xl">
-              <Search className="absolute top-1/2 left-6 h-5 w-5 -translate-y-1/2 text-slate-400" />
+        <div className="rounded-xl border border-slate-200 bg-card p-6 shadow-sm space-y-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="relative w-full md:max-w-md">
+              <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-slate-400" />
               <input
                 type="text"
-                placeholder="Find incidents by title, complainant, or ID..."
-                className="focus:ring-primary/5 w-full rounded-[22px] border border-slate-200 bg-white py-5 pr-8 pl-16 text-lg font-bold text-slate-800 shadow-sm transition-all outline-none focus:ring-8"
+                placeholder="Find incidents by title, name, or ID..."
+                className="w-full pl-10 pr-4 py-2 rounded-lg border border-slate-200 bg-slate-50/50 focus:ring-2 focus:ring-primary/10 transition-all outline-none text-sm"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
-            <div className="flex items-center gap-3 overflow-x-auto pb-4 md:pb-0">
-              <FilterTab
-                active={filterStatus === 'all'}
-                onClick={() => setFilterStatus('all')}
-                label="All Reports"
-                count="154"
-              />
-              <FilterTab
-                active={filterStatus === 'pending'}
-                onClick={() => setFilterStatus('pending')}
-                label="Pending"
-                count="42"
-                color="amber"
-              />
-              <FilterTab
-                active={filterStatus === 'investigating'}
-                onClick={() => setFilterStatus('investigating')}
-                label="Investigation"
-                count="18"
-                color="blue"
-              />
-              <FilterTab
-                active={filterStatus === 'resolved'}
-                onClick={() => setFilterStatus('resolved')}
-                label="Resolved"
-                count="94"
-                color="green"
-              />
+            <div className="flex items-center gap-2 overflow-x-auto w-full md:w-auto">
+              {['all', 'pending', 'investigating', 'resolved'].map((status) => (
+                <Button
+                  key={status}
+                  variant={filterStatus === status ? 'default' : 'ghost'}
+                  size="sm"
+                  onClick={() => setFilterStatus(status)}
+                  className="capitalize h-8 rounded-lg"
+                >
+                  {status === 'investigating' ? 'Investigation' : status}
+                </Button>
+              ))}
             </div>
           </div>
 
-          <div className="overflow-hidden rounded-[40px] border border-slate-200 bg-white p-4 shadow-2xl shadow-slate-200/50">
-            <DataTable
-              columns={columns}
-              data={data?.data || []}
-              isLoading={isLoading}
-              pagination={pagination}
-              onPaginationChange={setPagination}
-              pageCount={Math.ceil(
-                (data?.meta.total || 0) / pagination.pageSize,
-              )}
-            />
-          </div>
+          <DataTable
+            columns={columns}
+            data={data?.data || []}
+            isLoading={isLoading}
+            pagination={pagination}
+            onPaginationChange={setPagination}
+            pageCount={Math.ceil(
+              (data?.meta.total || 0) / pagination.pageSize,
+            )}
+          />
         </div>
       </div>
     </div>
@@ -339,11 +295,11 @@ function StatSmall({
   }
 
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white px-5 py-3 shadow-sm">
-      <p className="mb-1 text-[10px] font-black tracking-widest text-slate-400 uppercase">
+    <div className="rounded-xl border border-slate-200 bg-white px-4 py-2 shadow-sm">
+      <p className="text-xs font-bold text-slate-400 leading-none mb-1">
         {label}
       </p>
-      <p className={cn('text-2xl leading-none font-black', colors[color])}>
+      <p className={cn('text-xl font-bold leading-none', colors[color])}>
         {value}
       </p>
     </div>
@@ -374,14 +330,14 @@ function FilterTab({
     <button
       onClick={onClick}
       className={cn(
-        'flex items-center gap-3 rounded-2xl border px-6 py-4 text-sm font-black tracking-widest uppercase transition-all',
+        'flex items-center gap-3 rounded-2xl border px-6 py-4 text-sm font-black transition-all',
         active
           ? cn('scale-105 shadow-xl', activeColors[color])
           : 'border-slate-100 bg-white text-slate-500 hover:bg-slate-50',
       )}
     >
       {label}
-      <span className={cn('rounded-lg bg-black/10 px-2 py-0.5 text-[10px]')}>
+      <span className={cn('rounded-lg bg-black/10 px-2 py-0.5 text-xs')}>
         {count}
       </span>
     </button>

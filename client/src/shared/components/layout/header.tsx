@@ -40,7 +40,7 @@ export function Header() {
             placeholder="Search..."
           />
           <div className="pointer-events-none absolute inset-y-0 right-0 hidden items-center pr-3 lg:flex">
-            <kbd className="rounded-md border border-border bg-background px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground">
+            <kbd className="rounded-md border border-border bg-background px-1.5 py-0.5 text-xs font-medium text-muted-foreground">
               ⌘ + F
             </kbd>
           </div>
@@ -73,7 +73,7 @@ export function Header() {
             <button className="flex items-center gap-3 rounded-lg p-1 text-left outline-hidden transition-colors hover:bg-muted/50">
               <Avatar className="h-9 w-9 border border-border">
                 <AvatarImage src="" />
-                <AvatarFallback className="bg-primary text-primary-foreground text-[10px] font-bold">
+                <AvatarFallback className="bg-primary text-primary-foreground text-xs font-bold">
                   {getInitials(user?.firstName, user?.lastName)}
                 </AvatarFallback>
               </Avatar>
@@ -81,7 +81,7 @@ export function Header() {
                 <span className="text-sm font-semibold text-foreground line-clamp-1">
                   {user?.firstName} {user?.lastName}
                 </span>
-                <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wider">
+                <span className="text-xs font-medium text-muted-foreground">
                   {user?.role.replace('_', ' ')}
                 </span>
               </div>

@@ -44,107 +44,127 @@ const COLORS = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6']
 
 function OfficialReportsComponent() {
   return (
-    <div className="flex flex-col bg-slate-50/10">
-      <div className="bg-white border-b px-10 py-10 shadow-sm">
-        <div className="max-w-425 mx-auto flex flex-col lg:flex-row lg:items-center justify-between gap-8">
-          <div className="space-y-2">
-            <h1 className="text-4xl font-black tracking-tighter text-slate-900 flex items-center gap-4">
-              <div className="h-12 w-12 rounded-2xl bg-indigo-600 text-white flex items-center justify-center shadow-lg shadow-indigo-200">
-                <TrendingUp className="h-6 w-6" />
-              </div>
-              Insights & Community Analytics
+    <div className="animate-in fade-in slide-in-from-top-4 space-y-8 p-8 duration-500">
+      <div className="mx-auto w-full max-w-6xl space-y-8">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <h1 className="text-3xl font-bold text-slate-900">
+              Community Analytics
             </h1>
-            <p className="text-slate-500 text-lg font-medium leading-tight">Data-driven overview of barangay operations and resident demographics.</p>
+            <p className="text-slate-500 mt-1">Data-driven overview of barangay operations and demographics.</p>
           </div>
           <div className="flex items-center gap-3">
-            <Button variant="outline" className="rounded-2xl h-14 px-6 font-bold text-slate-600 border-slate-200 shadow-sm">
-              <Calendar className="mr-2 h-5 w-5" /> Date Range
+            <Button variant="outline">
+              <Calendar className="mr-2 h-4 w-4" /> Date Range
             </Button>
-            <Button className="rounded-2xl h-14 px-8 font-black shadow-xl shadow-indigo-500/20 transition-all hover:scale-105 active:scale-95 text-lg bg-indigo-600">
-              <Download className="mr-2 h-5 w-5" /> Export Insights
+            <Button>
+              <Download className="mr-2 h-4 w-4" /> Export Insights
             </Button>
           </div>
         </div>
-      </div>
 
-      <div className="flex-1 p-10">
-        <div className="max-w-425 mx-auto space-y-10">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <ReportStat label="Population" value="2,842" sub="+12 this month" icon={Users} color="blue" />
-            <ReportStat label="Docs Issued" value="428" sub="98.2% success" icon={FileText} color="indigo" />
-            <ReportStat label="Resolved Cases" value="84" sub="Avg 2.4 days" icon={MessageSquare} color="green" />
-            <ReportStat label="Engagement" value="64%" sub="+5% vs last mon" icon={TrendingUp} color="orange" />
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <ReportStat label="Population" value="2,842" sub="+12 this month" icon={Users} color="blue" />
+          <ReportStat label="Docs Issued" value="428" sub="98.2% success" icon={FileText} color="indigo" />
+          <ReportStat label="Resolved Cases" value="84" sub="Avg 2.4 days" icon={MessageSquare} color="green" />
+          <ReportStat label="Engagement" value="64%" sub="+5% vs last mon" icon={TrendingUp} color="orange" />
+        </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <Card className="lg:col-span-2 rounded-[40px] border-slate-200 shadow-sm overflow-hidden p-8 space-y-8">
-              <CardHeader className="p-0 space-y-1">
-                <div className="flex items-center justify-between">
-                  <CardTitle className="text-2xl font-black text-slate-900 tracking-tight">Weekly Operational Trends</CardTitle>
-                  <Button variant="ghost" size="sm" className="rounded-xl font-bold gap-2 text-slate-500">
-                    <Filter className="h-4 w-4" /> Filter Metrics
-                  </Button>
-                </div>
-                <CardDescription className="text-slate-400 uppercase text-[10px] font-black tracking-widest leading-none">Activity volume for complaints and document requests</CardDescription>
-              </CardHeader>
-              <CardContent className="p-0 pt-4">
-                <div className="h-100 w-full">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <BarChart data={activityData} margin={{ top: 20, right: 30, left: 0, bottom: 0 }}>
-                      <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
-                      <XAxis dataKey="day" axisLine={false} tickLine={false} tick={{ fill: '#94a3b8', fontSize: 12, fontWeight: 700 }} dy={10} />
-                      <YAxis axisLine={false} tickLine={false} tick={{ fill: '#94a3b8', fontSize: 12, fontWeight: 700 }} dx={-10} />
-                      <Tooltip 
-                        contentStyle={{ borderRadius: '20px', border: 'none', boxShadow: '0 20px 25px -5px rgb(0 0 0 / 0.1)', fontWeight: 'bold' }} 
-                        cursor={{ fill: '#f1f5f9' }}
-                      />
-                      <Bar dataKey="documents" fill="#4f46e5" radius={[6, 6, 0, 0]} barSize={32} />
-                      <Bar dataKey="complaints" fill="#ef4444" radius={[6, 6, 0, 0]} barSize={32} />
-                    </BarChart>
-                  </ResponsiveContainer>
-                </div>
-              </CardContent>
-            </Card>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <Card className="lg:col-span-2 rounded-xl overflow-hidden shadow-sm">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-7">
+              <div className="space-y-1">
+                <CardTitle className="text-xl font-bold text-slate-900">Weekly Trends</CardTitle>
+                <CardDescription className="text-slate-400 text-xs font-medium">Activity volume for complaints and documents</CardDescription>
+              </div>
+              <Button variant="ghost" size="sm" className="h-8 gap-2 px-3">
+                <Filter className="h-3.5 w-3.5" /> Filter
+              </Button>
+            </CardHeader>
+            <CardContent>
+              <div className="h-75 w-full">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={activityData} margin={{ top: 0, right: 10, left: -20, bottom: 0 }}>
+                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
+                    <XAxis dataKey="day" axisLine={false} tickLine={false} tick={{ fill: '#94a3b8', fontSize: 11, fontWeight: 500 }} dy={10} />
+                    <YAxis axisLine={false} tickLine={false} tick={{ fill: '#94a3b8', fontSize: 11, fontWeight: 500 }} />
+                    <Tooltip 
+                      content={({ active, payload }) => {
+                        if (active && payload && payload.length) {
+                          return (
+                            <div className="rounded-lg border bg-white p-2 shadow-sm text-xs font-medium">
+                              {payload.map((entry: any, index: number) => (
+                                <div key={index} className="flex items-center gap-2 py-0.5">
+                                  <div className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: entry.fill }} />
+                                  <span className="text-slate-500">{entry.name}:</span>
+                                  <span className="text-slate-900 font-bold">{entry.value}</span>
+                                </div>
+                              ))}
+                            </div>
+                          )
+                        }
+                        return null
+                      }}
+                    />
+                    <Bar dataKey="documents" fill="#6366f1" radius={[4, 4, 0, 0]} barSize={24} />
+                    <Bar dataKey="complaints" fill="#f43f5e" radius={[4, 4, 0, 0]} barSize={24} />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+            </CardContent>
+          </Card>
 
-            <Card className="rounded-[40px] border-slate-200 shadow-sm overflow-hidden p-8 space-y-8 flex flex-col justify-between">
-              <CardHeader className="p-0 space-y-1">
-                <CardTitle className="text-2xl font-black text-slate-900 tracking-tight">Demographics</CardTitle>
-                <CardDescription className="text-slate-400 text-[10px] font-black uppercase tracking-widest leading-none">Age distribution of registered citizens</CardDescription>
-              </CardHeader>
-              <CardContent className="p-0 flex flex-col items-center">
-                <div className="h-75 w-full">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <PieChart>
-                      <Pie
-                        data={demographicData}
-                        cx="50%"
-                        cy="50%"
-                        innerRadius={70}
-                        outerRadius={100}
-                        paddingAngle={8}
-                        dataKey="value"
-                      >
-                        {demographicData.map((_, index) => (
-                          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                        ))}
-                      </Pie>
-                      <Tooltip 
-                        contentStyle={{ borderRadius: '20px', border: 'none', boxShadow: '0 20px 25px -5px rgb(0 0 0 / 0.1)', fontWeight: 'bold' }} 
-                      />
-                    </PieChart>
-                  </ResponsiveContainer>
-                </div>
-                <div className="grid grid-cols-2 gap-4 w-full mt-8">
-                  {demographicData.map((item, index) => (
-                    <div key={item.name} className="flex items-center gap-2">
-                      <div className="h-3 w-3 rounded-full" style={{ backgroundColor: COLORS[index % COLORS.length] }} />
-                      <span className="text-xs font-bold text-slate-600">{item.name} ({Math.round(item.value/15.5)}%)</span>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+          <Card className="rounded-xl overflow-hidden shadow-sm flex flex-col">
+            <CardHeader className="space-y-1">
+              <CardTitle className="text-xl font-bold text-slate-900">Demographics</CardTitle>
+              <CardDescription className="text-slate-400 text-xs font-medium">Age distribution of citizens</CardDescription>
+            </CardHeader>
+            <CardContent className="flex-1 flex flex-col justify-center items-center">
+              <div className="h-60 w-full">
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart>
+                    <Pie
+                      data={demographicData}
+                      cx="50%"
+                      cy="50%"
+                      innerRadius={60}
+                      outerRadius={80}
+                      paddingAngle={5}
+                      dataKey="value"
+                    >
+                      {demographicData.map((_, index) => (
+                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} stroke="rgba(255,255,255,0.1)" />
+                      ))}
+                    </Pie>
+                    <Tooltip 
+                      content={({ active, payload }) => {
+                        if (active && payload && payload.length) {
+                          return (
+                            <div className="rounded-lg border bg-white p-2 shadow-sm text-xs font-medium">
+                              <div className="flex items-center gap-2 py-0.5">
+                                <div className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: payload[0].payload.fill }} />
+                                <span className="text-slate-500">{payload[0].name}:</span>
+                                <span className="text-slate-900 font-bold">{payload[0].value}</span>
+                              </div>
+                            </div>
+                          )
+                        }
+                        return null
+                      }}
+                    />
+                  </PieChart>
+                </ResponsiveContainer>
+              </div>
+              <div className="grid grid-cols-2 gap-y-3 gap-x-6 w-full mt-6 px-2">
+                {demographicData.map((item, index) => (
+                  <div key={item.name} className="flex items-center gap-2">
+                    <div className="h-2 w-2 rounded-full" style={{ backgroundColor: COLORS[index % COLORS.length] }} />
+                    <span className="text-xs font-semibold text-slate-600 truncate">{item.name} ({Math.round(item.value/15.5)}%)</span>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </div>
@@ -160,20 +180,22 @@ function ReportStat({ label, value, sub, icon: Icon, color }: { label: string; v
   }
 
   return (
-    <div className="bg-white rounded-4xl p-8 border hover:shadow-xl transition-all group shadow-sm">
-      <div className="flex items-start justify-between mb-4">
-        <div className={cn("p-4 rounded-2xl border transition-all group-hover:scale-110 shadow-inner", colors[color])}>
-          <Icon className="h-6 w-6" />
+    <Card className="rounded-xl border shadow-sm group">
+      <CardContent className="p-6">
+        <div className="flex items-start justify-between mb-4">
+          <div className={cn("p-2 rounded-lg border shadow-inner", colors[color])}>
+            <Icon className="h-5 w-5" />
+          </div>
+          <TrendingUp className="h-4 w-4 text-slate-200" />
         </div>
-        <TrendingUp className="h-4 w-4 text-slate-200" />
-      </div>
-      <div>
-        <h4 className="text-sm font-black text-slate-400 uppercase tracking-widest mb-1">{label}</h4>
-        <div className="space-y-1">
-          <p className="text-4xl font-black text-slate-900 tracking-tighter leading-none">{value}</p>
-          <p className="text-[10px] font-bold text-green-600 uppercase tracking-widest">{sub}</p>
+        <div>
+          <h4 className="text-xs font-semibold text-slate-400 mb-1">{label}</h4>
+          <div className="space-y-1">
+            <p className="text-2xl font-bold text-slate-900 leading-none">{value}</p>
+            <p className="text-xs font-bold text-green-600">{sub}</p>
+          </div>
         </div>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   )
 }

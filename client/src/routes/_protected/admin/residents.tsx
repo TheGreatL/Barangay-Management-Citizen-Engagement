@@ -1,11 +1,24 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useQuery } from '@tanstack/react-query'
-import { Plus, Edit2, Trash2, FileText, Users, MapPin, Search } from 'lucide-react'
+import {
+  Plus,
+  Edit2,
+  Trash2,
+  FileText,
+  Users,
+  MapPin,
+  Search,
+  MoreHorizontal,
+} from 'lucide-react'
 import { Button } from '@/shared/components/ui/button'
 import { Badge } from '@/shared/components/ui/badge'
 import * as React from 'react'
 import { DataTable } from '@/shared/components/ui/DataTable'
-import type { ColumnDef, PaginationState, SortingState } from '@tanstack/react-table'
+import type {
+  ColumnDef,
+  PaginationState,
+  SortingState,
+} from '@tanstack/react-table'
 import { getResidents } from '@/mock/resident-service'
 import { cn } from '@/shared/lib/utils'
 import {
@@ -16,7 +29,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/shared/components/ui/dropdown-menu'
-import { MoreHorizontal } from 'lucide-react'
 
 export const Route = createFileRoute('/_protected/admin/residents')({
   component: AdminResidentsComponent,
@@ -67,10 +79,10 @@ function AdminResidentsComponent() {
       accessorKey: 'gender',
       header: 'Gender',
       cell: ({ row }) => {
-        const gender = row.getValue('gender') as string
+        const gender: string = row.getValue('gender')
         return (
           <Badge variant="outline" className="capitalize">
-            {gender.toLowerCase()}
+            {gender.toString()}
           </Badge>
         )
       },
@@ -90,8 +102,10 @@ function AdminResidentsComponent() {
       cell: ({ row }) => {
         return (
           <div className="flex items-center gap-2">
-            <MapPin className="h-3 w-3 text-muted-foreground" />
-            <span className="max-w-[200px] truncate">{row.getValue('address')}</span>
+            <MapPin className="text-muted-foreground h-3 w-3" />
+            <span className="max-w-[200px] truncate">
+              {row.getValue('address')}
+            </span>
           </div>
         )
       },
@@ -100,9 +114,11 @@ function AdminResidentsComponent() {
       accessorKey: 'isHeadOfHousehold',
       header: 'Role in HH',
       cell: ({ row }) => {
-        const isHead = row.getValue('isHeadOfHousehold') as boolean
+        const isHead = row.getValue('isHeadOfHousehold')
         return isHead ? (
-          <Badge className="bg-blue-100 text-blue-800 border-blue-200">Head</Badge>
+          <Badge className="border-blue-200 bg-blue-100 text-blue-800">
+            Head
+          </Badge>
         ) : (
           <Badge variant="outline">Member</Badge>
         )
@@ -123,7 +139,9 @@ function AdminResidentsComponent() {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
-              <DropdownMenuItem onClick={() => navigator.clipboard.writeText(resident.id)}>
+              <DropdownMenuItem
+                onClick={() => navigator.clipboard.writeText(resident.id)}
+              >
                 Copy ID
               </DropdownMenuItem>
               <DropdownMenuSeparator />
@@ -151,7 +169,9 @@ function AdminResidentsComponent() {
     <div className="space-y-6 p-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Resident Records</h1>
+          <h1 className="text-3xl font-bold">
+            Resident Records
+          </h1>
           <p className="text-muted-foreground mt-1">
             Maintain and manage exhaustive data for all barangay residents.
           </p>
@@ -161,13 +181,37 @@ function AdminResidentsComponent() {
             <Users className="mr-2 h-4 w-4" />
             Household Link
           </Button>
-          <Button size="lg" className="shadow-xs transition-all hover:-translate-y-px">
+          <Button
+            size="lg"
+            className="shadow-xs transition-all hover:-translate-y-px"
+          >
             <Plus className="mr-2 h-4 w-4" />
             Add Resident
           </Button>
         </div>
       </div>
 
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
+        <StatCard
+          title="Total Residents"
+          value="4,562"
+          icon={Users}
+          color="blue"
+        />
+        <StatCard
+          title="Total Households"
+          value="1,120"
+          icon={FileText}
+          color="purple"
+        />
+        <StatCard title="New This Month" value="45" icon={Plus} color="green" />
+        <StatCard
+          title="Unassigned Address"
+          value="23"
+          icon={MapPin}
+          color="orange"
+        />
+      </div>
       <DataTable
         columns={columns}
         data={data?.data || []}
@@ -181,18 +225,21 @@ function AdminResidentsComponent() {
         isLoading={isLoading}
         searchPlaceholder="Search residents by name or address..."
       />
-
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <StatCard title="Total Residents" value="4,562" icon={Users} color="blue" />
-        <StatCard title="Total Households" value="1,120" icon={FileText} color="purple" />
-        <StatCard title="New This Month" value="45" icon={Plus} color="green" />
-        <StatCard title="Unassigned Address" value="23" icon={MapPin} color="orange" />
-      </div>
     </div>
   )
 }
 
-function StatCard({ title, value, icon: Icon, color }: { title: string; value: string; icon: any; color: string }) {
+function StatCard({
+  title,
+  value,
+  icon: Icon,
+  color,
+}: {
+  title: string
+  value: string
+  icon: any
+  color: string
+}) {
   const colors: Record<string, string> = {
     blue: 'bg-blue-100 text-blue-600',
     purple: 'bg-purple-100 text-purple-600',
@@ -201,12 +248,17 @@ function StatCard({ title, value, icon: Icon, color }: { title: string; value: s
   }
 
   return (
-    <div className="rounded-xl border bg-card p-4 flex items-center gap-4 shadow-sm">
-      <div className={cn('h-10 w-10 rounded-full flex items-center justify-center', colors[color])}>
+    <div className="bg-card flex items-center gap-4 rounded-xl border p-4 shadow-sm">
+      <div
+        className={cn(
+          'flex h-10 w-10 items-center justify-center rounded-full',
+          colors[color],
+        )}
+      >
         <Icon className="h-5 w-5" />
       </div>
       <div>
-        <p className="text-sm text-muted-foreground">{title}</p>
+        <p className="text-muted-foreground text-sm">{title}</p>
         <p className="text-2xl font-bold">{value}</p>
       </div>
     </div>

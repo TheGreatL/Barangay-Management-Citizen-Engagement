@@ -86,7 +86,7 @@ function AdminRolesComponent() {
         return (
           <div className="flex max-w-[400px] flex-wrap gap-1">
             {permissions.includes('ALL') ? (
-              <Badge className="border-red-200 bg-red-100 text-red-800 uppercase">
+              <Badge className="border-red-200 bg-red-100 text-red-800">
                 All Access
               </Badge>
             ) : (
@@ -94,14 +94,14 @@ function AdminRolesComponent() {
                 <Badge
                   key={p}
                   variant="secondary"
-                  className="text-[10px] uppercase"
+                  className="text-xs"
                 >
                   {p.replace('_', ' ')}
                 </Badge>
               ))
             )}
             {permissions.length > 3 && !permissions.includes('ALL') && (
-              <Badge variant="outline" className="text-[10px]">
+              <Badge variant="outline" className="text-xs">
                 +{permissions.length - 3} more
               </Badge>
             )}
@@ -149,7 +149,7 @@ function AdminRolesComponent() {
     <div className="space-y-6 p-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">
+          <h1 className="text-3xl font-bold">
             Role & RBAC Management
           </h1>
           <p className="text-muted-foreground mt-1">
@@ -209,13 +209,13 @@ function AdminRolesComponent() {
             <div className="grid grid-cols-2 gap-4">
               <div className="bg-muted rounded-lg p-3 text-center">
                 <p className="text-2xl font-bold">15</p>
-                <p className="text-muted-foreground text-xs font-semibold tracking-wider uppercase">
+                <p className="text-muted-foreground text-xs font-semibold">
                   Total Permissions
                 </p>
               </div>
               <div className="bg-muted rounded-lg p-3 text-center">
                 <p className="text-2xl font-bold">3</p>
-                <p className="text-muted-foreground text-xs font-semibold tracking-wider uppercase">
+                <p className="text-muted-foreground text-xs font-semibold">
                   Base Roles
                 </p>
               </div>

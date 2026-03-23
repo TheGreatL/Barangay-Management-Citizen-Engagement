@@ -52,7 +52,7 @@ function ServicesComponent() {
     <div className="space-y-8 p-6 max-w-7xl mx-auto">
       <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-4">
         <div>
-          <h1 className="text-4xl font-black tracking-tighter">Community Services</h1>
+          <h1 className="text-4xl font-black">Community Services</h1>
           <p className="text-muted-foreground mt-2 text-lg font-medium">Discover programs and utilities provided by your Barangay.</p>
         </div>
         <div className="flex items-center gap-4 bg-slate-50 p-2 rounded-2xl border border-slate-200 shadow-inner">
@@ -68,7 +68,7 @@ function ServicesComponent() {
               <div className={cn("p-4 rounded-2xl border flex items-center justify-center shadow-inner", category.color)}>
                 <category.icon className="h-8 w-8" />
               </div>
-              <h2 className="text-2xl font-black tracking-tight flex-1 ml-4 group-hover:text-primary transition-colors">{category.title}</h2>
+              <h2 className="text-2xl font-black flex-1 ml-4 group-hover:text-primary transition-colors">{category.title}</h2>
               <ArrowRight className="h-6 w-6 text-muted-foreground group-hover:text-primary transition-all translate-x-1 group-hover:translate-x-2" />
             </div>
 
@@ -77,7 +77,7 @@ function ServicesComponent() {
                 <div key={sIdx} className="bg-slate-50/50 rounded-2xl p-5 border border-dashed border-slate-200 hover:bg-white hover:border-solid hover:border-primary/10 transition-all cursor-pointer">
                   <div className="flex items-start justify-between mb-2">
                     <h4 className="font-bold text-sm leading-tight text-slate-800">{service.name}</h4>
-                    <Badge variant="outline" className="text-[9px] uppercase tracking-widest px-1.5 h-4 bg-white shadow-xs font-black">{service.tag}</Badge>
+                    <Badge variant="outline" className="text-xs px-1.5 h-4 bg-white shadow-xs font-black">{service.tag}</Badge>
                   </div>
                   <p className="text-xs text-muted-foreground leading-relaxed">{service.description}</p>
                 </div>
@@ -129,7 +129,7 @@ function ServiceQuickStat({ label, value, color }: { label: string; value: strin
     <div className="flex items-center gap-3 px-4 py-2">
       <div className={cn("h-2 w-2 rounded-full", colors[color])} />
       <div className="leading-none">
-        <p className="text-[10px] font-black uppercase text-muted-foreground tracking-widest">{label}</p>
+        <p className="text-xs font-black text-muted-foreground leading-none">{label}</p>
         <p className="text-lg font-black">{value}</p>
       </div>
     </div>

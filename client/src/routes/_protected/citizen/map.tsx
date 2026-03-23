@@ -111,7 +111,7 @@ function MapMarkerComponent({ x, y, type, label }: { x: number; y: number; type:
       <div className={cn("cursor-pointer drop-shadow-lg transition-transform hover:scale-125", colors[type])}>
         <MapPin className="h-8 w-8 fill-current" />
       </div>
-      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-slate-900 text-white text-[10px] font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity whitespace-nowrap shadow-xl">
+      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-slate-900 text-white text-xs font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity whitespace-nowrap shadow-xl">
         {label}
       </div>
     </div>
@@ -151,8 +151,8 @@ function LocationCard({ title, type, distance, status }: { title: string; type: 
         </div>
       </div>
       <div className="mt-4 flex gap-1">
-        <Badge variant="outline" className="text-[10px] uppercase tracking-tighter">Direction</Badge>
-        <Badge variant="outline" className="text-[10px] uppercase tracking-tighter">Call</Badge>
+        <Badge variant="outline" className="text-xs">Direction</Badge>
+        <Badge variant="outline" className="text-xs">Call</Badge>
       </div>
     </div>
   )
