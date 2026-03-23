@@ -6,7 +6,7 @@ import { Badge } from '@/shared/components/ui/badge'
 import { useState } from 'react'
 import api from '@/shared/api/api-config'
 
-export const Route = createFileRoute('/_protected._admin/announcements')({
+export const Route = createFileRoute('/_protected/admin/announcements')({
   component: AdminAnnouncementsComponent,
 })
 

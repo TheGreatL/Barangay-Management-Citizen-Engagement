@@ -5,7 +5,7 @@ import { Button } from '@/shared/components/ui/button'
 import { Badge } from '@/shared/components/ui/badge'
 import api from '@/shared/api/api-config'
 
-export const Route = createFileRoute('/_protected/_official/documents')({
+export const Route = createFileRoute('/_protected/official/documents')({
   component: OfficialDocumentsComponent,
 })
 

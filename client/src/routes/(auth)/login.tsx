@@ -1,8 +1,9 @@
 import LoginForm from '@/features/auth/components/login-form'
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { z } from 'zod'
 import { useEffect, useRef } from 'react'
 import { toast } from 'sonner'
+import { useAuthStore } from '@/shared/stores/auth.store'
 
 const loginSearchSchema = z.object({
   reason: z.string().optional(),
@@ -16,6 +17,8 @@ export const Route = createFileRoute('/(auth)/login')({
 function LoginComponent() {
   const { reason } = Route.useSearch()
   const hasShownToast = useRef(false)
+  const navigate = useNavigate()
+  const mockLogin = useAuthStore((state) => state.mockLogin)
 
   useEffect(() => {
     if (reason === 'expired' && !hasShownToast.current) {
@@ -26,11 +29,57 @@ function LoginComponent() {
     }
   }, [reason])
 
+  const handleMockLogin = (role: 'admin' | 'barangay_official' | 'citizen') => {
+    mockLogin(role)
+    toast.success(`Logged in as mock ${role.replace('_', ' ')}`)
+
+    if (role === 'admin') {
+      navigate({ to: '/admin/dashboard' })
+    } else if (role === 'barangay_official') {
+      navigate({ to: '/official/dashboard' })
+    } else {
+      navigate({ to: '/dashboard' })
+    }
+  }
+
   return (
     <div className="flex min-h-screen">
       {/* Left Side: Form */}
-      <div className="flex flex-1 items-center justify-center bg-white p-8">
-        <LoginForm />
+      <div className="flex flex-1 flex-col items-center justify-center bg-white p-8">
+        <div className="w-full max-w-md space-y-8">
+          <LoginForm />
+
+          {/* Developer Bypass (Mock Mode) */}
+          <div className="rounded-lg border border-dashed border-slate-200 p-6">
+            <h4 className="mb-4 text-center text-xs font-semibold uppercase tracking-wider text-slate-500">
+              Developer Bypass (Mock Mode)
+            </h4>
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+              <button
+                onClick={() => handleMockLogin('admin')}
+                className="rounded-md bg-red-50 px-3 py-2 text-xs font-medium text-red-700 transition hover:bg-red-100"
+              >
+                Mock Admin
+              </button>
+              <button
+                onClick={() => handleMockLogin('barangay_official')}
+                className="rounded-md bg-purple-50 px-3 py-2 text-xs font-medium text-purple-700 transition hover:bg-purple-100"
+              >
+                Mock Official
+              </button>
+              <button
+                onClick={() => handleMockLogin('citizen')}
+                className="rounded-md bg-blue-50 px-3 py-2 text-xs font-medium text-blue-700 transition hover:bg-blue-100"
+              >
+                Mock Citizen
+              </button>
+            </div>
+            <p className="mt-4 text-center text-[10px] text-slate-400">
+              Use these buttons to bypass authentication when backend is not
+              running.
+            </p>
+          </div>
+        </div>
       </div>
 
       {/* Right Side: Decorative Panel (Premium Look) */}

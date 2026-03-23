@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { OfficialComplaintList } from '@/features/complaints/components/official-complaint-list'
 
-export const Route = createFileRoute('/_protected/_official/complaints')({
+export const Route = createFileRoute('/_protected/official/complaints')({
   component: OfficialComplaintsComponent,
 })
 

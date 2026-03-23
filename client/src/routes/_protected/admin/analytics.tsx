@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { BarChart, TrendingUp, Users, AlertCircle } from 'lucide-react'
 
-export const Route = createFileRoute('/_protected._admin/analytics')({
+export const Route = createFileRoute('/_protected/admin/analytics')({
   component: AdminAnalyticsComponent,
 })
 
@@ -43,7 +43,6 @@ function AdminAnalyticsComponent() {
         </p>
       </div>
 
-      {/* Time Period Selection */}
       <div className="flex gap-2">
         {timeframes.map((tf) => (
           <button
@@ -55,7 +54,6 @@ function AdminAnalyticsComponent() {
         ))}
       </div>
 
-      {/* Key Metrics */}
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
         {analyticsMetrics.map((metric, idx) => {
           const Icon = metric.icon
@@ -81,7 +79,6 @@ function AdminAnalyticsComponent() {
         })}
       </div>
 
-      {/* Charts Section */}
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         <div className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
           <div className="mb-4 flex items-center gap-2">
@@ -108,7 +105,6 @@ function AdminAnalyticsComponent() {
         </div>
       </div>
 
-      {/* Complaints Timeline */}
       <div className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
         <div className="mb-4 flex items-center gap-2">
           <BarChart className="h-5 w-5 text-slate-600" />

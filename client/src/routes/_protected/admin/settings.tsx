@@ -3,7 +3,7 @@ import { Button } from '@/shared/components/ui/button'
 import { Input } from '@/shared/components/ui/input'
 import { Settings, Shield, Database, Bell } from 'lucide-react'
 
-export const Route = createFileRoute('/_protected._admin/settings')({
+export const Route = createFileRoute('/_protected/admin/settings')({
   component: AdminSettingsComponent,
 })
 

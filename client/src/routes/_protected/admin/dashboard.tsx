@@ -12,7 +12,7 @@ import {
   LogOut,
 } from 'lucide-react'
 
-export const Route = createFileRoute('/_protected._admin/dashboard')({
+export const Route = createFileRoute('/_protected/admin/dashboard')({
   component: AdminDashboardComponent,
 })
 

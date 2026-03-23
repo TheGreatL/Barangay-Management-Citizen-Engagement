@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { BarChart, Users, FileText, AlertCircle, TrendingUp } from 'lucide-react'
 
-export const Route = createFileRoute('/_protected/_official/reports')({
+export const Route = createFileRoute('/_protected/official/reports')({
   component: ReportsComponent,
 })
 

@@ -10,7 +10,7 @@ import {
   TrendingUp,
 } from 'lucide-react'
 
-export const Route = createFileRoute('/_protected/_official/dashboard')({
+export const Route = createFileRoute('/_protected/official/dashboard')({
   component: OfficialDashboardComponent,
 })
 
