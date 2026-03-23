@@ -1,11 +1,10 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { useState } from 'react'
 import { MapPin } from 'lucide-react'
 import { AnnouncementList } from '@/features/announcements/components/announcement-list'
 import { DisasterAlerts } from '@/features/disasters/components/disaster-alerts'
 
 export const Route = createFileRoute(
-  '/_protected/dashboard/announcements-detailed'
+  '/_protected/citizen/announcements-detailed'
 )({
   component: AnnouncementsDetailedComponent,
 })

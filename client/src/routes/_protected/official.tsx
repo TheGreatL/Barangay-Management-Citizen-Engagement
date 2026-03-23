@@ -12,7 +12,7 @@ function OfficialLayout() {
 
   useEffect(() => {
     if (user && user.role !== 'barangay_official' && user.role !== 'admin') {
-      navigate({ to: '/dashboard' })
+      navigate({ to: '/login' })
     }
   }, [user, navigate])
 

@@ -1,5 +1,7 @@
-import { ReactNode } from 'react'
-import { Sidebar } from './sidebar'
+import type { ReactNode } from 'react'
+import { AppSidebar } from './app-sidebar'
+import { Header } from './header'
+import { SidebarProvider } from '@/shared/components/ui/sidebar'
 
 interface MainLayoutProps {
   children: ReactNode
@@ -7,11 +9,16 @@ interface MainLayoutProps {
 
 export function MainLayout({ children }: MainLayoutProps) {
   return (
-    <div className="flex min-h-screen bg-slate-50">
-      <Sidebar />
-      <main className="flex-1 overflow-auto lg:ml-0">
-        <div className="animate-in fade-in">{children}</div>
-      </main>
-    </div>
+    <SidebarProvider>
+      <div className="flex min-h-screen w-full bg-background">
+        <AppSidebar />
+        <main className="flex flex-1 flex-col">
+          <Header />
+          <div className="flex-1">
+            <div className="animate-in fade-in p-4 lg:p-8">{children}</div>
+          </div>
+        </main>
+      </div>
+    </SidebarProvider>
   )
 }

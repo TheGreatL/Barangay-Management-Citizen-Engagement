@@ -12,7 +12,7 @@ function AdminLayout() {
 
   useEffect(() => {
     if (user && user.role !== 'admin') {
-      navigate({ to: '/dashboard' })
+      navigate({ to: '/login' })
     }
   }, [user, navigate])
 

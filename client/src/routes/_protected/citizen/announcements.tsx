@@ -3,7 +3,7 @@ import { Bell } from 'lucide-react'
 import { PageHeader } from '@/shared/components/layout/page-header'
 import { AnnouncementList } from '@/features/announcements/components/announcement-list'
 
-export const Route = createFileRoute('/_protected/dashboard/announcements')({
+export const Route = createFileRoute('/_protected/citizen/announcements')({
   component: AnnouncementsComponent,
 })
 

@@ -11,12 +11,11 @@ import {
   Bell,
   Wrench,
   Home,
-  CheckCircle,
-  Clock,
 } from 'lucide-react'
+import { Card, CardContent } from '@/shared/components/ui/card'
 import { addDays } from 'date-fns'
 
-export const Route = createFileRoute('/_protected/dashboard')({
+export const Route = createFileRoute('/_protected/citizen/dashboard')({
   component: DashboardComponent,
   pendingComponent: LoadingDashboard,
 })
@@ -128,21 +127,21 @@ function DashboardComponent() {
       title: 'Submit Complaint',
       description: 'Report issues or complaints',
       icon: AlertCircle,
-      href: '/dashboard/complaints',
+      href: '/citizen/complaints',
       color: 'bg-red-50 text-red-600 dark:bg-red-900/20 dark:text-red-400',
     },
     {
       title: 'Document Requests',
       description: 'Request barangay documents',
       icon: FileText,
-      href: '/dashboard/documents',
+      href: '/citizen/documents',
       color: 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400',
     },
     {
       title: 'Announcements',
       description: 'Latest barangay updates',
       icon: Bell,
-      href: '/dashboard/announcements',
+      href: '/citizen/announcements',
       color:
         'bg-yellow-50 text-yellow-600 dark:bg-yellow-900/20 dark:text-yellow-400',
     },
@@ -150,7 +149,7 @@ function DashboardComponent() {
       title: 'Services',
       description: 'Available community services',
       icon: Wrench,
-      href: '/dashboard/services',
+      href: '/citizen/services',
       color:
         'bg-green-50 text-green-600 dark:bg-green-900/20 dark:text-green-400',
     },
@@ -185,20 +184,22 @@ function DashboardComponent() {
                 const Icon = link.icon
                 return (
                   <Link key={link.href} to={link.href}>
-                    <div className="group h-full rounded-lg border border-slate-200 bg-white p-6 shadow-sm transition-all duration-200 hover:border-slate-300 hover:shadow-lg dark:border-slate-700 dark:bg-slate-800">
-                      <div className={`inline-flex rounded-lg ${link.color} p-3`}>
-                        <Icon className="h-6 w-6" />
-                      </div>
-                      <h3 className="mt-4 font-semibold text-slate-900 group-hover:text-blue-600 dark:text-slate-50 dark:group-hover:text-blue-400">
-                        {link.title}
-                      </h3>
-                      <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">
-                        {link.description}
-                      </p>
-                      <div className="mt-4 flex items-center text-sm font-medium text-blue-600 opacity-0 transition-opacity group-hover:opacity-100 dark:text-blue-400">
-                        Get Started →
-                      </div>
-                    </div>
+                    <Card className="group h-full transition-all duration-200 hover:border-slate-300 hover:shadow-lg dark:border-slate-700 dark:bg-slate-800">
+                      <CardContent className="p-6">
+                        <div className={`inline-flex rounded-lg ${link.color} p-3`}>
+                          <Icon className="h-6 w-6" />
+                        </div>
+                        <h3 className="mt-4 font-semibold text-slate-900 group-hover:text-blue-600 dark:text-slate-50 dark:group-hover:text-blue-400">
+                          {link.title}
+                        </h3>
+                        <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">
+                          {link.description}
+                        </p>
+                        <div className="mt-4 flex items-center text-sm font-medium text-blue-600 opacity-0 transition-opacity group-hover:opacity-100 dark:text-blue-400">
+                          Get Started →
+                        </div>
+                      </CardContent>
+                    </Card>
                   </Link>
                 )
               })}

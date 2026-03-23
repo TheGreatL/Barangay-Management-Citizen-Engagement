@@ -38,7 +38,7 @@ function LoginComponent() {
     } else if (role === 'barangay_official') {
       navigate({ to: '/official/dashboard' })
     } else {
-      navigate({ to: '/dashboard' })
+      navigate({ to: '/citizen/dashboard' })
     }
   }
 

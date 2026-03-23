@@ -1,10 +1,9 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, Link } from '@tanstack/react-router'
 import { ArrowLeft } from 'lucide-react'
-import { Link } from '@tanstack/react-router'
 import { Button } from '@/shared/components/ui/button'
 import { DocumentForm } from '@/features/documents/components/document-form'
 
-export const Route = createFileRoute('/_protected/dashboard/documents/new')({
+export const Route = createFileRoute('/_protected/citizen/documents-new')({
   component: NewDocumentComponent,
 })
 
@@ -12,7 +11,7 @@ function NewDocumentComponent() {
   return (
     <div className="space-y-6 p-6">
       <div className="flex items-center gap-2">
-        <Link to="/dashboard/documents">
+        <Link to="/citizen/documents">
           <Button variant="ghost" size="icon">
             <ArrowLeft className="h-4 w-4" />
           </Button>

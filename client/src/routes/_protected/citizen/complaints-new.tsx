@@ -1,10 +1,9 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, Link } from '@tanstack/react-router'
 import { ArrowLeft } from 'lucide-react'
-import { Link } from '@tanstack/react-router'
 import { Button } from '@/shared/components/ui/button'
 import { ComplaintForm } from '@/features/complaints/components/complaint-form'
 
-export const Route = createFileRoute('/_protected/dashboard/complaints/new')({
+export const Route = createFileRoute('/_protected/citizen/complaints-new')({
   component: NewComplaintComponent,
 })
 
@@ -12,7 +11,7 @@ function NewComplaintComponent() {
   return (
     <div className="space-y-6 p-6">
       <div className="flex items-center gap-2">
-        <Link to="/dashboard/complaints">
+        <Link to="/citizen/complaints">
           <Button variant="ghost" size="icon">
             <ArrowLeft className="h-4 w-4" />
           </Button>

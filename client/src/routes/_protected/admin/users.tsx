@@ -1,151 +1,208 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useQuery } from '@tanstack/react-query'
-import { AlertCircle, Search, Plus, Edit2, Trash2 } from 'lucide-react'
+import { Plus, Edit2, Trash2, MoreHorizontal, UserCheck, UserX, Shield } from 'lucide-react'
 import { Button } from '@/shared/components/ui/button'
-import { Input } from '@/shared/components/ui/input'
 import { Badge } from '@/shared/components/ui/badge'
-import { useState } from 'react'
-import api from '@/shared/api/api-config'
+import * as React from 'react'
+import { DataTable } from '@/shared/components/ui/DataTable'
+import type { ColumnDef, PaginationState, SortingState } from '@tanstack/react-table'
+import { getUsers } from '@/mock/user-service'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/shared/components/ui/dropdown-menu'
+import { Card } from '@/shared/components/ui/card'
 
 export const Route = createFileRoute('/_protected/admin/users')({
   component: AdminUsersComponent,
 })
 
-function AdminUsersComponent() {
-  const [searchTerm, setSearchTerm] = useState('')
+type User = {
+  id: string
+  firstName: string
+  lastName: string
+  email: string
+  role: string
+  status: string
+  createdAt: string
+}
 
-  const { data, isLoading, error } = useQuery({
-    queryKey: ['all-users', searchTerm],
-    queryFn: async () => {
-      const response = await api.get('/admin/users', {
-        params: { search: searchTerm },
-      })
-      return response.data
-    },
+function AdminUsersComponent() {
+  const [pagination, setPagination] = React.useState<PaginationState>({
+    pageIndex: 0,
+    pageSize: 10,
+  })
+  const [sorting, setSorting] = React.useState<SortingState>([])
+  const [searchValue, setSearchValue] = React.useState('')
+
+  const { data, isLoading } = useQuery({
+    queryKey: ['admin-users', pagination, sorting, searchValue],
+    queryFn: () =>
+      getUsers({
+        page: pagination.pageIndex + 1,
+        limit: pagination.pageSize,
+        sort: sorting[0]?.id,
+        order: sorting[0]?.desc ? 'desc' : 'asc',
+        search: searchValue,
+      }),
   })
 
-  const users = data?.data || []
+  const columns: ColumnDef<User>[] = [
+    {
+      accessorKey: 'firstName',
+      header: 'First Name',
+    },
+    {
+      accessorKey: 'lastName',
+      header: 'Last Name',
+    },
+    {
+      accessorKey: 'email',
+      header: 'Email',
+    },
+    {
+      accessorKey: 'role',
+      header: 'Role',
+      cell: ({ row }) => {
+        const role = row.original.role
+        const colors: Record<string, string> = {
+          ADMIN: 'bg-red-100 text-red-800 border-red-200',
+          CITIZEN: 'bg-blue-100 text-blue-800 border-blue-200',
+          OFFICIAL: 'bg-purple-100 text-purple-800 border-purple-200',
+        }
+        return (
+          <Badge variant="outline" className={colors[role]}>
+            {role}
+          </Badge>
+        )
+      },
+    },
+    {
+      accessorKey: 'status',
+      header: 'Status',
+      cell: ({ row }) => {
+        const status = row.original.status
+        const colors: Record<string, string> = {
+          ACTIVE: 'bg-green-100 text-green-800 border-green-200',
+          INACTIVE: 'bg-gray-100 text-gray-800 border-gray-200',
+          DEACTIVATED: 'bg-orange-100 text-orange-800 border-orange-200',
+        }
+        return (
+          <Badge variant="outline" className={colors[status]}>
+            {status}
+          </Badge>
+        )
+      },
+    },
+    {
+      accessorKey: 'createdAt',
+      header: 'Joined',
+      cell: ({ row }) => {
+        return new Date(row.getValue('createdAt')).toLocaleDateString()
+      },
+    },
+    {
+      id: 'actions',
+      cell: ({ row }) => {
+        const user = row.original
 
-  const roleColors: Record<string, string> = {
-    citizen: 'bg-blue-100 text-blue-800',
-    barangay_official: 'bg-purple-100 text-purple-800',
-    admin: 'bg-red-100 text-red-800',
-  }
-
-  const statusColors: Record<string, string> = {
-    active: 'bg-green-100 text-green-800',
-    inactive: 'bg-gray-100 text-gray-800',
-    suspended: 'bg-red-100 text-red-800',
-  }
+        return (
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" className="h-8 w-8 p-0">
+                <span className="sr-only">Open menu</span>
+                <MoreHorizontal className="h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuLabel>Actions</DropdownMenuLabel>
+              <DropdownMenuItem onClick={() => navigator.clipboard.writeText(user.id)}>
+                Copy User ID
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>
+                <Edit2 className="mr-2 h-4 w-4" />
+                Edit User
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Shield className="mr-2 h-4 w-4" />
+                Manage Permissions
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem className="text-red-600">
+                <Trash2 className="mr-2 h-4 w-4" />
+                Deactivate Account
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        )
+      },
+    },
+  ]
 
   return (
     <div className="space-y-6 p-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight text-slate-900">
-            User Management
-          </h1>
-          <p className="mt-2 text-slate-600">
-            Manage system users and their roles
+          <h1 className="text-3xl font-bold tracking-tight">User Management</h1>
+          <p className="text-muted-foreground mt-1">
+            Create, update, and manage system users and their access levels.
           </p>
         </div>
-        <Button>
+        <Button size="lg" className="shadow-xs transition-all hover:-translate-y-px">
           <Plus className="mr-2 h-4 w-4" />
-          Add User
+          Add New User
         </Button>
       </div>
 
-      <div className="relative">
-        <Search className="absolute left-3 top-2.5 h-5 w-5 text-slate-400" />
-        <Input
-          placeholder="Search users by name or email..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="pl-10"
-        />
-      </div>
+      <DataTable
+        columns={columns}
+        data={data?.data || []}
+        pageCount={data?.meta.totalPages}
+        pagination={pagination}
+        onPaginationChange={setPagination}
+        sorting={sorting}
+        onSortingChange={setSorting}
+        searchValue={searchValue}
+        onSearchChange={setSearchValue}
+        isLoading={isLoading}
+        searchPlaceholder="Search by name, email or role..."
+      />
 
-      {isLoading && <div className="text-center text-slate-500">Loading users...</div>}
-
-      {error && (
-        <div className="rounded-lg bg-red-50 p-6">
-          <div className="flex items-start gap-3">
-            <AlertCircle className="mt-0.5 h-5 w-5 text-red-600" />
-            <div>
-              <h3 className="font-medium text-red-900">Failed to load users</h3>
-            </div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <Card className="p-4 flex flex-row items-center gap-4">
+          <div className="h-10 w-10 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+            <UserCheck className="h-5 w-5" />
           </div>
-        </div>
-      )}
-
-      {users.length === 0 ? (
-        <div className="rounded-lg border border-dashed border-gray-300 p-12 text-center">
-          <AlertCircle className="mx-auto mb-4 h-12 w-12 text-gray-400" />
-          <p className="text-gray-600">No users found</p>
-        </div>
-      ) : (
-        <div className="overflow-x-auto rounded-lg border border-slate-200">
-          <table className="w-full">
-            <thead className="bg-slate-50">
-              <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-slate-500">
-                  Name
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-slate-500">
-                  Email
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-slate-500">
-                  Role
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-slate-500">
-                  Status
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-slate-500">
-                  Joined
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-slate-500">
-                  Actions
-                </th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-200">
-              {users.map((user: any) => (
-                <tr key={user.id} className="hover:bg-slate-50">
-                  <td className="whitespace-nowrap px-6 py-4">
-                    <p className="font-medium text-slate-900">
-                      {user.firstName} {user.lastName}
-                    </p>
-                  </td>
-                  <td className="px-6 py-4 text-slate-600">{user.email}</td>
-                  <td className="px-6 py-4">
-                    <Badge className={roleColors[user.role]}>
-                      {user.role.replace('_', ' ')}
-                    </Badge>
-                  </td>
-                  <td className="px-6 py-4">
-                    <Badge className={statusColors[user.status]}>
-                      {user.status}
-                    </Badge>
-                  </td>
-                  <td className="px-6 py-4 text-slate-600">
-                    {new Date(user.createdAt).toLocaleDateString()}
-                  </td>
-                  <td className="px-6 py-4">
-                    <div className="flex gap-2">
-                      <Button size="sm" variant="outline">
-                        <Edit2 className="h-4 w-4" />
-                      </Button>
-                      <Button size="sm" variant="outline" className="text-red-600">
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
+          <div>
+            <p className="text-sm text-muted-foreground">Active Users</p>
+            <p className="text-2xl font-bold">1,234</p>
+          </div>
+        </Card>
+        <Card className="p-4 flex flex-row items-center gap-4">
+          <div className="h-10 w-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-600">
+            <UserX className="h-5 w-5" />
+          </div>
+          <div>
+            <p className="text-sm text-muted-foreground">Inactive</p>
+            <p className="text-2xl font-bold">56</p>
+          </div>
+        </Card>
+        <Card className="p-4 flex flex-row items-center gap-4">
+          <div className="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+            <Shield className="h-5 w-5" />
+          </div>
+          <div>
+            <p className="text-sm text-muted-foreground">Total Officials</p>
+            <p className="text-2xl font-bold">12</p>
+          </div>
+        </Card>
+      </div>
     </div>
   )
 }
+

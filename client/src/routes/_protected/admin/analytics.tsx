@@ -1,5 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { BarChart, TrendingUp, Users, AlertCircle } from 'lucide-react'
+import { Card, CardContent, CardHeader, CardTitle } from '@/shared/components/ui/card'
+import { Button } from '@/shared/components/ui/button'
 
 export const Route = createFileRoute('/_protected/admin/analytics')({
   component: AdminAnalyticsComponent,
@@ -35,22 +37,22 @@ function AdminAnalyticsComponent() {
   return (
     <div className="space-y-6 p-6">
       <div>
-        <h1 className="text-3xl font-bold tracking-tight text-slate-900">
-          System Analytics
-        </h1>
-        <p className="mt-2 text-slate-600">
-          Comprehensive system-wide analytics and performance metrics
+        <h1 className="text-3xl font-bold tracking-tight">System Analytics</h1>
+        <p className="mt-1 text-muted-foreground">
+          Comprehensive system-wide analytics and performance metrics.
         </p>
       </div>
 
       <div className="flex gap-2">
         {timeframes.map((tf) => (
-          <button
+          <Button
             key={tf}
-            className="rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
+            variant="outline"
+            size="sm"
+            className="h-9 px-4"
           >
             {tf}
-          </button>
+          </Button>
         ))}
       </div>
 
@@ -58,64 +60,65 @@ function AdminAnalyticsComponent() {
         {analyticsMetrics.map((metric, idx) => {
           const Icon = metric.icon
           return (
-            <div
-              key={idx}
-              className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm"
-            >
-              <div className="flex items-start justify-between">
-                <div>
-                  <p className="text-sm font-medium text-slate-500">
-                    {metric.title}
-                  </p>
-                  <p className="mt-2 text-3xl font-bold text-slate-900">
-                    {metric.value}
-                  </p>
-                  <p className="mt-2 text-xs text-green-600">{metric.change}</p>
+            <Card key={idx}>
+              <CardContent className="p-6">
+                <div className="flex items-start justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-muted-foreground">
+                      {metric.title}
+                    </p>
+                    <p className="mt-2 text-3xl font-bold">{metric.value}</p>
+                    <p className="mt-2 text-xs text-green-600 font-medium">
+                      {metric.change}
+                    </p>
+                  </div>
+                  <div className="rounded-lg bg-slate-50 p-2">
+                    <Icon className={`h-6 w-6 ${metric.color}`} />
+                  </div>
                 </div>
-                <Icon className={`h-8 w-8 ${metric.color}`} />
-              </div>
-            </div>
+              </CardContent>
+            </Card>
           )
         })}
       </div>
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-        <div className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
-          <div className="mb-4 flex items-center gap-2">
-            <BarChart className="h-5 w-5 text-slate-600" />
-            <h2 className="text-lg font-semibold text-slate-900">
-              User Growth Trend
-            </h2>
-          </div>
-          <div className="h-64 bg-slate-50 rounded-lg flex items-center justify-center text-slate-500">
-            Chart visualization would be rendered here
-          </div>
-        </div>
+        <Card>
+          <CardHeader className="flex flex-row items-center gap-2 space-y-0">
+            <BarChart className="h-5 w-5 text-muted-foreground" />
+            <CardTitle>User Growth Trend</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="h-64 bg-slate-50/50 rounded-lg border border-dashed flex items-center justify-center text-muted-foreground text-sm font-medium">
+              Chart visualization would be rendered here
+            </div>
+          </CardContent>
+        </Card>
 
-        <div className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
-          <div className="mb-4 flex items-center gap-2">
-            <TrendingUp className="h-5 w-5 text-slate-600" />
-            <h2 className="text-lg font-semibold text-slate-900">
-              Service Usage Distribution
-            </h2>
-          </div>
-          <div className="h-64 bg-slate-50 rounded-lg flex items-center justify-center text-slate-500">
-            Chart visualization would be rendered here
-          </div>
-        </div>
+        <Card>
+          <CardHeader className="flex flex-row items-center gap-2 space-y-0">
+            <TrendingUp className="h-5 w-5 text-muted-foreground" />
+            <CardTitle>Service Usage Distribution</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="h-64 bg-slate-50/50 rounded-lg border border-dashed flex items-center justify-center text-muted-foreground text-sm font-medium">
+              Chart visualization would be rendered here
+            </div>
+          </CardContent>
+        </Card>
       </div>
 
-      <div className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
-        <div className="mb-4 flex items-center gap-2">
-          <BarChart className="h-5 w-5 text-slate-600" />
-          <h2 className="text-lg font-semibold text-slate-900">
-            Complaints Timeline
-          </h2>
-        </div>
-        <div className="h-80 bg-slate-50 rounded-lg flex items-center justify-center text-slate-500">
-          Chart visualization would be rendered here
-        </div>
-      </div>
+      <Card>
+        <CardHeader className="flex flex-row items-center gap-2 space-y-0">
+          <BarChart className="h-5 w-5 text-muted-foreground" />
+          <CardTitle>Complaints Timeline</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="h-80 bg-slate-50/50 rounded-lg border border-dashed flex items-center justify-center text-muted-foreground text-sm font-medium">
+            Chart visualization would be rendered here
+          </div>
+        </CardContent>
+      </Card>
     </div>
   )
 }

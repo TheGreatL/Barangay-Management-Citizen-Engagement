@@ -11,8 +11,9 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ProtectedRouteImport } from './routes/_protected'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ProtectedSettingsRouteImport } from './routes/_protected/settings'
 import { Route as ProtectedOfficialRouteImport } from './routes/_protected/official'
-import { Route as ProtectedDashboardRouteImport } from './routes/_protected/dashboard'
+import { Route as ProtectedCitizenRouteImport } from './routes/_protected/citizen'
 import { Route as ProtectedAdminRouteImport } from './routes/_protected/admin'
 import { Route as authRegisterRouteImport } from './routes/(auth)/register'
 import { Route as authLoginRouteImport } from './routes/(auth)/login'
@@ -21,18 +22,26 @@ import { Route as ProtectedOfficialReportsRouteImport } from './routes/_protecte
 import { Route as ProtectedOfficialDocumentsRouteImport } from './routes/_protected/official/documents'
 import { Route as ProtectedOfficialDashboardRouteImport } from './routes/_protected/official/dashboard'
 import { Route as ProtectedOfficialComplaintsRouteImport } from './routes/_protected/official/complaints'
-import { Route as ProtectedDashboardServicesRouteImport } from './routes/_protected/dashboard.services'
-import { Route as ProtectedDashboardDocumentsRouteImport } from './routes/_protected/dashboard.documents'
-import { Route as ProtectedDashboardComplaintsRouteImport } from './routes/_protected/dashboard.complaints'
-import { Route as ProtectedDashboardAnnouncementsDetailedRouteImport } from './routes/_protected/dashboard.announcements-detailed'
-import { Route as ProtectedDashboardAnnouncementsRouteImport } from './routes/_protected/dashboard.announcements'
+import { Route as ProtectedCitizenServicesRouteImport } from './routes/_protected/citizen/services'
+import { Route as ProtectedCitizenProfileRouteImport } from './routes/_protected/citizen/profile'
+import { Route as ProtectedCitizenMapRouteImport } from './routes/_protected/citizen/map'
+import { Route as ProtectedCitizenDocumentsNewRouteImport } from './routes/_protected/citizen/documents-new'
+import { Route as ProtectedCitizenDocumentsRouteImport } from './routes/_protected/citizen/documents'
+import { Route as ProtectedCitizenDashboardRouteImport } from './routes/_protected/citizen/dashboard'
+import { Route as ProtectedCitizenComplaintsNewRouteImport } from './routes/_protected/citizen/complaints-new'
+import { Route as ProtectedCitizenComplaintsRouteImport } from './routes/_protected/citizen/complaints'
+import { Route as ProtectedCitizenAnnouncementsDetailedRouteImport } from './routes/_protected/citizen/announcements-detailed'
+import { Route as ProtectedCitizenAnnouncementsRouteImport } from './routes/_protected/citizen/announcements'
 import { Route as ProtectedAdminUsersRouteImport } from './routes/_protected/admin/users'
 import { Route as ProtectedAdminSettingsRouteImport } from './routes/_protected/admin/settings'
+import { Route as ProtectedAdminRolesRouteImport } from './routes/_protected/admin/roles'
+import { Route as ProtectedAdminResidentsRouteImport } from './routes/_protected/admin/residents'
 import { Route as ProtectedAdminDashboardRouteImport } from './routes/_protected/admin/dashboard'
+import { Route as ProtectedAdminComplaintsRouteImport } from './routes/_protected/admin/complaints'
+import { Route as ProtectedAdminCertificatesRouteImport } from './routes/_protected/admin/certificates'
 import { Route as ProtectedAdminAnnouncementsRouteImport } from './routes/_protected/admin/announcements'
 import { Route as ProtectedAdminAnalyticsRouteImport } from './routes/_protected/admin/analytics'
-import { Route as ProtectedDashboardDocumentsNewRouteImport } from './routes/_protected/dashboard.documents.new'
-import { Route as ProtectedDashboardComplaintsNewRouteImport } from './routes/_protected/dashboard.complaints.new'
+import { Route as ProtectedAdminActivityLogsRouteImport } from './routes/_protected/admin/activity-logs'
 
 const ProtectedRoute = ProtectedRouteImport.update({
   id: '/_protected',
@@ -43,14 +52,19 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProtectedSettingsRoute = ProtectedSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => ProtectedRoute,
+} as any)
 const ProtectedOfficialRoute = ProtectedOfficialRouteImport.update({
   id: '/official',
   path: '/official',
   getParentRoute: () => ProtectedRoute,
 } as any)
-const ProtectedDashboardRoute = ProtectedDashboardRouteImport.update({
-  id: '/dashboard',
-  path: '/dashboard',
+const ProtectedCitizenRoute = ProtectedCitizenRouteImport.update({
+  id: '/citizen',
+  path: '/citizen',
   getParentRoute: () => ProtectedRoute,
 } as any)
 const ProtectedAdminRoute = ProtectedAdminRouteImport.update({
@@ -98,35 +112,63 @@ const ProtectedOfficialComplaintsRoute =
     path: '/complaints',
     getParentRoute: () => ProtectedOfficialRoute,
   } as any)
-const ProtectedDashboardServicesRoute =
-  ProtectedDashboardServicesRouteImport.update({
+const ProtectedCitizenServicesRoute =
+  ProtectedCitizenServicesRouteImport.update({
     id: '/services',
     path: '/services',
-    getParentRoute: () => ProtectedDashboardRoute,
+    getParentRoute: () => ProtectedCitizenRoute,
   } as any)
-const ProtectedDashboardDocumentsRoute =
-  ProtectedDashboardDocumentsRouteImport.update({
+const ProtectedCitizenProfileRoute = ProtectedCitizenProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => ProtectedCitizenRoute,
+} as any)
+const ProtectedCitizenMapRoute = ProtectedCitizenMapRouteImport.update({
+  id: '/map',
+  path: '/map',
+  getParentRoute: () => ProtectedCitizenRoute,
+} as any)
+const ProtectedCitizenDocumentsNewRoute =
+  ProtectedCitizenDocumentsNewRouteImport.update({
+    id: '/documents-new',
+    path: '/documents-new',
+    getParentRoute: () => ProtectedCitizenRoute,
+  } as any)
+const ProtectedCitizenDocumentsRoute =
+  ProtectedCitizenDocumentsRouteImport.update({
     id: '/documents',
     path: '/documents',
-    getParentRoute: () => ProtectedDashboardRoute,
+    getParentRoute: () => ProtectedCitizenRoute,
   } as any)
-const ProtectedDashboardComplaintsRoute =
-  ProtectedDashboardComplaintsRouteImport.update({
+const ProtectedCitizenDashboardRoute =
+  ProtectedCitizenDashboardRouteImport.update({
+    id: '/dashboard',
+    path: '/dashboard',
+    getParentRoute: () => ProtectedCitizenRoute,
+  } as any)
+const ProtectedCitizenComplaintsNewRoute =
+  ProtectedCitizenComplaintsNewRouteImport.update({
+    id: '/complaints-new',
+    path: '/complaints-new',
+    getParentRoute: () => ProtectedCitizenRoute,
+  } as any)
+const ProtectedCitizenComplaintsRoute =
+  ProtectedCitizenComplaintsRouteImport.update({
     id: '/complaints',
     path: '/complaints',
-    getParentRoute: () => ProtectedDashboardRoute,
+    getParentRoute: () => ProtectedCitizenRoute,
   } as any)
-const ProtectedDashboardAnnouncementsDetailedRoute =
-  ProtectedDashboardAnnouncementsDetailedRouteImport.update({
+const ProtectedCitizenAnnouncementsDetailedRoute =
+  ProtectedCitizenAnnouncementsDetailedRouteImport.update({
     id: '/announcements-detailed',
     path: '/announcements-detailed',
-    getParentRoute: () => ProtectedDashboardRoute,
+    getParentRoute: () => ProtectedCitizenRoute,
   } as any)
-const ProtectedDashboardAnnouncementsRoute =
-  ProtectedDashboardAnnouncementsRouteImport.update({
+const ProtectedCitizenAnnouncementsRoute =
+  ProtectedCitizenAnnouncementsRouteImport.update({
     id: '/announcements',
     path: '/announcements',
-    getParentRoute: () => ProtectedDashboardRoute,
+    getParentRoute: () => ProtectedCitizenRoute,
   } as any)
 const ProtectedAdminUsersRoute = ProtectedAdminUsersRouteImport.update({
   id: '/users',
@@ -138,11 +180,33 @@ const ProtectedAdminSettingsRoute = ProtectedAdminSettingsRouteImport.update({
   path: '/settings',
   getParentRoute: () => ProtectedAdminRoute,
 } as any)
+const ProtectedAdminRolesRoute = ProtectedAdminRolesRouteImport.update({
+  id: '/roles',
+  path: '/roles',
+  getParentRoute: () => ProtectedAdminRoute,
+} as any)
+const ProtectedAdminResidentsRoute = ProtectedAdminResidentsRouteImport.update({
+  id: '/residents',
+  path: '/residents',
+  getParentRoute: () => ProtectedAdminRoute,
+} as any)
 const ProtectedAdminDashboardRoute = ProtectedAdminDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
   getParentRoute: () => ProtectedAdminRoute,
 } as any)
+const ProtectedAdminComplaintsRoute =
+  ProtectedAdminComplaintsRouteImport.update({
+    id: '/complaints',
+    path: '/complaints',
+    getParentRoute: () => ProtectedAdminRoute,
+  } as any)
+const ProtectedAdminCertificatesRoute =
+  ProtectedAdminCertificatesRouteImport.update({
+    id: '/certificates',
+    path: '/certificates',
+    getParentRoute: () => ProtectedAdminRoute,
+  } as any)
 const ProtectedAdminAnnouncementsRoute =
   ProtectedAdminAnnouncementsRouteImport.update({
     id: '/announcements',
@@ -154,17 +218,11 @@ const ProtectedAdminAnalyticsRoute = ProtectedAdminAnalyticsRouteImport.update({
   path: '/analytics',
   getParentRoute: () => ProtectedAdminRoute,
 } as any)
-const ProtectedDashboardDocumentsNewRoute =
-  ProtectedDashboardDocumentsNewRouteImport.update({
-    id: '/new',
-    path: '/new',
-    getParentRoute: () => ProtectedDashboardDocumentsRoute,
-  } as any)
-const ProtectedDashboardComplaintsNewRoute =
-  ProtectedDashboardComplaintsNewRouteImport.update({
-    id: '/new',
-    path: '/new',
-    getParentRoute: () => ProtectedDashboardComplaintsRoute,
+const ProtectedAdminActivityLogsRoute =
+  ProtectedAdminActivityLogsRouteImport.update({
+    id: '/activity-logs',
+    path: '/activity-logs',
+    getParentRoute: () => ProtectedAdminRoute,
   } as any)
 
 export interface FileRoutesByFullPath {
@@ -172,50 +230,68 @@ export interface FileRoutesByFullPath {
   '/login': typeof authLoginRoute
   '/register': typeof authRegisterRoute
   '/admin': typeof ProtectedAdminRouteWithChildren
-  '/dashboard': typeof ProtectedDashboardRouteWithChildren
+  '/citizen': typeof ProtectedCitizenRouteWithChildren
   '/official': typeof ProtectedOfficialRouteWithChildren
+  '/settings': typeof ProtectedSettingsRoute
+  '/admin/activity-logs': typeof ProtectedAdminActivityLogsRoute
   '/admin/analytics': typeof ProtectedAdminAnalyticsRoute
   '/admin/announcements': typeof ProtectedAdminAnnouncementsRoute
+  '/admin/certificates': typeof ProtectedAdminCertificatesRoute
+  '/admin/complaints': typeof ProtectedAdminComplaintsRoute
   '/admin/dashboard': typeof ProtectedAdminDashboardRoute
+  '/admin/residents': typeof ProtectedAdminResidentsRoute
+  '/admin/roles': typeof ProtectedAdminRolesRoute
   '/admin/settings': typeof ProtectedAdminSettingsRoute
   '/admin/users': typeof ProtectedAdminUsersRoute
-  '/dashboard/announcements': typeof ProtectedDashboardAnnouncementsRoute
-  '/dashboard/announcements-detailed': typeof ProtectedDashboardAnnouncementsDetailedRoute
-  '/dashboard/complaints': typeof ProtectedDashboardComplaintsRouteWithChildren
-  '/dashboard/documents': typeof ProtectedDashboardDocumentsRouteWithChildren
-  '/dashboard/services': typeof ProtectedDashboardServicesRoute
+  '/citizen/announcements': typeof ProtectedCitizenAnnouncementsRoute
+  '/citizen/announcements-detailed': typeof ProtectedCitizenAnnouncementsDetailedRoute
+  '/citizen/complaints': typeof ProtectedCitizenComplaintsRoute
+  '/citizen/complaints-new': typeof ProtectedCitizenComplaintsNewRoute
+  '/citizen/dashboard': typeof ProtectedCitizenDashboardRoute
+  '/citizen/documents': typeof ProtectedCitizenDocumentsRoute
+  '/citizen/documents-new': typeof ProtectedCitizenDocumentsNewRoute
+  '/citizen/map': typeof ProtectedCitizenMapRoute
+  '/citizen/profile': typeof ProtectedCitizenProfileRoute
+  '/citizen/services': typeof ProtectedCitizenServicesRoute
   '/official/complaints': typeof ProtectedOfficialComplaintsRoute
   '/official/dashboard': typeof ProtectedOfficialDashboardRoute
   '/official/documents': typeof ProtectedOfficialDocumentsRoute
   '/official/reports': typeof ProtectedOfficialReportsRoute
   '/official/residents': typeof ProtectedOfficialResidentsRoute
-  '/dashboard/complaints/new': typeof ProtectedDashboardComplaintsNewRoute
-  '/dashboard/documents/new': typeof ProtectedDashboardDocumentsNewRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof authLoginRoute
   '/register': typeof authRegisterRoute
   '/admin': typeof ProtectedAdminRouteWithChildren
-  '/dashboard': typeof ProtectedDashboardRouteWithChildren
+  '/citizen': typeof ProtectedCitizenRouteWithChildren
   '/official': typeof ProtectedOfficialRouteWithChildren
+  '/settings': typeof ProtectedSettingsRoute
+  '/admin/activity-logs': typeof ProtectedAdminActivityLogsRoute
   '/admin/analytics': typeof ProtectedAdminAnalyticsRoute
   '/admin/announcements': typeof ProtectedAdminAnnouncementsRoute
+  '/admin/certificates': typeof ProtectedAdminCertificatesRoute
+  '/admin/complaints': typeof ProtectedAdminComplaintsRoute
   '/admin/dashboard': typeof ProtectedAdminDashboardRoute
+  '/admin/residents': typeof ProtectedAdminResidentsRoute
+  '/admin/roles': typeof ProtectedAdminRolesRoute
   '/admin/settings': typeof ProtectedAdminSettingsRoute
   '/admin/users': typeof ProtectedAdminUsersRoute
-  '/dashboard/announcements': typeof ProtectedDashboardAnnouncementsRoute
-  '/dashboard/announcements-detailed': typeof ProtectedDashboardAnnouncementsDetailedRoute
-  '/dashboard/complaints': typeof ProtectedDashboardComplaintsRouteWithChildren
-  '/dashboard/documents': typeof ProtectedDashboardDocumentsRouteWithChildren
-  '/dashboard/services': typeof ProtectedDashboardServicesRoute
+  '/citizen/announcements': typeof ProtectedCitizenAnnouncementsRoute
+  '/citizen/announcements-detailed': typeof ProtectedCitizenAnnouncementsDetailedRoute
+  '/citizen/complaints': typeof ProtectedCitizenComplaintsRoute
+  '/citizen/complaints-new': typeof ProtectedCitizenComplaintsNewRoute
+  '/citizen/dashboard': typeof ProtectedCitizenDashboardRoute
+  '/citizen/documents': typeof ProtectedCitizenDocumentsRoute
+  '/citizen/documents-new': typeof ProtectedCitizenDocumentsNewRoute
+  '/citizen/map': typeof ProtectedCitizenMapRoute
+  '/citizen/profile': typeof ProtectedCitizenProfileRoute
+  '/citizen/services': typeof ProtectedCitizenServicesRoute
   '/official/complaints': typeof ProtectedOfficialComplaintsRoute
   '/official/dashboard': typeof ProtectedOfficialDashboardRoute
   '/official/documents': typeof ProtectedOfficialDocumentsRoute
   '/official/reports': typeof ProtectedOfficialReportsRoute
   '/official/residents': typeof ProtectedOfficialResidentsRoute
-  '/dashboard/complaints/new': typeof ProtectedDashboardComplaintsNewRoute
-  '/dashboard/documents/new': typeof ProtectedDashboardDocumentsNewRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -224,25 +300,34 @@ export interface FileRoutesById {
   '/(auth)/login': typeof authLoginRoute
   '/(auth)/register': typeof authRegisterRoute
   '/_protected/admin': typeof ProtectedAdminRouteWithChildren
-  '/_protected/dashboard': typeof ProtectedDashboardRouteWithChildren
+  '/_protected/citizen': typeof ProtectedCitizenRouteWithChildren
   '/_protected/official': typeof ProtectedOfficialRouteWithChildren
+  '/_protected/settings': typeof ProtectedSettingsRoute
+  '/_protected/admin/activity-logs': typeof ProtectedAdminActivityLogsRoute
   '/_protected/admin/analytics': typeof ProtectedAdminAnalyticsRoute
   '/_protected/admin/announcements': typeof ProtectedAdminAnnouncementsRoute
+  '/_protected/admin/certificates': typeof ProtectedAdminCertificatesRoute
+  '/_protected/admin/complaints': typeof ProtectedAdminComplaintsRoute
   '/_protected/admin/dashboard': typeof ProtectedAdminDashboardRoute
+  '/_protected/admin/residents': typeof ProtectedAdminResidentsRoute
+  '/_protected/admin/roles': typeof ProtectedAdminRolesRoute
   '/_protected/admin/settings': typeof ProtectedAdminSettingsRoute
   '/_protected/admin/users': typeof ProtectedAdminUsersRoute
-  '/_protected/dashboard/announcements': typeof ProtectedDashboardAnnouncementsRoute
-  '/_protected/dashboard/announcements-detailed': typeof ProtectedDashboardAnnouncementsDetailedRoute
-  '/_protected/dashboard/complaints': typeof ProtectedDashboardComplaintsRouteWithChildren
-  '/_protected/dashboard/documents': typeof ProtectedDashboardDocumentsRouteWithChildren
-  '/_protected/dashboard/services': typeof ProtectedDashboardServicesRoute
+  '/_protected/citizen/announcements': typeof ProtectedCitizenAnnouncementsRoute
+  '/_protected/citizen/announcements-detailed': typeof ProtectedCitizenAnnouncementsDetailedRoute
+  '/_protected/citizen/complaints': typeof ProtectedCitizenComplaintsRoute
+  '/_protected/citizen/complaints-new': typeof ProtectedCitizenComplaintsNewRoute
+  '/_protected/citizen/dashboard': typeof ProtectedCitizenDashboardRoute
+  '/_protected/citizen/documents': typeof ProtectedCitizenDocumentsRoute
+  '/_protected/citizen/documents-new': typeof ProtectedCitizenDocumentsNewRoute
+  '/_protected/citizen/map': typeof ProtectedCitizenMapRoute
+  '/_protected/citizen/profile': typeof ProtectedCitizenProfileRoute
+  '/_protected/citizen/services': typeof ProtectedCitizenServicesRoute
   '/_protected/official/complaints': typeof ProtectedOfficialComplaintsRoute
   '/_protected/official/dashboard': typeof ProtectedOfficialDashboardRoute
   '/_protected/official/documents': typeof ProtectedOfficialDocumentsRoute
   '/_protected/official/reports': typeof ProtectedOfficialReportsRoute
   '/_protected/official/residents': typeof ProtectedOfficialResidentsRoute
-  '/_protected/dashboard/complaints/new': typeof ProtectedDashboardComplaintsNewRoute
-  '/_protected/dashboard/documents/new': typeof ProtectedDashboardDocumentsNewRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -251,50 +336,68 @@ export interface FileRouteTypes {
     | '/login'
     | '/register'
     | '/admin'
-    | '/dashboard'
+    | '/citizen'
     | '/official'
+    | '/settings'
+    | '/admin/activity-logs'
     | '/admin/analytics'
     | '/admin/announcements'
+    | '/admin/certificates'
+    | '/admin/complaints'
     | '/admin/dashboard'
+    | '/admin/residents'
+    | '/admin/roles'
     | '/admin/settings'
     | '/admin/users'
-    | '/dashboard/announcements'
-    | '/dashboard/announcements-detailed'
-    | '/dashboard/complaints'
-    | '/dashboard/documents'
-    | '/dashboard/services'
+    | '/citizen/announcements'
+    | '/citizen/announcements-detailed'
+    | '/citizen/complaints'
+    | '/citizen/complaints-new'
+    | '/citizen/dashboard'
+    | '/citizen/documents'
+    | '/citizen/documents-new'
+    | '/citizen/map'
+    | '/citizen/profile'
+    | '/citizen/services'
     | '/official/complaints'
     | '/official/dashboard'
     | '/official/documents'
     | '/official/reports'
     | '/official/residents'
-    | '/dashboard/complaints/new'
-    | '/dashboard/documents/new'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/login'
     | '/register'
     | '/admin'
-    | '/dashboard'
+    | '/citizen'
     | '/official'
+    | '/settings'
+    | '/admin/activity-logs'
     | '/admin/analytics'
     | '/admin/announcements'
+    | '/admin/certificates'
+    | '/admin/complaints'
     | '/admin/dashboard'
+    | '/admin/residents'
+    | '/admin/roles'
     | '/admin/settings'
     | '/admin/users'
-    | '/dashboard/announcements'
-    | '/dashboard/announcements-detailed'
-    | '/dashboard/complaints'
-    | '/dashboard/documents'
-    | '/dashboard/services'
+    | '/citizen/announcements'
+    | '/citizen/announcements-detailed'
+    | '/citizen/complaints'
+    | '/citizen/complaints-new'
+    | '/citizen/dashboard'
+    | '/citizen/documents'
+    | '/citizen/documents-new'
+    | '/citizen/map'
+    | '/citizen/profile'
+    | '/citizen/services'
     | '/official/complaints'
     | '/official/dashboard'
     | '/official/documents'
     | '/official/reports'
     | '/official/residents'
-    | '/dashboard/complaints/new'
-    | '/dashboard/documents/new'
   id:
     | '__root__'
     | '/'
@@ -302,25 +405,34 @@ export interface FileRouteTypes {
     | '/(auth)/login'
     | '/(auth)/register'
     | '/_protected/admin'
-    | '/_protected/dashboard'
+    | '/_protected/citizen'
     | '/_protected/official'
+    | '/_protected/settings'
+    | '/_protected/admin/activity-logs'
     | '/_protected/admin/analytics'
     | '/_protected/admin/announcements'
+    | '/_protected/admin/certificates'
+    | '/_protected/admin/complaints'
     | '/_protected/admin/dashboard'
+    | '/_protected/admin/residents'
+    | '/_protected/admin/roles'
     | '/_protected/admin/settings'
     | '/_protected/admin/users'
-    | '/_protected/dashboard/announcements'
-    | '/_protected/dashboard/announcements-detailed'
-    | '/_protected/dashboard/complaints'
-    | '/_protected/dashboard/documents'
-    | '/_protected/dashboard/services'
+    | '/_protected/citizen/announcements'
+    | '/_protected/citizen/announcements-detailed'
+    | '/_protected/citizen/complaints'
+    | '/_protected/citizen/complaints-new'
+    | '/_protected/citizen/dashboard'
+    | '/_protected/citizen/documents'
+    | '/_protected/citizen/documents-new'
+    | '/_protected/citizen/map'
+    | '/_protected/citizen/profile'
+    | '/_protected/citizen/services'
     | '/_protected/official/complaints'
     | '/_protected/official/dashboard'
     | '/_protected/official/documents'
     | '/_protected/official/reports'
     | '/_protected/official/residents'
-    | '/_protected/dashboard/complaints/new'
-    | '/_protected/dashboard/documents/new'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -346,6 +458,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_protected/settings': {
+      id: '/_protected/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof ProtectedSettingsRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
     '/_protected/official': {
       id: '/_protected/official'
       path: '/official'
@@ -353,11 +472,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProtectedOfficialRouteImport
       parentRoute: typeof ProtectedRoute
     }
-    '/_protected/dashboard': {
-      id: '/_protected/dashboard'
-      path: '/dashboard'
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof ProtectedDashboardRouteImport
+    '/_protected/citizen': {
+      id: '/_protected/citizen'
+      path: '/citizen'
+      fullPath: '/citizen'
+      preLoaderRoute: typeof ProtectedCitizenRouteImport
       parentRoute: typeof ProtectedRoute
     }
     '/_protected/admin': {
@@ -416,40 +535,75 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProtectedOfficialComplaintsRouteImport
       parentRoute: typeof ProtectedOfficialRoute
     }
-    '/_protected/dashboard/services': {
-      id: '/_protected/dashboard/services'
+    '/_protected/citizen/services': {
+      id: '/_protected/citizen/services'
       path: '/services'
-      fullPath: '/dashboard/services'
-      preLoaderRoute: typeof ProtectedDashboardServicesRouteImport
-      parentRoute: typeof ProtectedDashboardRoute
+      fullPath: '/citizen/services'
+      preLoaderRoute: typeof ProtectedCitizenServicesRouteImport
+      parentRoute: typeof ProtectedCitizenRoute
     }
-    '/_protected/dashboard/documents': {
-      id: '/_protected/dashboard/documents'
+    '/_protected/citizen/profile': {
+      id: '/_protected/citizen/profile'
+      path: '/profile'
+      fullPath: '/citizen/profile'
+      preLoaderRoute: typeof ProtectedCitizenProfileRouteImport
+      parentRoute: typeof ProtectedCitizenRoute
+    }
+    '/_protected/citizen/map': {
+      id: '/_protected/citizen/map'
+      path: '/map'
+      fullPath: '/citizen/map'
+      preLoaderRoute: typeof ProtectedCitizenMapRouteImport
+      parentRoute: typeof ProtectedCitizenRoute
+    }
+    '/_protected/citizen/documents-new': {
+      id: '/_protected/citizen/documents-new'
+      path: '/documents-new'
+      fullPath: '/citizen/documents-new'
+      preLoaderRoute: typeof ProtectedCitizenDocumentsNewRouteImport
+      parentRoute: typeof ProtectedCitizenRoute
+    }
+    '/_protected/citizen/documents': {
+      id: '/_protected/citizen/documents'
       path: '/documents'
-      fullPath: '/dashboard/documents'
-      preLoaderRoute: typeof ProtectedDashboardDocumentsRouteImport
-      parentRoute: typeof ProtectedDashboardRoute
+      fullPath: '/citizen/documents'
+      preLoaderRoute: typeof ProtectedCitizenDocumentsRouteImport
+      parentRoute: typeof ProtectedCitizenRoute
     }
-    '/_protected/dashboard/complaints': {
-      id: '/_protected/dashboard/complaints'
+    '/_protected/citizen/dashboard': {
+      id: '/_protected/citizen/dashboard'
+      path: '/dashboard'
+      fullPath: '/citizen/dashboard'
+      preLoaderRoute: typeof ProtectedCitizenDashboardRouteImport
+      parentRoute: typeof ProtectedCitizenRoute
+    }
+    '/_protected/citizen/complaints-new': {
+      id: '/_protected/citizen/complaints-new'
+      path: '/complaints-new'
+      fullPath: '/citizen/complaints-new'
+      preLoaderRoute: typeof ProtectedCitizenComplaintsNewRouteImport
+      parentRoute: typeof ProtectedCitizenRoute
+    }
+    '/_protected/citizen/complaints': {
+      id: '/_protected/citizen/complaints'
       path: '/complaints'
-      fullPath: '/dashboard/complaints'
-      preLoaderRoute: typeof ProtectedDashboardComplaintsRouteImport
-      parentRoute: typeof ProtectedDashboardRoute
+      fullPath: '/citizen/complaints'
+      preLoaderRoute: typeof ProtectedCitizenComplaintsRouteImport
+      parentRoute: typeof ProtectedCitizenRoute
     }
-    '/_protected/dashboard/announcements-detailed': {
-      id: '/_protected/dashboard/announcements-detailed'
+    '/_protected/citizen/announcements-detailed': {
+      id: '/_protected/citizen/announcements-detailed'
       path: '/announcements-detailed'
-      fullPath: '/dashboard/announcements-detailed'
-      preLoaderRoute: typeof ProtectedDashboardAnnouncementsDetailedRouteImport
-      parentRoute: typeof ProtectedDashboardRoute
+      fullPath: '/citizen/announcements-detailed'
+      preLoaderRoute: typeof ProtectedCitizenAnnouncementsDetailedRouteImport
+      parentRoute: typeof ProtectedCitizenRoute
     }
-    '/_protected/dashboard/announcements': {
-      id: '/_protected/dashboard/announcements'
+    '/_protected/citizen/announcements': {
+      id: '/_protected/citizen/announcements'
       path: '/announcements'
-      fullPath: '/dashboard/announcements'
-      preLoaderRoute: typeof ProtectedDashboardAnnouncementsRouteImport
-      parentRoute: typeof ProtectedDashboardRoute
+      fullPath: '/citizen/announcements'
+      preLoaderRoute: typeof ProtectedCitizenAnnouncementsRouteImport
+      parentRoute: typeof ProtectedCitizenRoute
     }
     '/_protected/admin/users': {
       id: '/_protected/admin/users'
@@ -465,11 +619,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProtectedAdminSettingsRouteImport
       parentRoute: typeof ProtectedAdminRoute
     }
+    '/_protected/admin/roles': {
+      id: '/_protected/admin/roles'
+      path: '/roles'
+      fullPath: '/admin/roles'
+      preLoaderRoute: typeof ProtectedAdminRolesRouteImport
+      parentRoute: typeof ProtectedAdminRoute
+    }
+    '/_protected/admin/residents': {
+      id: '/_protected/admin/residents'
+      path: '/residents'
+      fullPath: '/admin/residents'
+      preLoaderRoute: typeof ProtectedAdminResidentsRouteImport
+      parentRoute: typeof ProtectedAdminRoute
+    }
     '/_protected/admin/dashboard': {
       id: '/_protected/admin/dashboard'
       path: '/dashboard'
       fullPath: '/admin/dashboard'
       preLoaderRoute: typeof ProtectedAdminDashboardRouteImport
+      parentRoute: typeof ProtectedAdminRoute
+    }
+    '/_protected/admin/complaints': {
+      id: '/_protected/admin/complaints'
+      path: '/complaints'
+      fullPath: '/admin/complaints'
+      preLoaderRoute: typeof ProtectedAdminComplaintsRouteImport
+      parentRoute: typeof ProtectedAdminRoute
+    }
+    '/_protected/admin/certificates': {
+      id: '/_protected/admin/certificates'
+      path: '/certificates'
+      fullPath: '/admin/certificates'
+      preLoaderRoute: typeof ProtectedAdminCertificatesRouteImport
       parentRoute: typeof ProtectedAdminRoute
     }
     '/_protected/admin/announcements': {
@@ -486,35 +668,38 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProtectedAdminAnalyticsRouteImport
       parentRoute: typeof ProtectedAdminRoute
     }
-    '/_protected/dashboard/documents/new': {
-      id: '/_protected/dashboard/documents/new'
-      path: '/new'
-      fullPath: '/dashboard/documents/new'
-      preLoaderRoute: typeof ProtectedDashboardDocumentsNewRouteImport
-      parentRoute: typeof ProtectedDashboardDocumentsRoute
-    }
-    '/_protected/dashboard/complaints/new': {
-      id: '/_protected/dashboard/complaints/new'
-      path: '/new'
-      fullPath: '/dashboard/complaints/new'
-      preLoaderRoute: typeof ProtectedDashboardComplaintsNewRouteImport
-      parentRoute: typeof ProtectedDashboardComplaintsRoute
+    '/_protected/admin/activity-logs': {
+      id: '/_protected/admin/activity-logs'
+      path: '/activity-logs'
+      fullPath: '/admin/activity-logs'
+      preLoaderRoute: typeof ProtectedAdminActivityLogsRouteImport
+      parentRoute: typeof ProtectedAdminRoute
     }
   }
 }
 
 interface ProtectedAdminRouteChildren {
+  ProtectedAdminActivityLogsRoute: typeof ProtectedAdminActivityLogsRoute
   ProtectedAdminAnalyticsRoute: typeof ProtectedAdminAnalyticsRoute
   ProtectedAdminAnnouncementsRoute: typeof ProtectedAdminAnnouncementsRoute
+  ProtectedAdminCertificatesRoute: typeof ProtectedAdminCertificatesRoute
+  ProtectedAdminComplaintsRoute: typeof ProtectedAdminComplaintsRoute
   ProtectedAdminDashboardRoute: typeof ProtectedAdminDashboardRoute
+  ProtectedAdminResidentsRoute: typeof ProtectedAdminResidentsRoute
+  ProtectedAdminRolesRoute: typeof ProtectedAdminRolesRoute
   ProtectedAdminSettingsRoute: typeof ProtectedAdminSettingsRoute
   ProtectedAdminUsersRoute: typeof ProtectedAdminUsersRoute
 }
 
 const ProtectedAdminRouteChildren: ProtectedAdminRouteChildren = {
+  ProtectedAdminActivityLogsRoute: ProtectedAdminActivityLogsRoute,
   ProtectedAdminAnalyticsRoute: ProtectedAdminAnalyticsRoute,
   ProtectedAdminAnnouncementsRoute: ProtectedAdminAnnouncementsRoute,
+  ProtectedAdminCertificatesRoute: ProtectedAdminCertificatesRoute,
+  ProtectedAdminComplaintsRoute: ProtectedAdminComplaintsRoute,
   ProtectedAdminDashboardRoute: ProtectedAdminDashboardRoute,
+  ProtectedAdminResidentsRoute: ProtectedAdminResidentsRoute,
+  ProtectedAdminRolesRoute: ProtectedAdminRolesRoute,
   ProtectedAdminSettingsRoute: ProtectedAdminSettingsRoute,
   ProtectedAdminUsersRoute: ProtectedAdminUsersRoute,
 }
@@ -523,55 +708,35 @@ const ProtectedAdminRouteWithChildren = ProtectedAdminRoute._addFileChildren(
   ProtectedAdminRouteChildren,
 )
 
-interface ProtectedDashboardComplaintsRouteChildren {
-  ProtectedDashboardComplaintsNewRoute: typeof ProtectedDashboardComplaintsNewRoute
+interface ProtectedCitizenRouteChildren {
+  ProtectedCitizenAnnouncementsRoute: typeof ProtectedCitizenAnnouncementsRoute
+  ProtectedCitizenAnnouncementsDetailedRoute: typeof ProtectedCitizenAnnouncementsDetailedRoute
+  ProtectedCitizenComplaintsRoute: typeof ProtectedCitizenComplaintsRoute
+  ProtectedCitizenComplaintsNewRoute: typeof ProtectedCitizenComplaintsNewRoute
+  ProtectedCitizenDashboardRoute: typeof ProtectedCitizenDashboardRoute
+  ProtectedCitizenDocumentsRoute: typeof ProtectedCitizenDocumentsRoute
+  ProtectedCitizenDocumentsNewRoute: typeof ProtectedCitizenDocumentsNewRoute
+  ProtectedCitizenMapRoute: typeof ProtectedCitizenMapRoute
+  ProtectedCitizenProfileRoute: typeof ProtectedCitizenProfileRoute
+  ProtectedCitizenServicesRoute: typeof ProtectedCitizenServicesRoute
 }
 
-const ProtectedDashboardComplaintsRouteChildren: ProtectedDashboardComplaintsRouteChildren =
-  {
-    ProtectedDashboardComplaintsNewRoute: ProtectedDashboardComplaintsNewRoute,
-  }
-
-const ProtectedDashboardComplaintsRouteWithChildren =
-  ProtectedDashboardComplaintsRoute._addFileChildren(
-    ProtectedDashboardComplaintsRouteChildren,
-  )
-
-interface ProtectedDashboardDocumentsRouteChildren {
-  ProtectedDashboardDocumentsNewRoute: typeof ProtectedDashboardDocumentsNewRoute
+const ProtectedCitizenRouteChildren: ProtectedCitizenRouteChildren = {
+  ProtectedCitizenAnnouncementsRoute: ProtectedCitizenAnnouncementsRoute,
+  ProtectedCitizenAnnouncementsDetailedRoute:
+    ProtectedCitizenAnnouncementsDetailedRoute,
+  ProtectedCitizenComplaintsRoute: ProtectedCitizenComplaintsRoute,
+  ProtectedCitizenComplaintsNewRoute: ProtectedCitizenComplaintsNewRoute,
+  ProtectedCitizenDashboardRoute: ProtectedCitizenDashboardRoute,
+  ProtectedCitizenDocumentsRoute: ProtectedCitizenDocumentsRoute,
+  ProtectedCitizenDocumentsNewRoute: ProtectedCitizenDocumentsNewRoute,
+  ProtectedCitizenMapRoute: ProtectedCitizenMapRoute,
+  ProtectedCitizenProfileRoute: ProtectedCitizenProfileRoute,
+  ProtectedCitizenServicesRoute: ProtectedCitizenServicesRoute,
 }
 
-const ProtectedDashboardDocumentsRouteChildren: ProtectedDashboardDocumentsRouteChildren =
-  {
-    ProtectedDashboardDocumentsNewRoute: ProtectedDashboardDocumentsNewRoute,
-  }
-
-const ProtectedDashboardDocumentsRouteWithChildren =
-  ProtectedDashboardDocumentsRoute._addFileChildren(
-    ProtectedDashboardDocumentsRouteChildren,
-  )
-
-interface ProtectedDashboardRouteChildren {
-  ProtectedDashboardAnnouncementsRoute: typeof ProtectedDashboardAnnouncementsRoute
-  ProtectedDashboardAnnouncementsDetailedRoute: typeof ProtectedDashboardAnnouncementsDetailedRoute
-  ProtectedDashboardComplaintsRoute: typeof ProtectedDashboardComplaintsRouteWithChildren
-  ProtectedDashboardDocumentsRoute: typeof ProtectedDashboardDocumentsRouteWithChildren
-  ProtectedDashboardServicesRoute: typeof ProtectedDashboardServicesRoute
-}
-
-const ProtectedDashboardRouteChildren: ProtectedDashboardRouteChildren = {
-  ProtectedDashboardAnnouncementsRoute: ProtectedDashboardAnnouncementsRoute,
-  ProtectedDashboardAnnouncementsDetailedRoute:
-    ProtectedDashboardAnnouncementsDetailedRoute,
-  ProtectedDashboardComplaintsRoute:
-    ProtectedDashboardComplaintsRouteWithChildren,
-  ProtectedDashboardDocumentsRoute:
-    ProtectedDashboardDocumentsRouteWithChildren,
-  ProtectedDashboardServicesRoute: ProtectedDashboardServicesRoute,
-}
-
-const ProtectedDashboardRouteWithChildren =
-  ProtectedDashboardRoute._addFileChildren(ProtectedDashboardRouteChildren)
+const ProtectedCitizenRouteWithChildren =
+  ProtectedCitizenRoute._addFileChildren(ProtectedCitizenRouteChildren)
 
 interface ProtectedOfficialRouteChildren {
   ProtectedOfficialComplaintsRoute: typeof ProtectedOfficialComplaintsRoute
@@ -594,14 +759,16 @@ const ProtectedOfficialRouteWithChildren =
 
 interface ProtectedRouteChildren {
   ProtectedAdminRoute: typeof ProtectedAdminRouteWithChildren
-  ProtectedDashboardRoute: typeof ProtectedDashboardRouteWithChildren
+  ProtectedCitizenRoute: typeof ProtectedCitizenRouteWithChildren
   ProtectedOfficialRoute: typeof ProtectedOfficialRouteWithChildren
+  ProtectedSettingsRoute: typeof ProtectedSettingsRoute
 }
 
 const ProtectedRouteChildren: ProtectedRouteChildren = {
   ProtectedAdminRoute: ProtectedAdminRouteWithChildren,
-  ProtectedDashboardRoute: ProtectedDashboardRouteWithChildren,
+  ProtectedCitizenRoute: ProtectedCitizenRouteWithChildren,
   ProtectedOfficialRoute: ProtectedOfficialRouteWithChildren,
+  ProtectedSettingsRoute: ProtectedSettingsRoute,
 }
 
 const ProtectedRouteWithChildren = ProtectedRoute._addFileChildren(
