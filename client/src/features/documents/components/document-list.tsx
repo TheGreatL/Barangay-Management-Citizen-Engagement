@@ -36,7 +36,9 @@ export function DocumentList() {
   }
 
   if (isLoading) {
-    return <div className="p-6 text-center text-gray-500">Loading documents...</div>
+    return (
+      <div className="p-6 text-center text-gray-500">Loading documents...</div>
+    )
   }
 
   if (error) {
@@ -45,7 +47,9 @@ export function DocumentList() {
         <div className="flex items-start gap-3">
           <AlertCircle className="mt-0.5 h-5 w-5 text-red-600" />
           <div>
-            <h3 className="font-medium text-red-900">Failed to load documents</h3>
+            <h3 className="font-medium text-red-900">
+              Failed to load documents
+            </h3>
             <p className="text-sm text-red-700">Please try again later</p>
           </div>
         </div>
@@ -62,7 +66,9 @@ export function DocumentList() {
         <div className="rounded-lg border border-dashed border-gray-300 p-12 text-center">
           <AlertCircle className="mx-auto mb-4 h-12 w-12 text-gray-400" />
           <p className="text-gray-600">No document requests yet</p>
-          <p className="text-sm text-gray-500">Request a document to get started</p>
+          <p className="text-sm text-gray-500">
+            Request a document to get started
+          </p>
         </div>
       ) : (
         <div className="space-y-3">
@@ -114,7 +120,7 @@ export function DocumentList() {
       {totalPages > 1 && (
         <div className="flex justify-between">
           <Button
-            onClick={() => setPage(p => Math.max(1, p - 1))}
+            onClick={() => setPage((p) => Math.max(1, p - 1))}
             disabled={page === 1}
             variant="outline"
           >
@@ -124,7 +130,7 @@ export function DocumentList() {
             Page {page} of {totalPages}
           </span>
           <Button
-            onClick={() => setPage(p => Math.min(totalPages, p + 1))}
+            onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
             disabled={page === totalPages}
             variant="outline"
           >

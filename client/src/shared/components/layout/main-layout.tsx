@@ -10,7 +10,7 @@ interface MainLayoutProps {
 export function MainLayout({ children }: MainLayoutProps) {
   return (
     <SidebarProvider>
-      <div className="flex min-h-screen w-full bg-background">
+      <div className="bg-background flex min-h-screen w-full">
         <AppSidebar />
         <main className="flex flex-1 flex-col">
           <Header />

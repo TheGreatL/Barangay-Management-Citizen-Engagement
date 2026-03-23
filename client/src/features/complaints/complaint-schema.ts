@@ -9,7 +9,12 @@ export const complaintCategorySchema = z.enum([
   'other',
 ])
 
-export const complaintPrioritySchema = z.enum(['low', 'medium', 'high', 'urgent'])
+export const complaintPrioritySchema = z.enum([
+  'low',
+  'medium',
+  'high',
+  'urgent',
+])
 
 export const complaintStatusSchema = z.enum([
   'pending',

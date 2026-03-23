@@ -49,6 +49,7 @@ client/src/
 ## Core Features
 
 ### For Citizens
+
 - **User Authentication**: Secure login and registration
 - **Complaint Submission**: Report issues with file attachments
 - **Document Requests**: Apply for barangay documents
@@ -57,6 +58,7 @@ client/src/
 - **Dashboard**: Personal account overview and quick access
 
 ### For Barangay Officials
+
 - **Complaint Management**: Review and manage citizen complaints
 - **Residents Database**: Search and manage resident records
 - **Document Processing**: Approve/reject document requests
@@ -64,6 +66,7 @@ client/src/
 - **Quick Actions**: Fast access to key management functions
 
 ### For Administrators
+
 - **User Management**: Create and manage system users
 - **System Analytics**: Comprehensive system-wide analytics
 - **Announcements**: Manage system announcements
@@ -72,6 +75,7 @@ client/src/
 ## Authentication & Authorization
 
 ### Role-Based Access Control
+
 ```typescript
 - citizen: Basic access to citizen features
 - barangay_official: Access to official dashboard and management
@@ -79,6 +83,7 @@ client/src/
 ```
 
 ### Protected Routes
+
 - `/dashboard/*` - Citizen routes (requires authentication)
 - `/_protected/_official/*` - Official routes (requires barangay_official or admin role)
 - `/_protected._admin/*` - Admin routes (requires admin role)
@@ -88,12 +93,15 @@ Routes are protected at the component level using route layout guards.
 ## API Integration
 
 ### Base Configuration
+
 ```typescript
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api'
 ```
 
 ### Service Layers
+
 Each feature has a service layer for API calls:
+
 - `complaintService` - Complaint operations
 - `documentService` - Document requests
 - `announcementService` - Announcements
@@ -101,6 +109,7 @@ Each feature has a service layer for API calls:
 - `disasterService` - Disaster alerts
 
 ### Authentication Flow
+
 1. User logs in with credentials
 2. Access token stored in Zustand store
 3. Token automatically included in all API requests
@@ -110,7 +119,9 @@ Each feature has a service layer for API calls:
 ## Form Validation
 
 ### Zod Schemas
+
 All forms use Zod for validation:
+
 - `loginSchema` - Login form validation
 - `registerSchema` - Registration validation
 - `complaintSchema` - Complaint submission
@@ -118,9 +129,15 @@ All forms use Zod for validation:
 - `announcementSchema` - Announcement creation
 
 ### React Hook Form Integration
+
 Forms use React Hook Form with Zod resolver for seamless validation:
+
 ```typescript
-const { register, handleSubmit, formState: { errors } } = useForm<TCreateComplaint>({
+const {
+  register,
+  handleSubmit,
+  formState: { errors },
+} = useForm<TCreateComplaint>({
   resolver: zodResolver(createComplaintSchema),
 })
 ```
@@ -128,6 +145,7 @@ const { register, handleSubmit, formState: { errors } } = useForm<TCreateComplai
 ## State Management
 
 ### Zustand Store - Authentication
+
 ```typescript
 useAuthStore()
 - user: Current user object
@@ -139,7 +157,9 @@ useAuthStore()
 ```
 
 ### React Query - Data Fetching
+
 All data queries use React Query with automatic caching:
+
 ```typescript
 useQuery({
   queryKey: ['complaints', page],
@@ -150,6 +170,7 @@ useQuery({
 ## Environment Variables
 
 Required environment variables (in `.env` or via CI/CD):
+
 ```bash
 VITE_API_URL=http://localhost:3000/api  # API server URL
 ```
@@ -157,27 +178,32 @@ VITE_API_URL=http://localhost:3000/api  # API server URL
 ## Development
 
 ### Installation
+
 ```bash
 cd client
 npm install  # or pnpm install, yarn install
 ```
 
 ### Development Server
+
 ```bash
 npm run dev  # Starts Vite dev server on port 5173
 ```
 
 ### Build
+
 ```bash
 npm run build  # Production build
 ```
 
 ### Preview
+
 ```bash
 npm run preview  # Preview production build locally
 ```
 
 ### Linting & Formatting
+
 ```bash
 npm run lint      # Run ESLint
 npm run format    # Run Prettier (check)
@@ -187,7 +213,9 @@ npm run check     # Prettier + ESLint with --fix
 ## Component Structure
 
 ### Feature Components
+
 Features follow a consistent structure:
+
 ```
 feature/
 ├── {feature}.schema.ts      # Zod schemas & types
@@ -200,7 +228,9 @@ feature/
 ```
 
 ### UI Components
+
 Reusable UI components from Radix UI + shadcn/ui:
+
 - `Button` - Action buttons
 - `Input` - Text inputs
 - `Badge` - Status badges
@@ -210,13 +240,16 @@ Reusable UI components from Radix UI + shadcn/ui:
 ## Styling
 
 ### Tailwind CSS v4
+
 - Mobile-first responsive design
 - Custom color system via CSS variables
 - Utility-first approach
 - Hover/focus states for interactivity
 
 ### Theme System
+
 Color scheme defined in `globals.css`:
+
 ```css
 :root {
   --primary: 210 100% 50%;
@@ -229,6 +262,7 @@ Color scheme defined in `globals.css`:
 ## Error Handling
 
 ### API Errors
+
 ```typescript
 try {
   await api.post('/endpoint', data)
@@ -240,7 +274,9 @@ try {
 ```
 
 ### Form Errors
+
 Errors automatically displayed below form fields:
+
 ```typescript
 {errors.fieldName && (
   <p className="text-sm text-red-600">{errors.fieldName.message}</p>
@@ -265,33 +301,41 @@ Errors automatically displayed below form fields:
 ## Deployment
 
 ### Build Output
+
 Production build output goes to `dist/` directory:
+
 ```bash
 npm run build
 ```
 
 ### Environment Setup
+
 Set `VITE_API_URL` for your environment before building:
+
 - Development: `http://localhost:3000/api`
 - Staging: `https://api-staging.example.com/api`
 - Production: `https://api.example.com/api`
 
 ### Docker Deployment
+
 See `Dockerfile` for containerized deployment.
 
 ## Troubleshooting
 
 ### API Connection Issues
+
 - Check `VITE_API_URL` environment variable
 - Verify backend server is running
 - Check browser console for CORS errors
 
 ### Authentication Issues
+
 - Clear localStorage and refresh
 - Check token expiration
 - Verify user role/permissions
 
 ### Form Validation Errors
+
 - Check Zod schema definitions
 - Verify form field names match schema
 - Check React Hook Form resolver setup
@@ -299,11 +343,13 @@ See `Dockerfile` for containerized deployment.
 ## Contributing
 
 ### Code Style
+
 - ESLint configuration in `eslint.config.js`
 - Prettier formatting in `prettier.config.js`
 - TypeScript strict mode enabled
 
 ### Adding New Features
+
 1. Create feature folder under `src/features/`
 2. Add schema, service, and components
 3. Create route file under `src/routes/`
@@ -313,6 +359,7 @@ See `Dockerfile` for containerized deployment.
 ## Support & Contact
 
 For issues or questions:
+
 1. Check existing documentation
 2. Review error messages in browser console
 3. Check API server logs for backend errors

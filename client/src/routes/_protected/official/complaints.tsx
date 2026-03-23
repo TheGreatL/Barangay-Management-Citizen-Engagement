@@ -30,34 +30,34 @@ function OfficialComplaintsComponent() {
       />
 
       <div className="flex flex-col gap-8 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <ComplaintStatsCard 
-            label="Needs Attention" 
-            value="14" 
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          <ComplaintStatsCard
+            label="Needs Attention"
+            value="14"
             icon={ShieldAlert}
             color="text-red-600 bg-red-50"
           />
-          <ComplaintStatsCard 
-            label="In Investigation" 
-            value="8" 
+          <ComplaintStatsCard
+            label="In Investigation"
+            value="8"
             icon={ShieldAlert}
             color="text-blue-600 bg-blue-50"
           />
-          <ComplaintStatsCard 
-            label="Avg Response" 
-            value="1.5 Hours" 
+          <ComplaintStatsCard
+            label="Avg Response"
+            value="1.5 Hours"
             icon={ShieldAlert}
             color="text-green-600 bg-green-50"
           />
         </div>
 
-        <div className="bg-slate-50/50 p-6 rounded-4xl border border-slate-100 flex flex-col gap-8">
+        <div className="flex flex-col gap-8 rounded-4xl border border-slate-100 bg-slate-50/50 p-6">
           <div className="relative w-full max-w-xl">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+            <Search className="absolute top-1/2 left-4 h-4 w-4 -translate-y-1/2 text-slate-400" />
             <input
               type="text"
               placeholder="Find cases by title, ID, or resident name..."
-              className="w-full pl-11 pr-4 py-3 rounded-2xl border border-slate-200 bg-white text-sm font-medium focus:outline-none focus:ring-4 focus:ring-primary/5 transition-all"
+              className="focus:ring-primary/5 w-full rounded-2xl border border-slate-200 bg-white py-3 pr-4 pl-11 text-sm font-medium transition-all focus:ring-4 focus:outline-none"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />

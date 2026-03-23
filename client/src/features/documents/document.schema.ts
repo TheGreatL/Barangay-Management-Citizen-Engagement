@@ -20,7 +20,12 @@ export interface TDocumentRequest {
   citizenId: string
   documentType: TDocumentType
   purpose?: string
-  status: 'pending' | 'processing' | 'ready_for_pickup' | 'completed' | 'rejected'
+  status:
+    | 'pending'
+    | 'processing'
+    | 'ready_for_pickup'
+    | 'completed'
+    | 'rejected'
   pickupDate?: string
   rejectionReason?: string
   createdAt: string

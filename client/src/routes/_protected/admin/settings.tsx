@@ -50,9 +50,7 @@ function AdminSettingsComponent() {
   return (
     <div className="space-y-6 p-6">
       <div>
-        <h1 className="text-3xl font-bold text-slate-900">
-          System Settings
-        </h1>
+        <h1 className="text-3xl font-bold text-slate-900">System Settings</h1>
         <p className="mt-2 text-slate-600">
           Configure system parameters and preferences
         </p>
@@ -75,7 +73,10 @@ function AdminSettingsComponent() {
 
               <div className="space-y-4">
                 {section.settings.map((setting, settingIdx) => (
-                  <div key={settingIdx} className="grid grid-cols-1 gap-4 md:grid-cols-3">
+                  <div
+                    key={settingIdx}
+                    className="grid grid-cols-1 gap-4 md:grid-cols-3"
+                  >
                     <label className="text-sm font-medium text-slate-700">
                       {setting.label}
                     </label>

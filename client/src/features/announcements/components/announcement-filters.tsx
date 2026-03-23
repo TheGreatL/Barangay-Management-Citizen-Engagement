@@ -5,7 +5,10 @@ interface TAnnouncementFiltersProps {
   onStatusChange: (status: string) => void
 }
 
-export function AnnouncementFilters({ currentStatus, onStatusChange }: TAnnouncementFiltersProps) {
+export function AnnouncementFilters({
+  currentStatus,
+  onStatusChange,
+}: TAnnouncementFiltersProps) {
   const statuses = ['all', 'draft', 'published', 'archived']
 
   return (
@@ -16,7 +19,7 @@ export function AnnouncementFilters({ currentStatus, onStatusChange }: TAnnounce
           onClick={() => onStatusChange(status)}
           variant={currentStatus === status ? 'default' : 'outline'}
           size="sm"
-          className="rounded-xl font-bold px-4"
+          className="rounded-xl px-4 font-bold"
         >
           {status.charAt(0).toUpperCase() + status.slice(1)}
         </Button>

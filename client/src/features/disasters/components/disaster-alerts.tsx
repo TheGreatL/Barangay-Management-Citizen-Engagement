@@ -32,7 +32,9 @@ export function DisasterAlerts() {
               <AlertTriangle className="mt-1 h-5 w-5 text-red-600" />
               <div>
                 <h3 className="font-bold text-red-900">{disaster.title}</h3>
-                <p className="mt-1 text-sm text-red-800">{disaster.description}</p>
+                <p className="mt-1 text-sm text-red-800">
+                  {disaster.description}
+                </p>
               </div>
             </div>
             <Badge className={severityColors[disaster.severity]}>

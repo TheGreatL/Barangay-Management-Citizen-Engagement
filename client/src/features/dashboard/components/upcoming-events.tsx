@@ -17,7 +17,8 @@ interface UpcomingEventsProps {
 
 const categoryColors = {
   meeting: 'bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-400',
-  event: 'bg-purple-50 text-purple-700 dark:bg-purple-900/20 dark:text-purple-400',
+  event:
+    'bg-purple-50 text-purple-700 dark:bg-purple-900/20 dark:text-purple-400',
   workshop:
     'bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-400',
   announcement:
@@ -53,7 +54,9 @@ export function UpcomingEvents({ events }: UpcomingEventsProps) {
                 <div className="mt-2 space-y-1 text-sm text-slate-600 dark:text-slate-400">
                   <div className="flex items-center gap-2">
                     <Calendar className="h-4 w-4" />
-                    <span>{format(event.date, 'MMM dd, yyyy')} at {event.time}</span>
+                    <span>
+                      {format(event.date, 'MMM dd, yyyy')} at {event.time}
+                    </span>
                   </div>
                   <div className="flex items-center gap-2">
                     <MapPin className="h-4 w-4" />
@@ -68,8 +71,11 @@ export function UpcomingEvents({ events }: UpcomingEventsProps) {
                 </div>
               </div>
 
-              <span className={`whitespace-nowrap rounded-full px-3 py-1 text-xs font-medium ${categoryColors[event.category]}`}>
-                {event.category.charAt(0).toUpperCase() + event.category.slice(1)}
+              <span
+                className={`rounded-full px-3 py-1 text-xs font-medium whitespace-nowrap ${categoryColors[event.category]}`}
+              >
+                {event.category.charAt(0).toUpperCase() +
+                  event.category.slice(1)}
               </span>
             </div>
           ))

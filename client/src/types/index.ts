@@ -40,8 +40,20 @@ export interface TAuthResponse {
 }
 
 // Complaint types
-export type TComplaintStatus = 'draft' | 'submitted' | 'acknowledged' | 'in_progress' | 'resolved' | 'rejected'
-export type TComplaintCategory = 'infrastructure' | 'health' | 'education' | 'safety' | 'cleanliness' | 'other'
+export type TComplaintStatus =
+  | 'draft'
+  | 'submitted'
+  | 'acknowledged'
+  | 'in_progress'
+  | 'resolved'
+  | 'rejected'
+export type TComplaintCategory =
+  | 'infrastructure'
+  | 'health'
+  | 'education'
+  | 'safety'
+  | 'cleanliness'
+  | 'other'
 export type TComplaintPriority = 'low' | 'medium' | 'high' | 'urgent'
 
 export interface TComplaint {
@@ -61,8 +73,17 @@ export interface TComplaint {
 }
 
 // Document request types
-export type TDocumentType = 'barangay_clearance' | 'certificate_of_residency' | 'certificate_of_good_moral' | 'other'
-export type TDocumentRequestStatus = 'pending' | 'processing' | 'ready_for_pickup' | 'completed' | 'rejected'
+export type TDocumentType =
+  | 'barangay_clearance'
+  | 'certificate_of_residency'
+  | 'certificate_of_good_moral'
+  | 'other'
+export type TDocumentRequestStatus =
+  | 'pending'
+  | 'processing'
+  | 'ready_for_pickup'
+  | 'completed'
+  | 'rejected'
 
 export interface TDocumentRequest {
   id: string
@@ -92,7 +113,13 @@ export interface TAnnouncement {
 }
 
 // Service types
-export type TServiceCategory = 'health' | 'education' | 'livelihood' | 'water' | 'electricity' | 'other'
+export type TServiceCategory =
+  | 'health'
+  | 'education'
+  | 'livelihood'
+  | 'water'
+  | 'electricity'
+  | 'other'
 
 export interface TService {
   id: string
@@ -110,7 +137,12 @@ export interface TService {
 
 // Disaster types
 export type TDisasterStatus = 'alert' | 'active' | 'recovery' | 'resolved'
-export type TDisasterType = 'flood' | 'earthquake' | 'typhoon' | 'fire' | 'other'
+export type TDisasterType =
+  | 'flood'
+  | 'earthquake'
+  | 'typhoon'
+  | 'fire'
+  | 'other'
 
 export interface TDisaster {
   id: string

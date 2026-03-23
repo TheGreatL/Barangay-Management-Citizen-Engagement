@@ -58,7 +58,10 @@ function SettingsComponent() {
           {settingSections.map((section, idx) => {
             const Icon = section.icon
             return (
-              <div key={idx} className="rounded-lg border border-slate-200 bg-white">
+              <div
+                key={idx}
+                className="rounded-lg border border-slate-200 bg-white"
+              >
                 <div className="border-b border-slate-200 px-6 py-4">
                   <div className="flex items-start gap-4">
                     <div className="rounded-lg bg-blue-50 p-3 text-blue-600">

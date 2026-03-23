@@ -5,13 +5,7 @@ import { PageHeader } from '@/shared/components/layout/page-header'
 import { DashboardStats } from '@/features/dashboard/components/dashboard-stats'
 import { RecentActivity } from '@/features/dashboard/components/recent-activity'
 import { UpcomingEvents } from '@/features/dashboard/components/upcoming-events'
-import {
-  AlertCircle,
-  FileText,
-  Bell,
-  Wrench,
-  Home,
-} from 'lucide-react'
+import { AlertCircle, FileText, Bell, Wrench, Home } from 'lucide-react'
 import { Card, CardContent } from '@/shared/components/ui/card'
 import { addDays } from 'date-fns'
 
@@ -186,7 +180,9 @@ function DashboardComponent() {
                   <Link key={link.href} to={link.href}>
                     <Card className="group h-full transition-all duration-200 hover:border-slate-300 hover:shadow-lg dark:border-slate-700 dark:bg-slate-800">
                       <CardContent className="p-6">
-                        <div className={`inline-flex rounded-lg ${link.color} p-3`}>
+                        <div
+                          className={`inline-flex rounded-lg ${link.color} p-3`}
+                        >
                           <Icon className="h-6 w-6" />
                         </div>
                         <h3 className="mt-4 font-semibold text-slate-900 group-hover:text-blue-600 dark:text-slate-50 dark:group-hover:text-blue-400">

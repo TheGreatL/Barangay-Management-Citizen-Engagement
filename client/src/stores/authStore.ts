@@ -62,6 +62,6 @@ export const useAuthStore = create<TAuthStore>()(
         refreshToken: state.refreshToken,
         isAuthenticated: state.isAuthenticated,
       }),
-    }
-  )
+    },
+  ),
 )

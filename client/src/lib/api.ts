@@ -9,7 +9,7 @@ interface TFetchOptions extends RequestInit {
 
 export async function apiCall<T>(
   endpoint: string,
-  options: TFetchOptions = {}
+  options: TFetchOptions = {},
 ): Promise<TApiResponse<T>> {
   const { skipAuth = false, ...fetchOptions } = options
   const authStore = useAuthStore.getState()
@@ -85,8 +85,7 @@ export const api = {
         method: 'PUT',
         body: JSON.stringify(data),
       }),
-    delete: (id: string) =>
-      apiCall(`/complaints/${id}`, { method: 'DELETE' }),
+    delete: (id: string) => apiCall(`/complaints/${id}`, { method: 'DELETE' }),
   },
 
   // Document request endpoints

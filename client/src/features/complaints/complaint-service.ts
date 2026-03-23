@@ -1,5 +1,10 @@
 import api from '@/shared/api/api-config'
-import type { TComplaint, TCreateComplaint, TUpdateComplaintStatus, TComplaintStats } from './complaint-schema'
+import type {
+  TComplaint,
+  TCreateComplaint,
+  TUpdateComplaintStatus,
+  TComplaintStats,
+} from './complaint-schema'
 
 interface TComplaintParams {
   page?: number
@@ -12,17 +17,29 @@ interface TComplaintParams {
 
 export const complaintService = {
   listCitizen: async (params: TComplaintParams) => {
-    const { data } = await api.get<{ data: TComplaint[]; meta: any; stats: TComplaintStats }>('/citizen/complaints', { params })
+    const { data } = await api.get<{
+      data: TComplaint[]
+      meta: any
+      stats: TComplaintStats
+    }>('/citizen/complaints', { params })
     return data
   },
 
   listOfficial: async (params: TComplaintParams) => {
-    const { data } = await api.get<{ data: TComplaint[]; meta: any; stats: TComplaintStats }>('/official/complaints', { params })
+    const { data } = await api.get<{
+      data: TComplaint[]
+      meta: any
+      stats: TComplaintStats
+    }>('/official/complaints', { params })
     return data
   },
 
   listAdmin: async (params: TComplaintParams) => {
-    const { data } = await api.get<{ data: TComplaint[]; meta: any; stats: TComplaintStats }>('/admin/complaints', { params })
+    const { data } = await api.get<{
+      data: TComplaint[]
+      meta: any
+      stats: TComplaintStats
+    }>('/admin/complaints', { params })
     return data
   },
 
@@ -52,7 +69,10 @@ export const complaintService = {
   },
 
   updateStatus: async (id: string, payload: TUpdateComplaintStatus) => {
-    const { data } = await api.patch<TComplaint>(`/complaints/${id}/status`, payload)
+    const { data } = await api.patch<TComplaint>(
+      `/complaints/${id}/status`,
+      payload,
+    )
     return data
   },
 

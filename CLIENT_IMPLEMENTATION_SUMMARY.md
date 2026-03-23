@@ -2,7 +2,8 @@
 
 ## Project Overview
 
-A comprehensive React-based client application for the Barangay Management & Citizen Engagement system. The client provides role-based interfaces for citizens, barangay officials, and administrators to interact with the platform.
+A comprehensive React-based client application for the Barangay Management & Citizen Engagement system. The client
+provides role-based interfaces for citizens, barangay officials, and administrators to interact with the platform.
 
 **Status**: Fully Implemented & Ready for Integration
 
@@ -22,6 +23,7 @@ A comprehensive React-based client application for the Barangay Management & Cit
 ## Implemented Features
 
 ### ✅ Core Infrastructure
+
 - [x] Project structure with feature-based organization
 - [x] TypeScript configuration with strict mode
 - [x] Tailwind CSS v4 setup with custom theme
@@ -30,6 +32,7 @@ A comprehensive React-based client application for the Barangay Management & Cit
 - [x] API configuration with Axios
 
 ### ✅ Authentication System
+
 - [x] Login page with form validation
 - [x] Registration page with form validation
 - [x] Zustand auth store with persistence
@@ -40,6 +43,7 @@ A comprehensive React-based client application for the Barangay Management & Cit
 - [x] Role-based access control
 
 ### ✅ Citizen Features (Dashboard)
+
 - [x] **Dashboard**: Overview with quick action cards
 - [x] **Complaints Module**:
   - Submit new complaints with file uploads
@@ -61,6 +65,7 @@ A comprehensive React-based client application for the Barangay Management & Cit
   - View service details (contact, hours, location)
 
 ### ✅ Official Dashboard Features
+
 - [x] **Official Dashboard**: Stats and quick actions
 - [x] **Complaint Management**:
   - View all citizen complaints
@@ -81,6 +86,7 @@ A comprehensive React-based client application for the Barangay Management & Cit
   - Monthly analytics
 
 ### ✅ Admin Dashboard Features
+
 - [x] **Admin Dashboard**: System overview
 - [x] **User Management**:
   - View all users with filtering
@@ -104,6 +110,7 @@ A comprehensive React-based client application for the Barangay Management & Cit
   - Notification settings
 
 ### ✅ Advanced Features
+
 - [x] **Disaster Alerts**:
   - Real-time disaster monitoring
   - Emergency alerts with severity levels
@@ -115,6 +122,7 @@ A comprehensive React-based client application for the Barangay Management & Cit
   - Disaster zone visualization
 
 ### ✅ UI/UX Components
+
 - [x] Reusable form components
 - [x] Status badge components
 - [x] Alert and notification system
@@ -127,6 +135,7 @@ A comprehensive React-based client application for the Barangay Management & Cit
 - [x] Responsive design
 
 ### ✅ Data Management
+
 - [x] React Query integration for caching
 - [x] API service layers for each feature
 - [x] Error handling and retry logic
@@ -228,31 +237,37 @@ client/src/
 ## Feature Modules Breakdown
 
 ### 1. Authentication
+
 - **Files**: 4 components + schema + service
 - **Features**: Login, registration, JWT handling
 - **Forms**: Zod validation, error handling
 
 ### 2. Complaints
+
 - **Files**: 3 components + schema + service
 - **Features**: Create, list, filter, file uploads
 - **Status Tracking**: Multiple status types with colors
 
 ### 3. Documents
+
 - **Files**: 3 components + schema + service
 - **Features**: Request, track, download, manage
 - **Types**: Multiple document types
 
 ### 4. Announcements
+
 - **Files**: 1 component + schema + service
 - **Features**: Browse, filter, featured content
 - **Integration**: Disaster alerts
 
 ### 5. Services
+
 - **Files**: 1 component + schema + service
 - **Features**: Directory, categories, contact info
 - **Categories**: Health, education, livelihood, etc.
 
 ### 6. Disasters
+
 - **Files**: 1 component + schema + service
 - **Features**: Real-time alerts, severity levels
 - **Integration**: Announcements page
@@ -260,6 +275,7 @@ client/src/
 ## Authentication & Authorization
 
 ### Auth Store (Zustand)
+
 ```typescript
 - user: TUser | null
 - isAuthenticated: boolean
@@ -270,11 +286,13 @@ client/src/
 ```
 
 ### Protected Routes
+
 - `/_protected` - Base protection (requires auth)
 - `/_protected/_official` - Official role check
 - `/_protected/_admin` - Admin role check
 
 ### Role System
+
 ```typescript
 - citizen (0): Basic access
 - barangay_official (1): Management access
@@ -284,6 +302,7 @@ client/src/
 ## API Services
 
 All services follow the same pattern:
+
 ```typescript
 {
   list(page, pageSize),
@@ -298,6 +317,7 @@ All services follow the same pattern:
 ## Validation Schemas
 
 Zod schemas for all forms:
+
 - `loginSchema`
 - `registerSchema`
 - `createComplaintSchema`
@@ -308,11 +328,13 @@ Zod schemas for all forms:
 ## State Management
 
 ### Zustand (Auth)
+
 - Persistent storage via localStorage
 - Manual hydration flag
 - Automatic token management
 
 ### React Query (Data)
+
 - Automatic caching
 - Background refetch
 - Pagination support
@@ -321,12 +343,14 @@ Zod schemas for all forms:
 ## Component Library
 
 ### From Radix UI / shadcn/ui
+
 - Button, Input, Badge, Alert
 - Dialog, Select, Textarea
 - Dropdown menu, navigation menu
 - Form components
 
 ### Custom Components
+
 - Complaint list/form
 - Document list/form
 - Service directory
@@ -382,6 +406,7 @@ Zod schemas for all forms:
 ## Integration Points
 
 The client expects these API endpoints:
+
 ```
 POST   /auth/login
 POST   /auth/register
@@ -420,6 +445,7 @@ GET    /admin/announcements?status=X
 ## Environment Setup
 
 Required environment variables:
+
 ```bash
 VITE_API_URL=http://localhost:3000/api
 ```
@@ -479,6 +505,9 @@ VITE_API_URL=http://localhost:3000/api
 
 ## Conclusion
 
-The client application is fully implemented with all major features, comprehensive documentation, and best practices for security, performance, and maintainability. The codebase is ready for integration with the backend API and can be deployed to production once the API endpoints are implemented.
+The client application is fully implemented with all major features, comprehensive documentation, and best practices for
+security, performance, and maintainability. The codebase is ready for integration with the backend API and can be
+deployed to production once the API endpoints are implemented.
 
-The architecture follows modern React patterns with TanStack ecosystem tools, providing a scalable foundation for future enhancements including real-time updates, offline support, and advanced analytics.
+The architecture follows modern React patterns with TanStack ecosystem tools, providing a scalable foundation for future
+enhancements including real-time updates, offline support, and advanced analytics.

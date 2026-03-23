@@ -151,19 +151,12 @@ function OfficialDocumentsComponent() {
       header: 'Action',
       cell: ({ row }) => (
         <div className="flex items-center gap-1">
-          <Button
-            variant="ghost"
-            size="sm"
-            className="h-8 w-8 p-0"
-          >
+          <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
             <Eye className="h-4 w-4" />
           </Button>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button
-                variant="ghost"
-                className="h-8 w-8 p-0"
-              >
+              <Button variant="ghost" className="h-8 w-8 p-0">
                 <MoreVertical className="h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
@@ -220,12 +213,14 @@ function OfficialDocumentsComponent() {
   return (
     <div className="space-y-8 py-8">
       <div className="space-y-8">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
           <div>
             <h1 className="text-3xl font-bold text-slate-900">
               Document Approvals
             </h1>
-            <p className="text-slate-500 mt-1">Review and manage certification requests from citizens.</p>
+            <p className="mt-1 text-slate-500">
+              Review and manage certification requests from citizens.
+            </p>
           </div>
           <div className="flex items-center gap-3">
             <Button variant="outline">
@@ -264,26 +259,26 @@ function OfficialDocumentsComponent() {
           />
         </div>
 
-        <div className="rounded-xl border border-slate-200 bg-card p-6 shadow-sm space-y-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="bg-card space-y-6 rounded-xl border border-slate-200 p-6 shadow-sm">
+          <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
             <div className="relative w-full md:max-w-md">
               <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-slate-400" />
               <input
                 type="text"
                 placeholder="Search tracking #, name, or type..."
-                className="w-full pl-10 pr-4 py-2 rounded-lg border border-slate-200 bg-slate-50/50 focus:ring-2 focus:ring-primary/10 transition-all outline-none text-sm"
+                className="focus:ring-primary/10 w-full rounded-lg border border-slate-200 bg-slate-50/50 py-2 pr-4 pl-10 text-sm transition-all outline-none focus:ring-2"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
-            <div className="flex items-center gap-2 overflow-x-auto w-full md:w-auto">
+            <div className="flex w-full items-center gap-2 overflow-x-auto md:w-auto">
               {['all', 'pending', 'processing', 'ready'].map((status) => (
                 <Button
                   key={status}
                   variant={filterStatus === status ? 'default' : 'ghost'}
                   size="sm"
                   onClick={() => setFilterStatus(status)}
-                  className="capitalize h-8 rounded-lg"
+                  className="h-8 rounded-lg capitalize"
                 >
                   {status}
                 </Button>
@@ -324,17 +319,16 @@ function SummaryCard({
   }
 
   return (
-    <div className="rounded-xl border border-slate-200 bg-card p-6 shadow-sm">
-      <div className="flex items-start justify-between mb-4">
-        <div className={cn('p-2 rounded-lg', colors[color])}>
+    <div className="bg-card rounded-xl border border-slate-200 p-6 shadow-sm">
+      <div className="mb-4 flex items-start justify-between">
+        <div className={cn('rounded-lg p-2', colors[color])}>
           <Icon className="h-5 w-5" />
         </div>
       </div>
       <div>
-        <p className="text-sm font-medium text-slate-500 mb-1">{label}</p>
+        <p className="mb-1 text-sm font-medium text-slate-500">{label}</p>
         <span className="text-2xl font-bold text-slate-900">{value}</span>
       </div>
     </div>
   )
 }
-

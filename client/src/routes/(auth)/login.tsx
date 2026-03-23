@@ -74,7 +74,7 @@ function LoginComponent() {
                 Mock Citizen
               </button>
             </div>
-            <p className="mt-4 text-center  text-slate-400">
+            <p className="mt-4 text-center text-slate-400">
               Use these buttons to bypass authentication when backend is not
               running.
             </p>

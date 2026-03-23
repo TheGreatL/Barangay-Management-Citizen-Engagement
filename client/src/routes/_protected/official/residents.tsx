@@ -5,11 +5,11 @@ import { Button } from '@/shared/components/ui/button'
 import { Badge } from '@/shared/components/ui/badge'
 import { DataTable } from '@/shared/components/ui/DataTable'
 import type { ColumnDef, SortingState } from '@tanstack/react-table'
-import { 
-  DropdownMenu, 
-  DropdownMenuContent, 
-  DropdownMenuItem, 
-  DropdownMenuTrigger 
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
 } from '@/shared/components/ui/dropdown-menu'
 import * as React from 'react'
 import { getOfficialResidents } from '@/mock/official-service'
@@ -33,18 +33,22 @@ type Resident = {
 
 function OfficialResidentsComponent() {
   const [searchTerm, setSearchTerm] = React.useState('')
-  const [pagination, setPagination] = React.useState({ pageIndex: 0, pageSize: 10 })
+  const [pagination, setPagination] = React.useState({
+    pageIndex: 0,
+    pageSize: 10,
+  })
   const [sorting, setSorting] = React.useState<SortingState>([])
 
   const { data, isLoading } = useQuery({
     queryKey: ['official-residents', searchTerm, pagination, sorting],
-    queryFn: () => getOfficialResidents({
-      page: pagination.pageIndex + 1,
-      limit: pagination.pageSize,
-      search: searchTerm,
-      sort: sorting[0]?.id,
-      order: sorting[0]?.desc ? 'desc' : 'asc'
-    }),
+    queryFn: () =>
+      getOfficialResidents({
+        page: pagination.pageIndex + 1,
+        limit: pagination.pageSize,
+        search: searchTerm,
+        sort: sorting[0]?.id,
+        order: sorting[0]?.desc ? 'desc' : 'asc',
+      }),
   })
 
   const columns: ColumnDef<Resident, any>[] = [
@@ -53,8 +57,12 @@ function OfficialResidentsComponent() {
       header: 'Resident Name',
       cell: ({ row }) => (
         <div className="flex flex-col">
-          <span className="font-semibold text-slate-900">{row.original.firstName} {row.original.lastName}</span>
-          <span className="text-xs font-medium text-slate-400">{row.original.residentId}</span>
+          <span className="font-semibold text-slate-900">
+            {row.original.firstName} {row.original.lastName}
+          </span>
+          <span className="text-xs font-medium text-slate-400">
+            {row.original.residentId}
+          </span>
         </div>
       ),
     },
@@ -68,7 +76,13 @@ function OfficialResidentsComponent() {
           pending: 'bg-amber-50 text-amber-700 border-amber-100',
         }
         return (
-          <Badge className={cn("capitalize px-2 py-0 border font-medium", statuses[row.original.status])} variant="outline">
+          <Badge
+            className={cn(
+              'border px-2 py-0 font-medium capitalize',
+              statuses[row.original.status],
+            )}
+            variant="outline"
+          >
             {row.original.status}
           </Badge>
         )
@@ -106,7 +120,9 @@ function OfficialResidentsComponent() {
           <DropdownMenuContent align="end">
             <DropdownMenuItem>Verify Resident</DropdownMenuItem>
             <DropdownMenuItem>View Documents</DropdownMenuItem>
-            <DropdownMenuItem className="text-red-600">Deactivate</DropdownMenuItem>
+            <DropdownMenuItem className="text-red-600">
+              Deactivate
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       ),
@@ -116,10 +132,14 @@ function OfficialResidentsComponent() {
   return (
     <div className="space-y-8 py-8">
       <div className="space-y-8">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
           <div>
-            <h1 className="text-3xl font-bold text-slate-900">Resident Directory</h1>
-            <p className="text-slate-500 mt-1">Access, verify, and manage all community member profiles.</p>
+            <h1 className="text-3xl font-bold text-slate-900">
+              Resident Directory
+            </h1>
+            <p className="mt-1 text-slate-500">
+              Access, verify, and manage all community member profiles.
+            </p>
           </div>
           <div className="flex items-center gap-3">
             <Button variant="outline">Export Data</Button>
@@ -127,27 +147,52 @@ function OfficialResidentsComponent() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          <StatsTile label="Total Residents" value={data?.meta.total.toString() || '0'} growth="+4.2%" color="blue" />
-          <StatsTile label="Verified Profiles" value="1,240" growth="+12%" color="green" />
-          <StatsTile label="Pending Verification" value="48" growth="-2" color="amber" />
-          <StatsTile label="Recent Inactive" value="12" growth="0" color="slate" />
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <StatsTile
+            label="Total Residents"
+            value={data?.meta.total.toString() || '0'}
+            growth="+4.2%"
+            color="blue"
+          />
+          <StatsTile
+            label="Verified Profiles"
+            value="1,240"
+            growth="+12%"
+            color="green"
+          />
+          <StatsTile
+            label="Pending Verification"
+            value="48"
+            growth="-2"
+            color="amber"
+          />
+          <StatsTile
+            label="Recent Inactive"
+            value="12"
+            growth="0"
+            color="slate"
+          />
         </div>
 
-        <div className="rounded-xl border border-slate-200 bg-card p-6 shadow-sm space-y-6">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="bg-card space-y-6 rounded-xl border border-slate-200 p-6 shadow-sm">
+          <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
             <div className="relative w-full sm:max-w-md">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+              <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-slate-400" />
               <input
                 type="text"
                 placeholder="Search by name, ID, or email..."
-                className="w-full pl-10 pr-4 py-2 rounded-lg border border-slate-200 bg-slate-50/50 focus:ring-2 focus:ring-primary/10 transition-all outline-none text-sm"
+                className="focus:ring-primary/10 w-full rounded-lg border border-slate-200 bg-slate-50/50 py-2 pr-4 pl-10 text-sm transition-all outline-none focus:ring-2"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
             <div className="flex items-center gap-2">
-              <Badge variant="outline" className="text-xs font-bold text-slate-500">Filters</Badge>
+              <Badge
+                variant="outline"
+                className="text-xs font-bold text-slate-500"
+              >
+                Filters
+              </Badge>
             </div>
           </div>
 
@@ -167,7 +212,17 @@ function OfficialResidentsComponent() {
   )
 }
 
-function StatsTile({ label, value, growth, color }: { label: string; value: string; growth: string; color: string }) {
+function StatsTile({
+  label,
+  value,
+  growth,
+  color,
+}: {
+  label: string
+  value: string
+  growth: string
+  color: string
+}) {
   const colors: Record<string, string> = {
     blue: 'bg-blue-50 text-blue-600',
     green: 'bg-green-50 text-green-600',
@@ -176,16 +231,19 @@ function StatsTile({ label, value, growth, color }: { label: string; value: stri
   }
 
   return (
-    <div className="rounded-xl border border-slate-200 bg-card p-6 shadow-sm">
-      <div className="flex items-center justify-between mb-4">
-        <div className={cn("p-2 rounded-lg", colors[color])}>
+    <div className="bg-card rounded-xl border border-slate-200 p-6 shadow-sm">
+      <div className="mb-4 flex items-center justify-between">
+        <div className={cn('rounded-lg p-2', colors[color])}>
           <ShieldCheck className="h-5 w-5" />
         </div>
-        <Badge variant={growth.includes('+') ? 'default' : 'secondary'} className="text-xs rounded-full px-2">
+        <Badge
+          variant={growth.includes('+') ? 'default' : 'secondary'}
+          className="rounded-full px-2 text-xs"
+        >
           {growth}
         </Badge>
       </div>
-      <p className="text-sm font-medium text-slate-500 mb-1">{label}</p>
+      <p className="mb-1 text-sm font-medium text-slate-500">{label}</p>
       <h3 className="text-2xl font-bold text-slate-900">{value}</h3>
     </div>
   )

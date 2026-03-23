@@ -4,7 +4,7 @@ import { AnnouncementList } from '@/features/announcements/components/announceme
 import { DisasterAlerts } from '@/features/disasters/components/disaster-alerts'
 
 export const Route = createFileRoute(
-  '/_protected/citizen/announcements-detailed'
+  '/_protected/citizen/announcements-detailed',
 )({
   component: AnnouncementsDetailedComponent,
 })
@@ -34,14 +34,15 @@ function AnnouncementsDetailedComponent() {
 
       {/* Map placeholder for locations */}
       <div className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
-        <div className="flex items-center gap-2 mb-4">
+        <div className="mb-4 flex items-center gap-2">
           <MapPin className="h-5 w-5 text-slate-600" />
           <h2 className="text-lg font-semibold text-slate-900">
             Event Locations Map
           </h2>
         </div>
-        <div className="h-96 rounded-lg bg-slate-50 flex items-center justify-center text-slate-500">
-          Interactive map showing event locations and disaster zones would be rendered here
+        <div className="flex h-96 items-center justify-center rounded-lg bg-slate-50 text-slate-500">
+          Interactive map showing event locations and disaster zones would be
+          rendered here
         </div>
       </div>
 

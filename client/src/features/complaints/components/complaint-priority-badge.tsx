@@ -8,7 +8,10 @@ interface TComplaintPriorityBadgeProps {
   className?: string
 }
 
-export function ComplaintPriorityBadge({ priority, className }: TComplaintPriorityBadgeProps) {
+export function ComplaintPriorityBadge({
+  priority,
+  className,
+}: TComplaintPriorityBadgeProps) {
   const config = {
     low: 'bg-slate-50 text-slate-600 border-slate-200',
     medium: 'bg-blue-50 text-blue-600 border-blue-200',
@@ -17,9 +20,13 @@ export function ComplaintPriorityBadge({ priority, className }: TComplaintPriori
   }
 
   return (
-    <Badge 
-      variant="outline" 
-      className={cn('flex items-center gap-1.5 px-2 py-0.5 font-black text-[10px] h-5', config[priority], className)}
+    <Badge
+      variant="outline"
+      className={cn(
+        'flex h-5 items-center gap-1.5 px-2 py-0.5 text-[10px] font-black',
+        config[priority],
+        className,
+      )}
     >
       <AlertTriangle className="h-3 w-3" />
       {priority}

@@ -21,7 +21,8 @@ interface RecentActivityProps {
 }
 
 const statusColors = {
-  pending: 'bg-yellow-50 text-yellow-700 dark:bg-yellow-900/20 dark:text-yellow-400',
+  pending:
+    'bg-yellow-50 text-yellow-700 dark:bg-yellow-900/20 dark:text-yellow-400',
   completed:
     'bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-400',
   'in-progress':
@@ -77,7 +78,7 @@ export function RecentActivity({ activities }: RecentActivityProps) {
                       </p>
                     </div>
                     <span
-                      className={`whitespace-nowrap rounded-full px-3 py-1 text-xs font-medium ${
+                      className={`rounded-full px-3 py-1 text-xs font-medium whitespace-nowrap ${
                         statusColors[activity.status]
                       }`}
                     >

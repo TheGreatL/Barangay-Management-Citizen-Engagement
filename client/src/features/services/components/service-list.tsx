@@ -7,7 +7,9 @@ import type { TService, TServiceCategory } from '../service.schema'
 import { serviceCategoryLabels } from '../service.schema'
 
 export function ServiceList() {
-  const [selectedCategory, setSelectedCategory] = useState<TServiceCategory | 'all'>('all')
+  const [selectedCategory, setSelectedCategory] = useState<
+    TServiceCategory | 'all'
+  >('all')
   const { data, isLoading, error } = useQuery({
     queryKey: ['services', selectedCategory],
     queryFn: () =>
@@ -17,7 +19,9 @@ export function ServiceList() {
   })
 
   if (isLoading) {
-    return <div className="p-6 text-center text-gray-500">Loading services...</div>
+    return (
+      <div className="p-6 text-center text-gray-500">Loading services...</div>
+    )
   }
 
   if (error) {
@@ -26,7 +30,9 @@ export function ServiceList() {
         <div className="flex items-start gap-3">
           <AlertCircle className="mt-0.5 h-5 w-5 text-red-600" />
           <div>
-            <h3 className="font-medium text-red-900">Failed to load services</h3>
+            <h3 className="font-medium text-red-900">
+              Failed to load services
+            </h3>
             <p className="text-sm text-red-700">Please try again later</p>
           </div>
         </div>
@@ -64,7 +70,9 @@ export function ServiceList() {
           <div className="rounded-lg border border-dashed border-gray-300 p-12 text-center">
             <AlertCircle className="mx-auto mb-4 h-12 w-12 text-gray-400" />
             <p className="text-gray-600">No services available</p>
-            <p className="text-sm text-gray-500">Check back later for available services</p>
+            <p className="text-sm text-gray-500">
+              Check back later for available services
+            </p>
           </div>
         ) : (
           services.map((service: TService) => (
@@ -76,7 +84,9 @@ export function ServiceList() {
                 <h3 className="text-lg font-semibold text-gray-900">
                   {service.name}
                 </h3>
-                <p className="mt-1 text-sm text-gray-600">{service.description}</p>
+                <p className="mt-1 text-sm text-gray-600">
+                  {service.description}
+                </p>
               </div>
 
               <div className="grid grid-cols-1 gap-3 md:grid-cols-2">

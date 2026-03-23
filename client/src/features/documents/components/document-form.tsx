@@ -4,7 +4,10 @@ import { useMutation } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
 import { Loader2 } from 'lucide-react'
 import { toast } from 'sonner'
-import { createDocumentRequestSchema, documentTypeLabels } from '../document.schema'
+import {
+  createDocumentRequestSchema,
+  documentTypeLabels,
+} from '../document.schema'
 import type { TCreateDocumentRequest } from '../document.schema'
 import { documentService } from '../document.service'
 import { Button } from '@/shared/components/ui/button'
@@ -72,11 +75,7 @@ export function DocumentForm() {
         )}
       </div>
 
-      <Button
-        type="submit"
-        disabled={mutation.isPending}
-        className="w-full"
-      >
+      <Button type="submit" disabled={mutation.isPending} className="w-full">
         {mutation.isPending ? (
           <>
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />

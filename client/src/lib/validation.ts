@@ -23,7 +23,14 @@ export const signupSchema = z
 export const complaintSchema = z.object({
   title: z.string().min(5, 'Title must be at least 5 characters'),
   description: z.string().min(20, 'Description must be at least 20 characters'),
-  category: z.enum(['infrastructure', 'health', 'education', 'safety', 'cleanliness', 'other']),
+  category: z.enum([
+    'infrastructure',
+    'health',
+    'education',
+    'safety',
+    'cleanliness',
+    'other',
+  ]),
   priority: z.enum(['low', 'medium', 'high', 'urgent']),
   location: z.string().min(5, 'Location is required'),
 })
