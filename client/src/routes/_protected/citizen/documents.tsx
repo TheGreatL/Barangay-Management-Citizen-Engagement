@@ -1,10 +1,22 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { Plus, FileText, Clock, CheckCircle2, XCircle, Download, MoreHorizontal } from 'lucide-react'
+import {
+  Plus,
+  FileText,
+  Clock,
+  CheckCircle2,
+  XCircle,
+  Download,
+  MoreHorizontal,
+} from 'lucide-react'
 import { Button } from '@/shared/components/ui/button'
 import { Badge } from '@/shared/components/ui/badge'
 import * as React from 'react'
 import { DataTable } from '@/shared/components/ui/DataTable'
-import type { ColumnDef, PaginationState, SortingState } from '@tanstack/react-table'
+import type {
+  ColumnDef,
+  PaginationState,
+  SortingState,
+} from '@tanstack/react-table'
 import { getCitizenDocuments } from '@/mock/citizen-service'
 import { useQuery } from '@tanstack/react-query'
 import {
@@ -34,7 +46,9 @@ function DocumentsComponent() {
     pageIndex: 0,
     pageSize: 10,
   })
-  const [sorting, setSorting] = React.useState<SortingState>([{ id: 'createdAt', desc: true }])
+  const [sorting, setSorting] = React.useState<SortingState>([
+    { id: 'createdAt', desc: true },
+  ])
   const [searchValue, setSearchValue] = React.useState('')
 
   const { data, isLoading } = useQuery({
@@ -73,7 +87,13 @@ function DocumentsComponent() {
           rejected: 'bg-red-100 text-red-700 border-red-200',
         }
         return (
-          <Badge variant="outline" className={cn('capitalize h-6', colors[status as string] || 'bg-slate-100')}>
+          <Badge
+            variant="outline"
+            className={cn(
+              'h-6 capitalize',
+              colors[status as string] || 'bg-slate-100',
+            )}
+          >
             {String(status).replace(/_/g, ' ')}
           </Badge>
         )
@@ -82,7 +102,8 @@ function DocumentsComponent() {
     {
       accessorKey: 'createdAt',
       header: 'Request Date',
-      cell: ({ row }) => new Date(row.getValue('createdAt')).toLocaleDateString(),
+      cell: ({ row }) =>
+        new Date(row.getValue('createdAt')).toLocaleDateString(),
     },
     {
       accessorKey: 'pickupDate',
@@ -111,7 +132,9 @@ function DocumentsComponent() {
               </DropdownMenuItem>
             )}
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="text-red-600">Cancel Request</DropdownMenuItem>
+            <DropdownMenuItem className="text-red-600">
+              Cancel Request
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       ),
@@ -123,20 +146,32 @@ function DocumentsComponent() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold">Document Requests</h1>
-          <p className="text-muted-foreground mt-1">Request and manage your official barangay documents.</p>
+          <p className="text-muted-foreground mt-1">
+            Request and manage your official barangay documents.
+          </p>
         </div>
         <Link to="/citizen/documents-new">
-          <Button size="lg" className="shadow-lg transition-all hover:-translate-y-px">
+          <Button className="shadow-lg transition-all hover:-translate-y-px">
             <Plus className="mr-2 h-4 w-4" />
             New Request
           </Button>
         </Link>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
         <StatusCard title="Pending" value="2" icon={Clock} color="yellow" />
-        <StatusCard title="Ready for Pickup" value="1" icon={CheckCircle2} color="green" />
-        <StatusCard title="Total Completed" value="15" icon={FileText} color="blue" />
+        <StatusCard
+          title="Ready for Pickup"
+          value="1"
+          icon={CheckCircle2}
+          color="green"
+        />
+        <StatusCard
+          title="Total Completed"
+          value="15"
+          icon={FileText}
+          color="blue"
+        />
       </div>
 
       <DataTable
@@ -156,7 +191,17 @@ function DocumentsComponent() {
   )
 }
 
-function StatusCard({ title, value, icon: Icon, color }: { title: string; value: string; icon: any; color: string }) {
+function StatusCard({
+  title,
+  value,
+  icon: Icon,
+  color,
+}: {
+  title: string
+  value: string
+  icon: any
+  color: string
+}) {
   const colors: Record<string, string> = {
     yellow: 'border-yellow-200 bg-yellow-50 text-yellow-600',
     green: 'border-green-200 bg-green-50 text-green-600',
@@ -164,7 +209,12 @@ function StatusCard({ title, value, icon: Icon, color }: { title: string; value:
   }
 
   return (
-    <div className={cn('rounded-xl border p-4 shadow-sm flex items-center justify-between', colors[color])}>
+    <div
+      className={cn(
+        'flex items-center justify-between rounded-xl border p-4 shadow-sm',
+        colors[color],
+      )}
+    >
       <div>
         <p className="text-xs font-bold opacity-80">{title}</p>
         <p className="text-2xl font-bold">{value}</p>
@@ -174,7 +224,9 @@ function StatusCard({ title, value, icon: Icon, color }: { title: string; value:
   )
 }
 
-function cn(...classes: (string | undefined | null | boolean | Record<string, boolean>)[]) {
+function cn(
+  ...classes: (string | undefined | null | boolean | Record<string, boolean>)[]
+) {
   return classes
     .filter(Boolean)
     .map((c) => {

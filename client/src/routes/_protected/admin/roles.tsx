@@ -91,11 +91,7 @@ function AdminRolesComponent() {
               </Badge>
             ) : (
               permissions.slice(0, 3).map((p) => (
-                <Badge
-                  key={p}
-                  variant="secondary"
-                  className="text-xs"
-                >
+                <Badge key={p} variant="secondary" className="text-xs">
                   {p.replace('_', ' ')}
                 </Badge>
               ))
@@ -149,17 +145,12 @@ function AdminRolesComponent() {
     <div className="space-y-8 py-8">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold">
-            Role & RBAC Management
-          </h1>
+          <h1 className="text-3xl font-bold">Role & RBAC Management</h1>
           <p className="text-muted-foreground mt-1">
             Define roles and fine-grained permissions for users and officials.
           </p>
         </div>
-        <Button
-          size="lg"
-          className="shadow-xs transition-all hover:-translate-y-px"
-        >
+        <Button className="shadow-xs transition-all hover:-translate-y-px">
           <Plus className="mr-2 h-4 w-4" />
           Create New Role
         </Button>

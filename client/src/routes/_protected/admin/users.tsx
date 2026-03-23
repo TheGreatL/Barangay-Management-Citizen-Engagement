@@ -8,6 +8,7 @@ import {
   UserCheck,
   UserX,
   Shield,
+  Copy,
 } from 'lucide-react'
 import { Button } from '@/shared/components/ui/button'
 import { Badge } from '@/shared/components/ui/badge'
@@ -132,12 +133,13 @@ function AdminUsersComponent() {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
+              <DropdownMenuSeparator />
               <DropdownMenuItem
                 onClick={() => navigator.clipboard.writeText(user.id)}
               >
+                <Copy className="mr-2 h-4 w-4" />
                 Copy User ID
               </DropdownMenuItem>
-              <DropdownMenuSeparator />
               <DropdownMenuItem>
                 <Edit2 className="mr-2 h-4 w-4" />
                 Edit User
@@ -167,10 +169,7 @@ function AdminUsersComponent() {
             Create, update, and manage system users and their access levels.
           </p>
         </div>
-        <Button
-          size="lg"
-          className="shadow-xs transition-all hover:-translate-y-px"
-        >
+        <Button className="shadow-xs transition-all hover:-translate-y-px">
           <Plus className="mr-2 h-4 w-4" />
           Add New User
         </Button>

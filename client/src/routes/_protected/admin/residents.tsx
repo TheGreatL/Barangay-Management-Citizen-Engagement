@@ -9,6 +9,7 @@ import {
   MapPin,
   Search,
   MoreHorizontal,
+  Copy,
 } from 'lucide-react'
 import { Button } from '@/shared/components/ui/button'
 import { Badge } from '@/shared/components/ui/badge'
@@ -139,12 +140,13 @@ function AdminResidentsComponent() {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
+              <DropdownMenuSeparator />
               <DropdownMenuItem
                 onClick={() => navigator.clipboard.writeText(resident.id)}
               >
-                Copy ID
+                <Copy className="mr-2 h-4 w-4" />
+                Copy User ID
               </DropdownMenuItem>
-              <DropdownMenuSeparator />
               <DropdownMenuItem>
                 <FileText className="mr-2 h-4 w-4" />
                 View Details
@@ -169,9 +171,7 @@ function AdminResidentsComponent() {
     <div className="space-y-6 p-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold">
-            Resident Records
-          </h1>
+          <h1 className="text-3xl font-bold">Resident Records</h1>
           <p className="text-muted-foreground mt-1">
             Maintain and manage exhaustive data for all barangay residents.
           </p>
@@ -181,10 +181,7 @@ function AdminResidentsComponent() {
             <Users className="mr-2 h-4 w-4" />
             Household Link
           </Button>
-          <Button
-            size="lg"
-            className="shadow-xs transition-all hover:-translate-y-px"
-          >
+          <Button className="shadow-xs transition-all hover:-translate-y-px">
             <Plus className="mr-2 h-4 w-4" />
             Add Resident
           </Button>
