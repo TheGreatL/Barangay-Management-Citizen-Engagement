@@ -96,19 +96,42 @@ export function Sidebar() {
 
       {/* Sidebar */}
       <aside
-        className={`fixed left-0 top-0 z-30 flex h-screen w-64 flex-col border-r border-slate-200 bg-white transition-transform duration-300 ease-in-out lg:static lg:translate-x-0 ${
+        className={`fixed left-0 top-0 z-30 flex h-screen w-64 flex-col border-r transition-transform duration-300 ease-in-out lg:static lg:translate-x-0 ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
+        style={{
+          borderColor: 'var(--color-border)',
+          backgroundColor: 'var(--color-sidebar-bg)',
+          color: 'var(--color-sidebar-text)',
+        }}
       >
         {/* Logo Section */}
-        <div className="border-b border-slate-200 px-6 py-6">
+        <div
+          className="border-b px-6 py-6"
+          style={{ borderColor: 'var(--color-border)' }}
+        >
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600 text-white font-bold">
+            <div
+              className="flex h-10 w-10 items-center justify-center rounded-lg font-bold text-white"
+              style={{
+                backgroundColor: 'var(--color-primary)',
+              }}
+            >
               BM
             </div>
             <div className="flex-1">
-              <h1 className="text-sm font-bold text-slate-900">Barangay Mgmt</h1>
-              <p className="text-xs text-slate-500">Citizen Portal</p>
+              <h1
+                className="text-sm font-bold"
+                style={{ color: 'var(--color-text-primary)' }}
+              >
+                Barangay Mgmt
+              </h1>
+              <p
+                className="text-xs"
+                style={{ color: 'var(--color-text-secondary)' }}
+              >
+                Citizen Portal
+              </p>
             </div>
           </div>
         </div>
@@ -118,24 +141,51 @@ export function Sidebar() {
           <div className="space-y-2">
             {navItems.map((item, idx) => {
               if (item.divider) {
-                return <div key={idx} className="my-4 border-t border-slate-200" />
+                return (
+                  <div
+                    key={idx}
+                    className="my-4 border-t"
+                    style={{ borderColor: 'var(--color-border)' }}
+                  />
+                )
               }
 
               const active = isActive(item.href)
               return (
                 <Link key={item.href} to={item.href}>
                   <div
-                    className={`flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition-all duration-200 ${
-                      active
-                        ? 'bg-blue-50 text-blue-600 shadow-sm'
-                        : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
-                    }`}
+                    className={`flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition-all duration-200`}
+                    style={{
+                      backgroundColor: active
+                        ? 'var(--color-sidebar-active)'
+                        : 'transparent',
+                      color: active
+                        ? 'var(--color-sidebar-active-text)'
+                        : 'var(--color-text-secondary)',
+                    }}
+                    onMouseEnter={(e) => {
+                      if (!active) {
+                        e.currentTarget.style.backgroundColor =
+                          'var(--color-sidebar-hover)'
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!active) {
+                        e.currentTarget.style.backgroundColor = 'transparent'
+                      }
+                    }}
                     onClick={() => setIsOpen(false)}
                   >
                     {item.icon}
                     <span className="flex-1">{item.label}</span>
                     {item.badge && (
-                      <span className="rounded-full bg-red-100 px-2 py-0.5 text-xs font-semibold text-red-600">
+                      <span
+                        className="rounded-full px-2 py-0.5 text-xs font-semibold"
+                        style={{
+                          backgroundColor: 'var(--color-error)',
+                          color: 'white',
+                        }}
+                      >
                         {item.badge}
                       </span>
                     )}
@@ -147,14 +197,41 @@ export function Sidebar() {
         </nav>
 
         {/* User Profile Section */}
-        <div className="border-t border-slate-200 p-4">
-          <div className="mb-4 rounded-lg bg-slate-50 p-3">
-            <p className="text-xs text-slate-500">Logged in as</p>
-            <p className="truncate text-sm font-semibold text-slate-900">
+        <div
+          className="border-t p-4"
+          style={{ borderColor: 'var(--color-border)' }}
+        >
+          <div
+            className="mb-4 rounded-lg p-3"
+            style={{
+              backgroundColor: 'var(--color-bg-secondary)',
+            }}
+          >
+            <p
+              className="text-xs"
+              style={{ color: 'var(--color-text-secondary)' }}
+            >
+              Logged in as
+            </p>
+            <p
+              className="truncate text-sm font-semibold"
+              style={{ color: 'var(--color-text-primary)' }}
+            >
               {user?.firstName} {user?.lastName}
             </p>
-            <p className="truncate text-xs text-slate-500">{user?.email}</p>
-            <p className="mt-2 inline-block rounded bg-blue-100 px-2 py-1 text-xs font-medium text-blue-700 capitalize">
+            <p
+              className="truncate text-xs"
+              style={{ color: 'var(--color-text-secondary)' }}
+            >
+              {user?.email}
+            </p>
+            <p
+              className="mt-2 inline-block rounded px-2 py-1 text-xs font-medium capitalize"
+              style={{
+                backgroundColor: 'var(--color-primary)',
+                color: 'white',
+              }}
+            >
               {user?.role.replace('_', ' ')}
             </p>
           </div>

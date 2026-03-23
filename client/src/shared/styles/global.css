@@ -7,6 +7,39 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
+  /* Light theme colors - Change these to customize your theme */
+  
+  /* Primary Colors - Main brand color (currently blue) */
+  --color-primary: #2563eb; /* Blue-600 */
+  --color-primary-light: #3b82f6; /* Blue-500 */
+  --color-primary-dark: #1e40af; /* Blue-700 */
+  
+  /* Semantic Colors */
+  --color-success: #16a34a; /* Green-600 */
+  --color-warning: #d97706; /* Amber-600 */
+  --color-error: #dc2626; /* Red-600 */
+  --color-info: #0ea5e9; /* Cyan-500 */
+  
+  /* Neutral Colors */
+  --color-bg-primary: #ffffff; /* White */
+  --color-bg-secondary: #f8fafc; /* Slate-50 */
+  --color-bg-tertiary: #f1f5f9; /* Slate-100 */
+  
+  --color-text-primary: #0f172a; /* Slate-900 */
+  --color-text-secondary: #475569; /* Slate-600 */
+  --color-text-tertiary: #94a3b8; /* Slate-400 */
+  
+  --color-border: #e2e8f0; /* Slate-200 */
+  --color-border-light: #f1f5f9; /* Slate-100 */
+  
+  /* Sidebar Colors */
+  --color-sidebar-bg: #ffffff;
+  --color-sidebar-text: #0f172a;
+  --color-sidebar-hover: #f8fafc;
+  --color-sidebar-active: #eff6ff; /* Blue-50 */
+  --color-sidebar-active-text: #2563eb;
+  
+  /* Legacy variables for compatibility */
   --background: oklch(1 0 0);
   --foreground: oklch(0.141 0.005 285.823);
   --card: oklch(1 0 0);
@@ -43,6 +76,39 @@
 }
 
 .dark {
+  /* Dark theme colors */
+  
+  /* Primary Colors */
+  --color-primary: #60a5fa; /* Blue-400 */
+  --color-primary-light: #93c5fd; /* Blue-300 */
+  --color-primary-dark: #1e40af; /* Blue-700 */
+  
+  /* Semantic Colors */
+  --color-success: #4ade80; /* Green-400 */
+  --color-warning: #fbbf24; /* Amber-400 */
+  --color-error: #f87171; /* Red-400 */
+  --color-info: #06b6d4; /* Cyan-500 */
+  
+  /* Neutral Colors */
+  --color-bg-primary: #0f172a; /* Slate-900 */
+  --color-bg-secondary: #1e293b; /* Slate-800 */
+  --color-bg-tertiary: #334155; /* Slate-700 */
+  
+  --color-text-primary: #f8fafc; /* Slate-50 */
+  --color-text-secondary: #cbd5e1; /* Slate-300 */
+  --color-text-tertiary: #94a3b8; /* Slate-400 */
+  
+  --color-border: #334155; /* Slate-700 */
+  --color-border-light: #475569; /* Slate-600 */
+  
+  /* Sidebar Colors */
+  --color-sidebar-bg: #1e293b; /* Slate-800 */
+  --color-sidebar-text: #f8fafc; /* Slate-50 */
+  --color-sidebar-hover: #334155; /* Slate-700 */
+  --color-sidebar-active: #1e3a8a; /* Blue-900 */
+  --color-sidebar-active-text: #60a5fa; /* Blue-400 */
+  
+  /* Legacy variables for dark mode */
   --background: oklch(0.141 0.005 285.823);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.141 0.005 285.823);
