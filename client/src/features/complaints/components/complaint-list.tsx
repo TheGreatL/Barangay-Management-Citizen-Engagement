@@ -1,45 +1,38 @@
 import { useQuery } from '@tanstack/react-query'
-import { complaintService } from '../complaint.service'
+import { complaintService } from '../complaint-service'
 import { useState } from 'react'
-import { AlertCircle, MapPin, Calendar, Badge } from 'lucide-react'
+import { AlertCircle, Plus } from 'lucide-react'
 import { Button } from '@/shared/components/ui/button'
-import type { TComplaint } from '../complaint.schema'
-
-const statusColors = {
-  draft: 'bg-gray-100 text-gray-800',
-  submitted: 'bg-blue-100 text-blue-800',
-  acknowledged: 'bg-yellow-100 text-yellow-800',
-  in_progress: 'bg-purple-100 text-purple-800',
-  resolved: 'bg-green-100 text-green-800',
-  rejected: 'bg-red-100 text-red-800',
-}
-
-const priorityColors = {
-  low: 'text-gray-600',
-  medium: 'text-yellow-600',
-  high: 'text-orange-600',
-  urgent: 'text-red-600',
-}
+import type { TComplaint } from '../complaint-schema'
+import { ComplaintCard } from './complaint-card'
+import { Link } from '@tanstack/react-router'
 
 export function ComplaintList() {
   const [page, setPage] = useState(1)
   const { data, isLoading, error } = useQuery({
-    queryKey: ['complaints', page],
-    queryFn: () => complaintService.list(page, 10),
+    queryKey: ['citizen-complaints', page],
+    queryFn: () => complaintService.listCitizen({ page, limit: 10 }),
   })
 
   if (isLoading) {
-    return <div className="p-6 text-center text-gray-500">Loading complaints...</div>
+    return (
+      <div className="p-12 border border-slate-200 rounded-3xl bg-slate-50/50 flex flex-col items-center justify-center space-y-4">
+        <div className="h-10 w-10 animate-spin rounded-full border-b-2 border-primary" />
+        <p className="text-sm font-bold text-slate-500">Loading your complaints...</p>
+      </div>
+    )
   }
 
   if (error) {
     return (
-      <div className="rounded-lg bg-red-50 p-6">
-        <div className="flex items-start gap-3">
-          <AlertCircle className="mt-0.5 h-5 w-5 text-red-600" />
+      <div className="rounded-4xl bg-red-50/50 p-10 border border-red-100/50">
+        <div className="flex flex-col items-center text-center gap-4">
+          <div className="h-16 w-16 rounded-3xl bg-red-100 flex items-center justify-center text-red-600">
+            <AlertCircle className="h-8 w-8" />
+          </div>
           <div>
-            <h3 className="font-medium text-red-900">Failed to load complaints</h3>
-            <p className="text-sm text-red-700">Please try again later</p>
+            <h3 className="text-xl font-bold text-red-900 leading-tight">Failed to load complaints</h3>
+            <p className="mt-2 text-red-700 font-medium">Please try again later or contact support.</p>
           </div>
         </div>
       </div>
@@ -47,68 +40,58 @@ export function ComplaintList() {
   }
 
   const complaints = data?.data || []
-  const totalPages = data?.totalPages || 1
+  const totalPages = data?.meta?.totalPages || 1
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-8">
       {complaints.length === 0 ? (
-        <div className="rounded-lg border border-dashed border-gray-300 p-12 text-center">
-          <AlertCircle className="mx-auto mb-4 h-12 w-12 text-gray-400" />
-          <p className="text-gray-600">No complaints yet</p>
-          <p className="text-sm text-gray-500">Submit your first complaint to get started</p>
+        <div className="rounded-4xl border border-dashed border-slate-300 p-20 text-center flex flex-col items-center justify-center bg-slate-50/30">
+          <div className="h-20 w-20 rounded-full bg-slate-100 flex items-center justify-center mb-6">
+            <AlertCircle className="h-10 w-10 text-slate-400" />
+          </div>
+          <p className="text-xl font-bold text-slate-900">No complaints yet</p>
+          <p className="mt-2 text-slate-500 font-medium mb-8">Submit your first complaint to get started with the resolution process.</p>
+          <Link to="/citizen/complaints-new">
+            <Button className="rounded-2xl h-12 px-8 font-black shadow-xl shadow-primary/20 leading-none">
+              <Plus className="mr-2 h-5 w-5" />
+              File a New Complaint
+            </Button>
+          </Link>
         </div>
       ) : (
-        <div className="space-y-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {complaints.map((complaint: TComplaint) => (
-            <div
+            <ComplaintCard
               key={complaint.id}
-              className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm transition hover:shadow-md"
-            >
-              <div className="mb-3 flex items-start justify-between">
-                <div className="flex-1">
-                  <h3 className="text-base font-semibold text-gray-900">{complaint.title}</h3>
-                  <p className="mt-1 text-sm text-gray-600">{complaint.description}</p>
-                </div>
-                <Badge className={statusColors[complaint.status]}>
-                  {complaint.status.replace('_', ' ')}
-                </Badge>
-              </div>
-
-              <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600">
-                <div className="flex items-center gap-1">
-                  <MapPin className="h-4 w-4" />
-                  {complaint.location}
-                </div>
-                <div className="flex items-center gap-1">
-                  <AlertCircle className={`h-4 w-4 ${priorityColors[complaint.priority]}`} />
-                  <span className="capitalize">{complaint.priority} Priority</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  <Calendar className="h-4 w-4" />
-                  {new Date(complaint.createdAt).toLocaleDateString()}
-                </div>
-              </div>
-            </div>
+              complaint={complaint}
+              footer={
+                <Button variant="ghost" className="w-full font-black text-primary hover:bg-primary/5 rounded-xl h-10 text-[10px]">
+                  View Resolution Progress
+                </Button>
+              }
+            />
           ))}
         </div>
       )}
 
       {totalPages > 1 && (
-        <div className="flex justify-between">
+        <div className="flex items-center justify-center gap-4 pt-4">
           <Button
             onClick={() => setPage(p => Math.max(1, p - 1))}
             disabled={page === 1}
             variant="outline"
+            className="rounded-xl font-bold"
           >
             Previous
           </Button>
-          <span className="text-sm text-gray-600">
+          <span className="text-xs font-black text-slate-400 bg-slate-100 px-4 py-2 rounded-xl">
             Page {page} of {totalPages}
           </span>
           <Button
             onClick={() => setPage(p => Math.min(totalPages, p + 1))}
             disabled={page === totalPages}
             variant="outline"
+            className="rounded-xl font-bold"
           >
             Next
           </Button>

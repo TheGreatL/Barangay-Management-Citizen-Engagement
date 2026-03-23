@@ -8,13 +8,15 @@ export const announcementSchema = z.object({
 
 export type TAnnouncementSchema = z.infer<typeof announcementSchema>
 
+export type TAnnouncementStatus = 'draft' | 'published' | 'archived'
+
 export interface TAnnouncement {
   id: string
   title: string
   content: string
   authorId: string
   category?: string
-  status: 'draft' | 'published' | 'archived'
+  status: TAnnouncementStatus
   imageUrl?: string
   publishedAt?: string
   createdAt: string

@@ -1,9 +1,10 @@
 import { useQuery } from '@tanstack/react-query'
-import { announcementService } from '../announcement.service'
+import { announcementService } from '../announcement-service'
 import { useState } from 'react'
-import { AlertCircle, Calendar, Tag } from 'lucide-react'
+import { AlertCircle } from 'lucide-react'
 import { Button } from '@/shared/components/ui/button'
-import type { TAnnouncement } from '../announcement.schema'
+import type { TAnnouncement } from '../announcement-schema'
+import { AnnouncementCard } from './announcement-card'
 
 export function AnnouncementList() {
   const [page, setPage] = useState(1)
@@ -13,17 +14,24 @@ export function AnnouncementList() {
   })
 
   if (isLoading) {
-    return <div className="p-6 text-center text-gray-500">Loading announcements...</div>
+    return (
+      <div className="p-12 border border-slate-200 rounded-3xl bg-slate-50/50 flex flex-col items-center justify-center space-y-4">
+        <div className="h-10 w-10 animate-spin rounded-full border-b-2 border-primary" />
+        <p className="text-sm font-bold text-slate-500">Loading announcements...</p>
+      </div>
+    )
   }
 
   if (error) {
     return (
-      <div className="rounded-lg bg-red-50 p-6">
-        <div className="flex items-start gap-3">
-          <AlertCircle className="mt-0.5 h-5 w-5 text-red-600" />
+      <div className="rounded-[40px] bg-red-50/50 p-10 border border-red-100/50">
+        <div className="flex flex-col items-center text-center gap-4">
+          <div className="h-16 w-16 rounded-3xl bg-red-100 flex items-center justify-center text-red-600">
+            <AlertCircle className="h-8 w-8" />
+          </div>
           <div>
-            <h3 className="font-medium text-red-900">Failed to load announcements</h3>
-            <p className="text-sm text-red-700">Please try again later</p>
+            <h3 className="text-xl font-bold text-red-900 leading-tight">Failed to load announcements</h3>
+            <p className="mt-2 text-red-700 font-medium">Our systems are currently experiencing issues. Please try again later.</p>
           </div>
         </div>
       </div>
@@ -34,52 +42,19 @@ export function AnnouncementList() {
   const totalPages = data?.totalPages || 1
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-8">
       {announcements.length === 0 ? (
-        <div className="rounded-lg border border-dashed border-gray-300 p-12 text-center">
-          <AlertCircle className="mx-auto mb-4 h-12 w-12 text-gray-400" />
-          <p className="text-gray-600">No announcements yet</p>
-          <p className="text-sm text-gray-500">Check back later for updates</p>
+        <div className="rounded-[40px] border border-dashed border-slate-300 p-20 text-center flex flex-col items-center justify-center">
+          <div className="h-20 w-20 rounded-full bg-slate-100 flex items-center justify-center mb-6">
+            <AlertCircle className="h-10 w-10 text-slate-400" />
+          </div>
+          <p className="text-xl font-bold text-slate-900">No announcements yet</p>
+          <p className="mt-2 text-slate-500 font-medium">Check back soon for latest news and updates from your barangay.</p>
         </div>
       ) : (
-        <div className="space-y-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {announcements.map((announcement: TAnnouncement) => (
-            <div
-              key={announcement.id}
-              className="rounded-lg border border-gray-200 bg-white shadow-sm transition hover:shadow-md"
-            >
-              {announcement.imageUrl && (
-                <img
-                  src={announcement.imageUrl}
-                  alt={announcement.title}
-                  className="h-48 w-full rounded-t-lg object-cover"
-                />
-              )}
-              <div className="p-4">
-                <div className="mb-2 flex items-start justify-between">
-                  <h3 className="text-lg font-semibold text-gray-900">
-                    {announcement.title}
-                  </h3>
-                  {announcement.category && (
-                    <div className="flex items-center gap-1 rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-medium text-blue-800">
-                      <Tag className="h-3 w-3" />
-                      {announcement.category}
-                    </div>
-                  )}
-                </div>
-
-                <p className="text-sm text-gray-600 line-clamp-2">
-                  {announcement.content}
-                </p>
-
-                <div className="mt-4 flex items-center gap-4 text-sm text-gray-500">
-                  <div className="flex items-center gap-1">
-                    <Calendar className="h-4 w-4" />
-                    {new Date(announcement.publishedAt || announcement.createdAt).toLocaleDateString()}
-                  </div>
-                </div>
-              </div>
-            </div>
+            <AnnouncementCard key={announcement.id} announcement={announcement} />
           ))}
         </div>
       )}
