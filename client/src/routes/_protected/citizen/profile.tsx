@@ -42,9 +42,9 @@ function CitizenProfileComponent() {
 
   return (
     <div className="flex flex-col bg-slate-50/20">
-      <div className="bg-white border-b px-8 py-12 relative overflow-hidden">
+      <div className="bg-white border-b py-12 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/3 h-full bg-linear-to-l from-primary/5 to-transparent" />
-        <div className="max-w-300 mx-auto flex flex-col md:flex-row items-center gap-10">
+        <div className="mx-auto flex flex-col md:flex-row items-center gap-10">
           <div className="relative group">
             <div className="h-40 w-40 rounded-[40px] bg-slate-100 border-4 border-white shadow-2xl overflow-hidden flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
               <User className="h-20 w-20 text-slate-300" />
@@ -69,8 +69,8 @@ function CitizenProfileComponent() {
         </div>
       </div>
 
-      <div className="flex-1 p-8">
-        <div className="max-w-300 mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="flex-1 py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-8">
             <div className="bg-white rounded-[40px] border border-slate-200 p-8 shadow-sm space-y-8">
               <h3 className="text-xl font-black text-slate-900 flex items-center gap-3">

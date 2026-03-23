@@ -25,5 +25,9 @@ function CitizenLayout() {
     return null
   }
 
-  return <Outlet />
+  return (
+    <div className="container mx-auto">
+      <Outlet />
+    </div>
+  )
 }

@@ -20,5 +20,9 @@ function OfficialLayout() {
     return null // Or a loading/unauthorized state
   }
 
-  return <Outlet />
+  return (
+    <div className="container mx-auto">
+      <Outlet />
+    </div>
+  )
 }

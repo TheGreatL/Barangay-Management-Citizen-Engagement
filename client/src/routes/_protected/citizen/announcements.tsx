@@ -16,7 +16,7 @@ function AnnouncementsComponent() {
         icon={<Bell className="h-6 w-6" />}
       />
 
-      <div className="flex-1 px-6 py-8 sm:px-8">
+      <div className="space-y-8">
         <div className="mx-auto w-full max-w-6xl">
           <AnnouncementList />
         </div>

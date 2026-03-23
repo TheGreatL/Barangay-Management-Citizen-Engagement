@@ -49,7 +49,7 @@ function ServicesComponent() {
   ]
 
   return (
-    <div className="space-y-8 p-6 max-w-7xl mx-auto">
+    <div className="space-y-8 py-8">
       <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-4">
         <div>
           <h1 className="text-4xl font-black">Community Services</h1>

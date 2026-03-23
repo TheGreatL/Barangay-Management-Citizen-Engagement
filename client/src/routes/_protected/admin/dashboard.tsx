@@ -59,8 +59,8 @@ function AdminDashboardComponent() {
   ]
 
   return (
-    <div className="animate-in fade-in slide-in-from-top-4 space-y-8 p-8 duration-500">
-      <div className="mx-auto w-full max-w-6xl space-y-8">
+    <div className="space-y-8 py-8">
+      <div className="space-y-8">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>

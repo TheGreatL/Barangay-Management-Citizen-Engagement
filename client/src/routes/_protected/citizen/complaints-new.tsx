@@ -9,7 +9,7 @@ export const Route = createFileRoute('/_protected/citizen/complaints-new')({
 
 function NewComplaintComponent() {
   return (
-    <div className="space-y-6 p-6">
+    <div className="space-y-6 py-6">
       <div className="flex items-center gap-2">
         <Link to="/citizen/complaints">
           <Button variant="ghost" size="icon">

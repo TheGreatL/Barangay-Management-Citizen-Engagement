@@ -88,10 +88,10 @@ function CitizenComplaintsComponent() {
   })
 
   return (
-    <div className="flex flex-col bg-slate-50/30">
-      <div className="bg-white border-b px-6 py-8 sm:px-8">
+    <div className="flex flex-col">
+      <div className="bg-white border-b px-8 py-12">
         <div className="mx-auto w-full max-w-6xl flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <div className="space-y-1">
+          <div className="space-y-6">
             <h1 className="text-3xl font-black text-slate-900 flex items-center gap-3">
               <MessageSquare className="h-8 w-8 text-primary" />
               Complaints & Feedback
@@ -105,8 +105,8 @@ function CitizenComplaintsComponent() {
         </div>
       </div>
 
-      <div className="flex-1 px-6 py-8 sm:px-8">
-        <div className="mx-auto w-full max-w-6xl space-y-6">
+      <div className="flex-1 py-8">
+        <div className="space-y-6">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div className="relative w-full sm:max-w-50">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />

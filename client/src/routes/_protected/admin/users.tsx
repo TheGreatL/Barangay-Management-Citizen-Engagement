@@ -1,11 +1,23 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useQuery } from '@tanstack/react-query'
-import { Plus, Edit2, Trash2, MoreHorizontal, UserCheck, UserX, Shield } from 'lucide-react'
+import {
+  Plus,
+  Edit2,
+  Trash2,
+  MoreHorizontal,
+  UserCheck,
+  UserX,
+  Shield,
+} from 'lucide-react'
 import { Button } from '@/shared/components/ui/button'
 import { Badge } from '@/shared/components/ui/badge'
 import * as React from 'react'
 import { DataTable } from '@/shared/components/ui/DataTable'
-import type { ColumnDef, PaginationState, SortingState } from '@tanstack/react-table'
+import type {
+  ColumnDef,
+  PaginationState,
+  SortingState,
+} from '@tanstack/react-table'
 import { getUsers } from '@/mock/user-service'
 import {
   DropdownMenu,
@@ -120,7 +132,9 @@ function AdminUsersComponent() {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
-              <DropdownMenuItem onClick={() => navigator.clipboard.writeText(user.id)}>
+              <DropdownMenuItem
+                onClick={() => navigator.clipboard.writeText(user.id)}
+              >
                 Copy User ID
               </DropdownMenuItem>
               <DropdownMenuSeparator />
@@ -145,7 +159,7 @@ function AdminUsersComponent() {
   ]
 
   return (
-    <div className="space-y-6 p-6">
+    <div className="space-y-8 py-8">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold">User Management</h1>
@@ -153,12 +167,44 @@ function AdminUsersComponent() {
             Create, update, and manage system users and their access levels.
           </p>
         </div>
-        <Button size="lg" className="shadow-xs transition-all hover:-translate-y-px">
+        <Button
+          size="lg"
+          className="shadow-xs transition-all hover:-translate-y-px"
+        >
           <Plus className="mr-2 h-4 w-4" />
           Add New User
         </Button>
       </div>
 
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+        <Card className="flex flex-row items-center gap-4 p-4">
+          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-green-100 text-green-600">
+            <UserCheck className="h-5 w-5" />
+          </div>
+          <div>
+            <p className="text-muted-foreground text-sm">Active Users</p>
+            <p className="text-2xl font-bold">1,234</p>
+          </div>
+        </Card>
+        <Card className="flex flex-row items-center gap-4 p-4">
+          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-100 text-orange-600">
+            <UserX className="h-5 w-5" />
+          </div>
+          <div>
+            <p className="text-muted-foreground text-sm">Inactive</p>
+            <p className="text-2xl font-bold">56</p>
+          </div>
+        </Card>
+        <Card className="flex flex-row items-center gap-4 p-4">
+          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 text-blue-600">
+            <Shield className="h-5 w-5" />
+          </div>
+          <div>
+            <p className="text-muted-foreground text-sm">Total Officials</p>
+            <p className="text-2xl font-bold">12</p>
+          </div>
+        </Card>
+      </div>
       <DataTable
         columns={columns}
         data={data?.data || []}
@@ -172,37 +218,6 @@ function AdminUsersComponent() {
         isLoading={isLoading}
         searchPlaceholder="Search by name, email or role..."
       />
-
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <Card className="p-4 flex flex-row items-center gap-4">
-          <div className="h-10 w-10 rounded-full bg-green-100 flex items-center justify-center text-green-600">
-            <UserCheck className="h-5 w-5" />
-          </div>
-          <div>
-            <p className="text-sm text-muted-foreground">Active Users</p>
-            <p className="text-2xl font-bold">1,234</p>
-          </div>
-        </Card>
-        <Card className="p-4 flex flex-row items-center gap-4">
-          <div className="h-10 w-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-600">
-            <UserX className="h-5 w-5" />
-          </div>
-          <div>
-            <p className="text-sm text-muted-foreground">Inactive</p>
-            <p className="text-2xl font-bold">56</p>
-          </div>
-        </Card>
-        <Card className="p-4 flex flex-row items-center gap-4">
-          <div className="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
-            <Shield className="h-5 w-5" />
-          </div>
-          <div>
-            <p className="text-sm text-muted-foreground">Total Officials</p>
-            <p className="text-2xl font-bold">12</p>
-          </div>
-        </Card>
-      </div>
     </div>
   )
 }
-
