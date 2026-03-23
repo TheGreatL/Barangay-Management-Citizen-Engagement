@@ -1,4 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
+import { Wrench } from 'lucide-react'
+import { PageHeader } from '@/shared/components/layout/page-header'
 import { ServiceList } from '@/features/services/components/service-list'
 
 export const Route = createFileRoute('/_protected/dashboard/services')({
@@ -7,17 +9,18 @@ export const Route = createFileRoute('/_protected/dashboard/services')({
 
 function ServicesComponent() {
   return (
-    <div className="space-y-6 p-6">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight text-slate-900">
-          Community Services
-        </h1>
-        <p className="mt-2 text-slate-600">
-          Browse and access available barangay services
-        </p>
-      </div>
+    <div className="flex flex-col">
+      <PageHeader
+        title="Community Services"
+        description="Browse and access available barangay services"
+        icon={<Wrench className="h-6 w-6" />}
+      />
 
-      <ServiceList />
+      <div className="flex-1 px-6 py-8 sm:px-8">
+        <div className="mx-auto w-full max-w-6xl">
+          <ServiceList />
+        </div>
+      </div>
     </div>
   )
 }

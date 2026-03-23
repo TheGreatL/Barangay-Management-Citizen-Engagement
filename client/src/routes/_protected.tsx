@@ -2,6 +2,7 @@ import { createFileRoute, Outlet, useNavigate } from '@tanstack/react-router'
 import { useAuthStore } from '@/shared/stores/auth.store'
 import { useEffect, useState } from 'react'
 import { LoadingDashboard } from '@/features/dashboard/components/loading-dashboard'
+import { MainLayout } from '@/shared/components/layout/main-layout'
 
 export const Route = createFileRoute('/_protected')({
   component: ProtectedLayout,
@@ -38,5 +39,9 @@ function ProtectedLayout() {
     return <LoadingDashboard />
   }
 
-  return <Outlet />
+  return (
+    <MainLayout>
+      <Outlet />
+    </MainLayout>
+  )
 }

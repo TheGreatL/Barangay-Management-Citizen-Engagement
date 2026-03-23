@@ -1,4 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
+import { Bell } from 'lucide-react'
+import { PageHeader } from '@/shared/components/layout/page-header'
 import { AnnouncementList } from '@/features/announcements/components/announcement-list'
 
 export const Route = createFileRoute('/_protected/dashboard/announcements')({
@@ -7,17 +9,18 @@ export const Route = createFileRoute('/_protected/dashboard/announcements')({
 
 function AnnouncementsComponent() {
   return (
-    <div className="space-y-6 p-6">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight text-slate-900">
-          Announcements
-        </h1>
-        <p className="mt-2 text-slate-600">
-          Stay updated with the latest barangay announcements and events
-        </p>
-      </div>
+    <div className="flex flex-col">
+      <PageHeader
+        title="Announcements"
+        description="Stay updated with the latest barangay announcements and events"
+        icon={<Bell className="h-6 w-6" />}
+      />
 
-      <AnnouncementList />
+      <div className="flex-1 px-6 py-8 sm:px-8">
+        <div className="mx-auto w-full max-w-6xl">
+          <AnnouncementList />
+        </div>
+      </div>
     </div>
   )
 }

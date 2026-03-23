@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { Plus } from 'lucide-react'
+import { Plus, AlertCircle } from 'lucide-react'
 import { Button } from '@/shared/components/ui/button'
+import { PageHeader } from '@/shared/components/layout/page-header'
 import { ComplaintList } from '@/features/complaints/components/complaint-list'
 
 export const Route = createFileRoute('/_protected/dashboard/complaints')({
@@ -9,25 +10,26 @@ export const Route = createFileRoute('/_protected/dashboard/complaints')({
 
 function ComplaintsComponent() {
   return (
-    <div className="space-y-6 p-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight text-slate-900">
-            My Complaints
-          </h1>
-          <p className="mt-2 text-slate-600">
-            View and manage your submitted complaints
-          </p>
-        </div>
-        <Link to="/dashboard/complaints/new">
-          <Button>
-            <Plus className="mr-2 h-4 w-4" />
-            New Complaint
-          </Button>
-        </Link>
-      </div>
+    <div className="flex flex-col">
+      <PageHeader
+        title="My Complaints"
+        description="View and manage your submitted complaints"
+        icon={<AlertCircle className="h-6 w-6" />}
+        action={
+          <Link to="/dashboard/complaints/new">
+            <Button>
+              <Plus className="mr-2 h-4 w-4" />
+              New Complaint
+            </Button>
+          </Link>
+        }
+      />
 
-      <ComplaintList />
+      <div className="flex-1 px-6 py-8 sm:px-8">
+        <div className="mx-auto w-full max-w-6xl">
+          <ComplaintList />
+        </div>
+      </div>
     </div>
   )
 }
