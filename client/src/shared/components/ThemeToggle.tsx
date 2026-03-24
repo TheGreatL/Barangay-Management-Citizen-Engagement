@@ -68,7 +68,7 @@ export default function ThemeToggle() {
     window.localStorage.setItem('theme', newMode)
   }
 
-  const currentIcon = mode === 'light' ? Sun : mode === 'dark' ? Moon : Monitor
+  const CurrentIcon = mode === 'light' ? Sun : mode === 'dark' ? Moon : Monitor
 
   return (
     <DropdownMenu>
@@ -76,36 +76,48 @@ export default function ThemeToggle() {
         <Button
           variant="ghost"
           size="icon"
-          className="h-8 w-8 rounded-lg text-muted-foreground hover:text-foreground"
+          className="text-muted-foreground hover:text-foreground h-8 w-8 rounded-lg"
         >
-          <currentIcon className="h-4 w-4" />
+          <CurrentIcon className="h-4 w-4" />
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-36 rounded-lg">
-        <DropdownMenuItem 
+        <DropdownMenuItem
           onClick={() => selectMode('light')}
-          className="text-sm gap-2 cursor-pointer"
+          className="cursor-pointer gap-2 text-sm"
         >
           <Sun className="h-4 w-4" />
           Light
-          {mode === 'light' && <span className="ml-auto text-xs text-muted-foreground">Active</span>}
+          {mode === 'light' && (
+            <span className="text-muted-foreground ml-auto text-xs">
+              Active
+            </span>
+          )}
         </DropdownMenuItem>
-        <DropdownMenuItem 
+        <DropdownMenuItem
           onClick={() => selectMode('dark')}
-          className="text-sm gap-2 cursor-pointer"
+          className="cursor-pointer gap-2 text-sm"
         >
           <Moon className="h-4 w-4" />
           Dark
-          {mode === 'dark' && <span className="ml-auto text-xs text-muted-foreground">Active</span>}
+          {mode === 'dark' && (
+            <span className="text-muted-foreground ml-auto text-xs">
+              Active
+            </span>
+          )}
         </DropdownMenuItem>
-        <DropdownMenuItem 
+        <DropdownMenuItem
           onClick={() => selectMode('system')}
-          className="text-sm gap-2 cursor-pointer"
+          className="cursor-pointer gap-2 text-sm"
         >
           <Monitor className="h-4 w-4" />
           System
-          {mode === 'system' && <span className="ml-auto text-xs text-muted-foreground">Active</span>}
+          {mode === 'system' && (
+            <span className="text-muted-foreground ml-auto text-xs">
+              Active
+            </span>
+          )}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
