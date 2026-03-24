@@ -18,7 +18,7 @@ export function ComplaintStatsCard({
   return (
     <div
       className={cn(
-        'flex h-full flex-col justify-between rounded-xl border border-border/60 bg-card p-5 transition-all hover:border-border',
+        'border-border/60 bg-card hover:border-border flex h-full flex-col justify-between rounded-xl border p-5 transition-all',
         className,
       )}
     >
@@ -31,12 +31,10 @@ export function ComplaintStatsCard({
         <Icon className="h-5 w-5" />
       </div>
       <div className="mt-4">
-        <p className="mb-1 text-xs font-medium text-muted-foreground">
+        <p className="text-muted-foreground mb-1 text-xs font-medium">
           {label}
         </p>
-        <p className="text-2xl font-semibold text-foreground">
-          {value}
-        </p>
+        <p className="text-foreground text-2xl font-semibold">{value}</p>
       </div>
     </div>
   )

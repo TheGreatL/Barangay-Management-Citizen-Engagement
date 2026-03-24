@@ -144,7 +144,7 @@ function DashboardComponent() {
   ]
 
   return (
-    <div className="flex flex-col min-h-full">
+    <div className="flex min-h-full flex-col">
       <PageHeader
         title={`Welcome back, ${user?.firstName}`}
         description="Here's what's happening in your barangay today"
@@ -156,7 +156,7 @@ function DashboardComponent() {
         <div className="mx-auto w-full max-w-7xl space-y-8">
           {/* Statistics Overview */}
           <section>
-            <h2 className="text-sm font-semibold text-foreground mb-4">
+            <h2 className="text-foreground mb-4 text-sm font-semibold">
               Your Activity
             </h2>
             <DashboardStats stats={stats} />
@@ -164,7 +164,7 @@ function DashboardComponent() {
 
           {/* Quick Actions */}
           <section>
-            <h2 className="text-sm font-semibold text-foreground mb-4">
+            <h2 className="text-foreground mb-4 text-sm font-semibold">
               Quick Actions
             </h2>
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -172,20 +172,22 @@ function DashboardComponent() {
                 const Icon = link.icon
                 return (
                   <Link key={link.href} to={link.href}>
-                    <Card className="group h-full border-border/60 bg-card transition-all duration-200 hover:border-border hover:shadow-sm">
+                    <Card className="group border-border/60 bg-card hover:border-border h-full transition-all duration-200 hover:shadow-sm">
                       <CardContent className="p-5">
-                        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-foreground/5 group-hover:bg-foreground group-hover:text-background transition-all duration-200">
+                        <div className="bg-foreground/5 group-hover:bg-foreground group-hover:text-background flex h-9 w-9 items-center justify-center rounded-lg transition-all duration-200">
                           <Icon className="h-4 w-4" />
                         </div>
-                        <h3 className="mt-4 text-sm font-medium text-foreground">
+                        <h3 className="text-foreground mt-4 text-sm font-medium">
                           {link.title}
                         </h3>
-                        <p className="mt-1 text-xs text-muted-foreground">
+                        <p className="text-muted-foreground mt-1 text-xs">
                           {link.description}
                         </p>
-                        <div className="mt-3 flex items-center text-xs font-medium text-foreground opacity-0 transition-all duration-200 group-hover:opacity-100">
+                        <div className="text-foreground mt-3 flex items-center text-xs font-medium opacity-0 transition-all duration-200 group-hover:opacity-100">
                           Get Started
-                          <span className="ml-1 transition-transform group-hover:translate-x-0.5">→</span>
+                          <span className="ml-1 transition-transform group-hover:translate-x-0.5">
+                            →
+                          </span>
                         </div>
                       </CardContent>
                     </Card>

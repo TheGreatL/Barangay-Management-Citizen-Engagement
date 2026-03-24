@@ -14,7 +14,7 @@ export function MainLayout({ children }: MainLayoutProps) {
         <AppSidebar />
         <main className="flex flex-1 flex-col overflow-hidden">
           <Header />
-          <div className="flex-1 overflow-auto scrollbar-minimal">
+          <div className="scrollbar-minimal flex-1 overflow-auto">
             <div className="animate-in fade-in duration-300">{children}</div>
           </div>
         </main>

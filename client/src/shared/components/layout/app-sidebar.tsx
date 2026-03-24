@@ -264,20 +264,17 @@ export function AppSidebar() {
   const userInitials = user?.email.slice(0, 2).toUpperCase() || 'BM'
 
   return (
-    <Sidebar
-      collapsible="icon"
-      className="border-sidebar-border/50 bg-sidebar"
-    >
+    <Sidebar collapsible="icon" className="border-sidebar-border/50 bg-sidebar">
       <SidebarHeader className="border-sidebar-border/50 border-b px-4 py-5">
         <div className="flex items-center gap-3">
           <div className="bg-foreground text-background flex h-8 w-8 shrink-0 items-center justify-center rounded-md text-xs font-bold tracking-tight">
             BM
           </div>
           <div className="flex-1 overflow-hidden group-data-[collapsible=icon]:hidden">
-            <h1 className="truncate text-sm font-semibold tracking-tight leading-none">
+            <h1 className="truncate text-sm leading-none font-semibold tracking-tight">
               {header.title}
             </h1>
-            <p className="text-muted-foreground truncate text-[11px] mt-1">
+            <p className="text-muted-foreground mt-1 truncate text-[11px]">
               {header.subtitle}
             </p>
           </div>
@@ -285,11 +282,11 @@ export function AppSidebar() {
       </SidebarHeader>
 
       <SidebarContent className="p-0">
-        <ScrollArea className="h-full scrollbar-minimal">
+        <ScrollArea className="scrollbar-minimal h-full">
           <SidebarMenu className="px-3 py-4">
             {navGroups.map((group, groupIdx) => (
               <SidebarGroup key={group.label}>
-                <SidebarGroupLabel className="px-2 text-[10px] uppercase tracking-wider font-medium text-muted-foreground/70 mb-2 group-data-[collapsible=icon]:hidden">
+                <SidebarGroupLabel className="text-muted-foreground/70 mb-2 px-2 text-[10px] font-medium tracking-wider uppercase group-data-[collapsible=icon]:hidden">
                   {group.label}
                 </SidebarGroupLabel>
                 <SidebarGroupContent>
@@ -303,24 +300,26 @@ export function AppSidebar() {
                             isActive={active}
                             tooltip={item.label}
                             className={cn(
-                              "w-full justify-start rounded-lg px-2.5 py-2 h-9 transition-all duration-150",
-                              active 
-                                ? "bg-foreground text-background font-medium" 
-                                : "hover:bg-muted/60 text-muted-foreground hover:text-foreground"
+                              'h-9 w-full justify-start rounded-lg px-2.5 py-2 transition-all duration-150',
+                              active
+                                ? 'bg-foreground text-background font-medium'
+                                : 'hover:bg-muted/60 text-muted-foreground hover:text-foreground',
                             )}
                           >
                             <Link to={item.href}>
-                              <span className="mr-2.5">
-                                {item.icon}
-                              </span>
+                              <span className="mr-2.5">{item.icon}</span>
                               <span className="flex-1 truncate text-[13px] group-data-[collapsible=icon]:hidden">
                                 {item.label}
                               </span>
                               {item.badge && (
-                                <span className={cn(
-                                  "ml-auto flex h-4 min-w-4 items-center justify-center rounded px-1 text-[10px] font-medium group-data-[collapsible=icon]:hidden",
-                                  active ? "bg-background/20 text-background" : "bg-muted text-muted-foreground"
-                                )}>
+                                <span
+                                  className={cn(
+                                    'ml-auto flex h-4 min-w-4 items-center justify-center rounded px-1 text-[10px] font-medium group-data-[collapsible=icon]:hidden',
+                                    active
+                                      ? 'bg-background/20 text-background'
+                                      : 'bg-muted text-muted-foreground',
+                                  )}
+                                >
                                   {item.badge}
                                 </span>
                               )}
@@ -347,11 +346,11 @@ export function AppSidebar() {
               <DropdownMenuTrigger asChild>
                 <SidebarMenuButton
                   size="lg"
-                  className="data-[state=open]:bg-muted rounded-lg h-auto py-2"
+                  className="data-[state=open]:bg-muted h-auto rounded-lg py-2"
                 >
-                  <Avatar className="h-7 w-7 rounded-md ring-1 ring-border/50">
+                  <Avatar className="ring-border/50 h-7 w-7 rounded-md ring-1">
                     <AvatarImage src={user?.avatar || ''} alt={user?.email} />
-                    <AvatarFallback className="rounded-md bg-foreground text-background text-[10px] font-semibold">
+                    <AvatarFallback className="bg-foreground text-background rounded-md text-[10px] font-semibold">
                       {userInitials}
                     </AvatarFallback>
                   </Avatar>
@@ -363,7 +362,7 @@ export function AppSidebar() {
                       {user?.email || 'm@example.com'}
                     </span>
                   </div>
-                  <ChevronsUpDown className="ml-auto size-3 text-muted-foreground group-data-[collapsible=icon]:hidden" />
+                  <ChevronsUpDown className="text-muted-foreground ml-auto size-3 group-data-[collapsible=icon]:hidden" />
                 </SidebarMenuButton>
               </DropdownMenuTrigger>
               <DropdownMenuContent
@@ -376,7 +375,7 @@ export function AppSidebar() {
                   <div className="flex items-center gap-2 px-2 py-2 text-left">
                     <Avatar className="h-8 w-8 rounded-md">
                       <AvatarImage src={user?.avatar || ''} alt={user?.email} />
-                      <AvatarFallback className="rounded-md bg-foreground text-background text-xs">
+                      <AvatarFallback className="bg-foreground text-background rounded-md text-xs">
                         {userInitials}
                       </AvatarFallback>
                     </Avatar>
@@ -408,7 +407,7 @@ export function AppSidebar() {
                 <DropdownMenuSeparator />
                 <DropdownMenuItem
                   onClick={logout}
-                  className="text-sm text-destructive focus:bg-destructive/10 focus:text-destructive"
+                  className="text-destructive focus:bg-destructive/10 focus:text-destructive text-sm"
                 >
                   <LogOut className="mr-2 size-4" />
                   Log out

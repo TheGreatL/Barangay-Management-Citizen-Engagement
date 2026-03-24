@@ -76,7 +76,7 @@ function OfficialDocumentsComponent() {
       accessorKey: 'trackingNumber',
       header: 'Tracking #',
       cell: ({ row }) => (
-        <span className="rounded-md border border-border/60 bg-muted px-1.5 py-0.5 text-xs font-medium text-muted-foreground">
+        <span className="border-border/60 bg-muted text-muted-foreground rounded-md border px-1.5 py-0.5 text-xs font-medium">
           {row.original.trackingNumber}
         </span>
       ),
@@ -86,10 +86,10 @@ function OfficialDocumentsComponent() {
       header: 'Requestor',
       cell: ({ row }) => (
         <div className="flex flex-col">
-          <span className="font-medium text-foreground">
+          <span className="text-foreground font-medium">
             {row.original.residentName}
           </span>
-          <span className="text-xs text-muted-foreground">
+          <span className="text-muted-foreground text-xs">
             ID: {row.original.residentId}
           </span>
         </div>
@@ -100,8 +100,8 @@ function OfficialDocumentsComponent() {
       header: 'Document Type',
       cell: ({ row }) => (
         <div className="flex items-center gap-2">
-          <FileText className="h-4 w-4 text-muted-foreground" />
-          <span className="text-sm font-medium text-foreground">
+          <FileText className="text-muted-foreground h-4 w-4" />
+          <span className="text-foreground text-sm font-medium">
             {row.original.type}
           </span>
         </div>
@@ -112,11 +112,16 @@ function OfficialDocumentsComponent() {
       header: 'Status',
       cell: ({ row }) => {
         const statuses = {
-          pending: 'bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-900/20 dark:text-amber-400 dark:border-amber-800',
-          processing: 'bg-sky-50 text-sky-700 border-sky-200 dark:bg-sky-900/20 dark:text-sky-400 dark:border-sky-800',
-          approved: 'bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-900/20 dark:text-emerald-400 dark:border-emerald-800',
-          rejected: 'bg-rose-50 text-rose-700 border-rose-200 dark:bg-rose-900/20 dark:text-rose-400 dark:border-rose-800',
-          ready: 'bg-violet-50 text-violet-700 border-violet-200 dark:bg-violet-900/20 dark:text-violet-400 dark:border-violet-800',
+          pending:
+            'bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-900/20 dark:text-amber-400 dark:border-amber-800',
+          processing:
+            'bg-sky-50 text-sky-700 border-sky-200 dark:bg-sky-900/20 dark:text-sky-400 dark:border-sky-800',
+          approved:
+            'bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-900/20 dark:text-emerald-400 dark:border-emerald-800',
+          rejected:
+            'bg-rose-50 text-rose-700 border-rose-200 dark:bg-rose-900/20 dark:text-rose-400 dark:border-rose-800',
+          ready:
+            'bg-violet-50 text-violet-700 border-violet-200 dark:bg-violet-900/20 dark:text-violet-400 dark:border-violet-800',
         }
         return (
           <Badge
@@ -135,7 +140,7 @@ function OfficialDocumentsComponent() {
       accessorKey: 'requestDate',
       header: 'Request Date',
       cell: ({ row }) => (
-        <div className="flex flex-col text-sm text-muted-foreground">
+        <div className="text-muted-foreground flex flex-col text-sm">
           <span>{new Date(row.original.requestDate).toLocaleDateString()}</span>
           <span className="text-xs">
             {new Date(row.original.requestDate).toLocaleTimeString([], {
@@ -215,10 +220,10 @@ function OfficialDocumentsComponent() {
       <div className="space-y-8">
         <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
           <div>
-            <h1 className="text-2xl font-semibold tracking-tight text-foreground">
+            <h1 className="text-foreground text-2xl font-semibold tracking-tight">
               Document Approvals
             </h1>
-            <p className="mt-1 text-sm text-muted-foreground">
+            <p className="text-muted-foreground mt-1 text-sm">
               Review and manage certification requests from citizens.
             </p>
           </div>
@@ -259,14 +264,14 @@ function OfficialDocumentsComponent() {
           />
         </div>
 
-        <div className="bg-card space-y-6 rounded-xl border border-border/60 p-5">
+        <div className="bg-card border-border/60 space-y-6 rounded-xl border p-5">
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
             <div className="relative w-full md:max-w-md">
-              <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <Search className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
               <input
                 type="text"
                 placeholder="Search tracking #, name, or type..."
-                className="w-full rounded-lg border border-border/60 bg-muted/30 py-2 pr-4 pl-10 text-sm transition-all outline-none focus:border-border focus:bg-background focus:ring-1 focus:ring-border/50"
+                className="border-border/60 bg-muted/30 focus:border-border focus:bg-background focus:ring-border/50 w-full rounded-lg border py-2 pr-4 pl-10 text-sm transition-all outline-none focus:ring-1"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -312,22 +317,26 @@ function SummaryCard({
   color: string
 }) {
   const colors: Record<string, string> = {
-    amber: 'bg-amber-50 text-amber-600 dark:bg-amber-900/20 dark:text-amber-400',
+    amber:
+      'bg-amber-50 text-amber-600 dark:bg-amber-900/20 dark:text-amber-400',
     blue: 'bg-sky-50 text-sky-600 dark:bg-sky-900/20 dark:text-sky-400',
-    indigo: 'bg-violet-50 text-violet-600 dark:bg-violet-900/20 dark:text-violet-400',
+    indigo:
+      'bg-violet-50 text-violet-600 dark:bg-violet-900/20 dark:text-violet-400',
     red: 'bg-rose-50 text-rose-600 dark:bg-rose-900/20 dark:text-rose-400',
   }
 
   return (
-    <div className="bg-card rounded-xl border border-border/60 p-5 transition-all hover:border-border">
+    <div className="bg-card border-border/60 hover:border-border rounded-xl border p-5 transition-all">
       <div className="mb-4 flex items-start justify-between">
         <div className={cn('rounded-lg p-2', colors[color])}>
           <Icon className="h-4 w-4" />
         </div>
       </div>
       <div>
-        <p className="mb-1 text-xs font-medium text-muted-foreground">{label}</p>
-        <span className="text-2xl font-semibold text-foreground">{value}</span>
+        <p className="text-muted-foreground mb-1 text-xs font-medium">
+          {label}
+        </p>
+        <span className="text-foreground text-2xl font-semibold">{value}</span>
       </div>
     </div>
   )

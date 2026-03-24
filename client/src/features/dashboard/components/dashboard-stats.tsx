@@ -18,14 +18,14 @@ export function DashboardStats({ stats }: DashboardStatsProps) {
       {stats.map((stat, idx) => (
         <div
           key={idx}
-          className="group relative rounded-xl border border-border/60 bg-card p-5 transition-all duration-200 hover:border-border hover:shadow-sm"
+          className="group border-border/60 bg-card hover:border-border relative rounded-xl border p-5 transition-all duration-200 hover:shadow-sm"
         >
           <div className="flex items-start justify-between">
             <div className="space-y-1">
-              <p className="text-[11px] uppercase tracking-wider font-medium text-muted-foreground/70">
+              <p className="text-muted-foreground/70 text-[11px] font-medium tracking-wider uppercase">
                 {stat.label}
               </p>
-              <p className="text-2xl font-semibold tracking-tight text-foreground">
+              <p className="text-foreground text-2xl font-semibold tracking-tight">
                 {stat.value}
               </p>
             </div>
@@ -48,7 +48,9 @@ export function DashboardStats({ stats }: DashboardStatsProps) {
           {stat.change !== undefined && (
             <p
               className={`mt-3 text-xs font-medium ${
-                stat.trend === 'up' ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400'
+                stat.trend === 'up'
+                  ? 'text-emerald-600 dark:text-emerald-400'
+                  : 'text-rose-600 dark:text-rose-400'
               }`}
             >
               {stat.trend === 'up' ? '+' : '-'}

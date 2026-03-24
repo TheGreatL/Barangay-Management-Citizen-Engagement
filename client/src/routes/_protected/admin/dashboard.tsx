@@ -64,10 +64,10 @@ function AdminDashboardComponent() {
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-semibold tracking-tight text-foreground">
+            <h1 className="text-foreground text-2xl font-semibold tracking-tight">
               Admin Dashboard
             </h1>
-            <p className="mt-1 text-sm text-muted-foreground">
+            <p className="text-muted-foreground mt-1 text-sm">
               System administration and configuration panel
             </p>
           </div>
@@ -84,18 +84,18 @@ function AdminDashboardComponent() {
             return (
               <div
                 key={idx}
-                className="rounded-xl border border-border/60 bg-card p-5 transition-all hover:border-border"
+                className="border-border/60 bg-card hover:border-border rounded-xl border p-5 transition-all"
               >
                 <div className="flex items-start justify-between">
                   <div>
-                    <p className="text-xs font-medium text-muted-foreground">
+                    <p className="text-muted-foreground text-xs font-medium">
                       {stat.label}
                     </p>
-                    <p className="mt-2 text-2xl font-semibold text-foreground">
+                    <p className="text-foreground mt-2 text-2xl font-semibold">
                       {stat.value}
                     </p>
                   </div>
-                  <Icon className="h-5 w-5 text-muted-foreground" />
+                  <Icon className="text-muted-foreground h-5 w-5" />
                 </div>
               </div>
             )
@@ -104,7 +104,7 @@ function AdminDashboardComponent() {
 
         {/* Admin Actions */}
         <div>
-          <h2 className="mb-4 text-sm font-semibold text-foreground">
+          <h2 className="text-foreground mb-4 text-sm font-semibold">
             Administration
           </h2>
           <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4">
@@ -112,14 +112,16 @@ function AdminDashboardComponent() {
               const Icon = link.icon
               return (
                 <Link key={link.href} to={link.href}>
-                  <div className="group rounded-xl border border-border/60 bg-card p-5 transition-all hover:border-border hover:shadow-sm">
-                    <div className={`inline-flex rounded-lg ${link.color} dark:bg-opacity-20 p-2.5`}>
+                  <div className="group border-border/60 bg-card hover:border-border rounded-xl border p-5 transition-all hover:shadow-sm">
+                    <div
+                      className={`inline-flex rounded-lg ${link.color} dark:bg-opacity-20 p-2.5`}
+                    >
                       <Icon className="h-5 w-5" />
                     </div>
-                    <h3 className="mt-4 text-sm font-medium text-foreground">
+                    <h3 className="text-foreground mt-4 text-sm font-medium">
                       {link.title}
                     </h3>
-                    <p className="mt-1 text-xs text-muted-foreground">
+                    <p className="text-muted-foreground mt-1 text-xs">
                       {link.description}
                     </p>
                   </div>

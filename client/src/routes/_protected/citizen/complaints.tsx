@@ -36,8 +36,10 @@ function CitizenComplaintsComponent() {
       header: 'Complaint Details',
       cell: ({ row }) => (
         <div className="flex flex-col">
-          <span className="font-medium text-foreground">{row.original.title}</span>
-          <span className="text-xs text-muted-foreground">
+          <span className="text-foreground font-medium">
+            {row.original.title}
+          </span>
+          <span className="text-muted-foreground text-xs">
             {row.original.category}
           </span>
         </div>
@@ -59,7 +61,7 @@ function CitizenComplaintsComponent() {
       accessorKey: 'updatedAt',
       header: 'Last Updated',
       cell: ({ row }) => (
-        <span className="text-sm text-muted-foreground">
+        <span className="text-muted-foreground text-sm">
           {new Date(row.original.updatedAt).toLocaleDateString()}
         </span>
       ),
@@ -120,14 +122,14 @@ function CitizenComplaintsComponent() {
           />
         </div>
 
-        <div className="flex flex-col gap-6 rounded-xl border border-border/60 bg-muted/30 p-5">
+        <div className="border-border/60 bg-muted/30 flex flex-col gap-6 rounded-xl border p-5">
           <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
             <div className="relative w-full sm:max-w-md">
-              <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <Search className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
               <input
                 type="text"
                 placeholder="Search your reports..."
-                className="w-full rounded-lg border border-border/60 bg-background py-2.5 pr-4 pl-10 text-sm transition-all outline-none focus:border-border focus:ring-1 focus:ring-border/50"
+                className="border-border/60 bg-background focus:border-border focus:ring-border/50 w-full rounded-lg border py-2.5 pr-4 pl-10 text-sm transition-all outline-none focus:ring-1"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -149,7 +151,7 @@ function CitizenComplaintsComponent() {
             </div>
           </div>
 
-          <div className="overflow-hidden rounded-xl border border-border/60 bg-card">
+          <div className="border-border/60 bg-card overflow-hidden rounded-xl border">
             <DataTable
               columns={columns}
               data={complaints}

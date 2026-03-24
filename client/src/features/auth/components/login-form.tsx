@@ -67,10 +67,10 @@ export default function LoginForm() {
   return (
     <div className="animate-in fade-in slide-in-from-bottom-4 w-full max-w-sm space-y-8 duration-700">
       <div className="space-y-2 text-center">
-        <h1 className="text-2xl font-semibold tracking-tight text-foreground">
+        <h1 className="text-foreground text-2xl font-semibold tracking-tight">
           Welcome back
         </h1>
-        <p className="text-sm text-muted-foreground">
+        <p className="text-muted-foreground text-sm">
           Enter your credentials to access your account
         </p>
       </div>
@@ -94,7 +94,7 @@ export default function LoginForm() {
           <div className="space-y-2">
             <label
               htmlFor="email"
-              className="text-xs font-medium text-foreground"
+              className="text-foreground text-xs font-medium"
             >
               Email Address
             </label>
@@ -105,7 +105,7 @@ export default function LoginForm() {
                 id="email"
                 type="email"
                 placeholder="name@example.com"
-                className="pl-9 h-10 rounded-lg border-border/60 bg-muted/30 focus:bg-background text-sm"
+                className="border-border/60 bg-muted/30 focus:bg-background h-10 rounded-lg pl-9 text-sm"
               />
             </div>
             {errors.email && (
@@ -119,13 +119,13 @@ export default function LoginForm() {
             <div className="flex items-center justify-between">
               <label
                 htmlFor="password"
-                className="text-xs font-medium text-foreground"
+                className="text-foreground text-xs font-medium"
               >
                 Password
               </label>
               <a
                 href="#"
-                className="text-xs text-muted-foreground transition-colors hover:text-foreground"
+                className="text-muted-foreground hover:text-foreground text-xs transition-colors"
               >
                 Forgot password?
               </a>
@@ -136,7 +136,7 @@ export default function LoginForm() {
                 {...register('password')}
                 id="password"
                 placeholder="Enter your password"
-                className="pl-9 h-10 rounded-lg border-border/60 bg-muted/30 focus:bg-background text-sm"
+                className="border-border/60 bg-muted/30 focus:bg-background h-10 rounded-lg pl-9 text-sm"
               />
             </div>
             {errors.password && (
@@ -150,7 +150,7 @@ export default function LoginForm() {
         <button
           disabled={mutation.isPending}
           type="submit"
-          className="relative flex w-full items-center justify-center gap-2 rounded-lg bg-foreground px-4 py-2.5 text-sm font-medium text-background transition-all hover:bg-foreground/90 active:scale-[0.98] disabled:opacity-70"
+          className="bg-foreground text-background hover:bg-foreground/90 relative flex w-full items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-all active:scale-[0.98] disabled:opacity-70"
         >
           {mutation.isPending ? (
             <Loader2 className="h-4 w-4 animate-spin" />
@@ -168,7 +168,7 @@ export default function LoginForm() {
           Don&apos;t have an account?{' '}
           <button
             onClick={() => navigate({ to: '/register' })}
-            className="font-medium text-foreground transition-colors hover:underline"
+            className="text-foreground font-medium transition-colors hover:underline"
           >
             Create an account
           </button>

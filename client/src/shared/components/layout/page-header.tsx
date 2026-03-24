@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 
 interface PageHeaderProps {
   title: string
@@ -14,20 +14,20 @@ export function PageHeader({
   action,
 }: PageHeaderProps) {
   return (
-    <div className="border-b border-border/50 bg-background">
+    <div className="border-border/50 bg-background border-b">
       <div className="flex items-center justify-between px-6 py-6 lg:px-8">
         <div className="flex items-center gap-3">
           {icon && (
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-foreground text-background">
+            <div className="bg-foreground text-background flex h-10 w-10 items-center justify-center rounded-lg">
               {icon}
             </div>
           )}
           <div>
-            <h1 className="text-xl font-semibold tracking-tight text-foreground">
+            <h1 className="text-foreground text-xl font-semibold tracking-tight">
               {title}
             </h1>
             {description && (
-              <p className="text-sm text-muted-foreground mt-0.5">
+              <p className="text-muted-foreground mt-0.5 text-sm">
                 {description}
               </p>
             )}

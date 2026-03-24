@@ -53,22 +53,22 @@ function CitizenProfileComponent() {
 
   return (
     <div className="flex flex-col">
-      <div className="relative overflow-hidden border-b border-border/60 bg-card py-10">
+      <div className="border-border/60 bg-card relative overflow-hidden border-b py-10">
         <div className="from-primary/5 absolute top-0 right-0 h-full w-1/3 bg-linear-to-l to-transparent" />
         <div className="mx-auto flex flex-col items-center gap-8 md:flex-row">
           <div className="group relative">
-            <div className="flex h-32 w-32 items-center justify-center overflow-hidden rounded-2xl border-2 border-border/60 bg-muted transition-transform duration-300 group-hover:scale-105">
-              <User className="h-16 w-16 text-muted-foreground" />
+            <div className="border-border/60 bg-muted flex h-32 w-32 items-center justify-center overflow-hidden rounded-2xl border-2 transition-transform duration-300 group-hover:scale-105">
+              <User className="text-muted-foreground h-16 w-16" />
             </div>
             <button
-              className="bg-foreground absolute right-1 bottom-1 rounded-xl p-2.5 text-background shadow-lg transition-all hover:scale-105 active:scale-95"
+              className="bg-foreground text-background absolute right-1 bottom-1 rounded-xl p-2.5 shadow-lg transition-all hover:scale-105 active:scale-95"
               title="Upload Profile Picture"
             >
               <Camera className="h-4 w-4" />
             </button>
           </div>
           <div className="flex-1 space-y-3 text-center md:text-left">
-            <h1 className="text-3xl font-semibold text-foreground">
+            <h1 className="text-foreground text-3xl font-semibold">
               {profile.firstName} {profile.lastName}
             </h1>
             <div className="flex flex-wrap items-center justify-center gap-2 md:justify-start">
@@ -96,8 +96,8 @@ function CitizenProfileComponent() {
       <div className="flex-1 py-6">
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
           <div className="space-y-6 lg:col-span-2">
-            <div className="space-y-6 rounded-xl border border-border/60 bg-card p-6">
-              <h3 className="flex items-center gap-3 text-sm font-semibold text-foreground">
+            <div className="border-border/60 bg-card space-y-6 rounded-xl border p-6">
+              <h3 className="text-foreground flex items-center gap-3 text-sm font-semibold">
                 <div className="bg-foreground/5 text-foreground flex h-8 w-8 items-center justify-center rounded-lg">
                   <User className="h-4 w-4" />
                 </div>
@@ -130,8 +130,8 @@ function CitizenProfileComponent() {
               </div>
             </div>
 
-            <div className="space-y-6 rounded-xl border border-border/60 bg-card p-6">
-              <h3 className="flex items-center gap-3 text-sm font-semibold text-foreground">
+            <div className="border-border/60 bg-card space-y-6 rounded-xl border p-6">
+              <h3 className="text-foreground flex items-center gap-3 text-sm font-semibold">
                 <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-amber-50 text-amber-600 dark:bg-amber-900/20 dark:text-amber-400">
                   <Activity className="h-4 w-4" />
                 </div>
@@ -157,13 +157,13 @@ function CitizenProfileComponent() {
           </div>
 
           <div className="space-y-6">
-            <div className="bg-foreground space-y-5 rounded-xl p-6 text-background">
+            <div className="bg-foreground text-background space-y-5 rounded-xl p-6">
               <h3 className="flex items-center gap-3 text-sm font-semibold">
                 Digital ID Card
               </h3>
-              <div className="relative flex h-40 flex-col justify-between overflow-hidden rounded-lg border border-background/20 bg-background/10 p-5 backdrop-blur-md">
+              <div className="border-background/20 bg-background/10 relative flex h-40 flex-col justify-between overflow-hidden rounded-lg border p-5 backdrop-blur-md">
                 <div className="flex items-start justify-between">
-                  <div className="h-8 w-8 rounded-lg bg-background/20" />
+                  <div className="bg-background/20 h-8 w-8 rounded-lg" />
                   <span className="text-xs font-medium opacity-60">
                     Barangay ID
                   </span>
@@ -172,12 +172,10 @@ function CitizenProfileComponent() {
                   <p className="text-sm font-medium">
                     {profile.firstName} {profile.lastName}
                   </p>
-                  <p className="text-xs opacity-60">
-                    BGY-MNL-2024-4291
-                  </p>
+                  <p className="text-xs opacity-60">BGY-MNL-2024-4291</p>
                 </div>
               </div>
-              <Button className="text-foreground h-10 w-full rounded-lg bg-background font-medium hover:bg-background/90">
+              <Button className="text-foreground bg-background hover:bg-background/90 h-10 w-full rounded-lg font-medium">
                 View QR Code
               </Button>
             </div>
@@ -198,7 +196,8 @@ function BadgeSmall({
   color: string
 }) {
   const colors: Record<string, string> = {
-    green: 'bg-emerald-50 text-emerald-600 border-emerald-100 dark:bg-emerald-900/20 dark:text-emerald-400 dark:border-emerald-800',
+    green:
+      'bg-emerald-50 text-emerald-600 border-emerald-100 dark:bg-emerald-900/20 dark:text-emerald-400 dark:border-emerald-800',
     blue: 'bg-sky-50 text-sky-600 border-sky-100 dark:bg-sky-900/20 dark:text-sky-400 dark:border-sky-800',
     slate: 'bg-muted text-muted-foreground border-border',
   }
@@ -227,11 +226,11 @@ function InfoItem({
 }) {
   return (
     <div className="space-y-1.5">
-      <div className="flex items-center gap-2 text-muted-foreground">
+      <div className="text-muted-foreground flex items-center gap-2">
         <Icon className="h-3.5 w-3.5" />
         <span className="text-xs font-medium">{label}</span>
       </div>
-      <p className="text-sm font-medium text-foreground">{value}</p>
+      <p className="text-foreground text-sm font-medium">{value}</p>
     </div>
   )
 }
@@ -250,19 +249,21 @@ function ActivityRow({
   status: string
 }) {
   return (
-    <div className="flex items-center justify-between rounded-lg border border-border/60 p-3 transition-colors hover:bg-muted/50">
+    <div className="border-border/60 hover:bg-muted/50 flex items-center justify-between rounded-lg border p-3 transition-colors">
       <div className="flex items-center gap-3">
-        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-muted text-muted-foreground">
+        <div className="bg-muted text-muted-foreground flex h-9 w-9 items-center justify-center rounded-lg">
           <Icon className="h-4 w-4" />
         </div>
         <div>
-          <p className="text-xs text-muted-foreground">{label}</p>
-          <p className="text-sm font-medium text-foreground">{title}</p>
+          <p className="text-muted-foreground text-xs">{label}</p>
+          <p className="text-foreground text-sm font-medium">{title}</p>
         </div>
       </div>
       <div className="text-right">
-        <p className="text-xs text-muted-foreground">{date}</p>
-        <p className="text-xs font-medium text-emerald-600 dark:text-emerald-400">{status}</p>
+        <p className="text-muted-foreground text-xs">{date}</p>
+        <p className="text-xs font-medium text-emerald-600 dark:text-emerald-400">
+          {status}
+        </p>
       </div>
     </div>
   )

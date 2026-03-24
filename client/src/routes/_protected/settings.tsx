@@ -60,18 +60,18 @@ function SettingsComponent() {
             return (
               <div
                 key={idx}
-                className="rounded-xl border border-border/60 bg-card"
+                className="border-border/60 bg-card rounded-xl border"
               >
-                <div className="border-b border-border/50 px-5 py-4">
+                <div className="border-border/50 border-b px-5 py-4">
                   <div className="flex items-start gap-4">
-                    <div className="rounded-lg bg-foreground/5 p-2.5 text-foreground">
+                    <div className="bg-foreground/5 text-foreground rounded-lg p-2.5">
                       <Icon className="h-4 w-4" />
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-sm font-semibold text-foreground">
+                      <h3 className="text-foreground text-sm font-semibold">
                         {section.title}
                       </h3>
-                      <p className="mt-0.5 text-xs text-muted-foreground">
+                      <p className="text-muted-foreground mt-0.5 text-xs">
                         {section.description}
                       </p>
                     </div>
@@ -83,12 +83,12 @@ function SettingsComponent() {
                     {section.items.map((item, itemIdx) => (
                       <div
                         key={itemIdx}
-                        className="flex items-center justify-between border-b border-border/40 pb-3 last:border-b-0 last:pb-0"
+                        className="border-border/40 flex items-center justify-between border-b pb-3 last:border-b-0 last:pb-0"
                       >
-                        <span className="text-sm text-muted-foreground">
+                        <span className="text-muted-foreground text-sm">
                           {item.label}
                         </span>
-                        <span className="text-sm font-medium text-foreground">
+                        <span className="text-foreground text-sm font-medium">
                           {item.value}
                         </span>
                       </div>

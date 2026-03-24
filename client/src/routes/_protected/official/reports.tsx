@@ -62,10 +62,10 @@ function OfficialReportsComponent() {
       <div className="space-y-8">
         <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
           <div>
-            <h1 className="text-2xl font-semibold tracking-tight text-foreground">
+            <h1 className="text-foreground text-2xl font-semibold tracking-tight">
               Community Analytics
             </h1>
-            <p className="mt-1 text-sm text-muted-foreground">
+            <p className="text-muted-foreground mt-1 text-sm">
               Data-driven overview of barangay operations and demographics.
             </p>
           </div>
@@ -111,13 +111,13 @@ function OfficialReportsComponent() {
         </div>
 
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
-          <Card className="overflow-hidden rounded-xl border-border/60 lg:col-span-2">
+          <Card className="border-border/60 overflow-hidden rounded-xl lg:col-span-2">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-6">
               <div className="space-y-1">
-                <CardTitle className="text-sm font-semibold text-foreground">
+                <CardTitle className="text-foreground text-sm font-semibold">
                   Weekly Trends
                 </CardTitle>
-                <CardDescription className="text-xs text-muted-foreground">
+                <CardDescription className="text-muted-foreground text-xs">
                   Activity volume for complaints and documents
                 </CardDescription>
               </div>
@@ -155,7 +155,7 @@ function OfficialReportsComponent() {
                       content={({ active, payload }) => {
                         if (active && payload && payload.length) {
                           return (
-                            <div className="rounded-lg border border-border bg-card p-2 text-xs font-medium shadow-sm">
+                            <div className="border-border bg-card rounded-lg border p-2 text-xs font-medium shadow-sm">
                               {payload.map((entry: any, index: number) => (
                                 <div
                                   key={index}
@@ -168,7 +168,7 @@ function OfficialReportsComponent() {
                                   <span className="text-muted-foreground">
                                     {entry.name}:
                                   </span>
-                                  <span className="font-medium text-foreground">
+                                  <span className="text-foreground font-medium">
                                     {entry.value}
                                   </span>
                                 </div>
@@ -197,12 +197,12 @@ function OfficialReportsComponent() {
             </CardContent>
           </Card>
 
-          <Card className="flex flex-col overflow-hidden rounded-xl border-border/60">
+          <Card className="border-border/60 flex flex-col overflow-hidden rounded-xl">
             <CardHeader className="space-y-1">
-              <CardTitle className="text-sm font-semibold text-foreground">
+              <CardTitle className="text-foreground text-sm font-semibold">
                 Demographics
               </CardTitle>
-              <CardDescription className="text-xs text-muted-foreground">
+              <CardDescription className="text-muted-foreground text-xs">
                 Age distribution of citizens
               </CardDescription>
             </CardHeader>
@@ -231,7 +231,7 @@ function OfficialReportsComponent() {
                       content={({ active, payload }) => {
                         if (active && payload && payload.length) {
                           return (
-                            <div className="rounded-lg border border-border bg-card p-2 text-xs font-medium shadow-sm">
+                            <div className="border-border bg-card rounded-lg border p-2 text-xs font-medium shadow-sm">
                               <div className="flex items-center gap-2 py-0.5">
                                 <div
                                   className="h-1.5 w-1.5 rounded-full"
@@ -242,7 +242,7 @@ function OfficialReportsComponent() {
                                 <span className="text-muted-foreground">
                                   {payload[0].name}:
                                 </span>
-                                <span className="font-medium text-foreground">
+                                <span className="text-foreground font-medium">
                                   {payload[0].value}
                                 </span>
                               </div>
@@ -262,7 +262,7 @@ function OfficialReportsComponent() {
                       className="h-2 w-2 rounded-full"
                       style={{ backgroundColor: COLORS[index % COLORS.length] }}
                     />
-                    <span className="truncate text-xs font-medium text-muted-foreground">
+                    <span className="text-muted-foreground truncate text-xs font-medium">
                       {item.name} ({Math.round(item.value / 15.5)}%)
                     </span>
                   </div>
@@ -291,29 +291,32 @@ function ReportStat({
 }) {
   const colors: Record<string, string> = {
     blue: 'bg-sky-50 text-sky-600 dark:bg-sky-900/20 dark:text-sky-400',
-    indigo: 'bg-violet-50 text-violet-600 dark:bg-violet-900/20 dark:text-violet-400',
-    green: 'bg-emerald-50 text-emerald-600 dark:bg-emerald-900/20 dark:text-emerald-400',
-    orange: 'bg-amber-50 text-amber-600 dark:bg-amber-900/20 dark:text-amber-400',
+    indigo:
+      'bg-violet-50 text-violet-600 dark:bg-violet-900/20 dark:text-violet-400',
+    green:
+      'bg-emerald-50 text-emerald-600 dark:bg-emerald-900/20 dark:text-emerald-400',
+    orange:
+      'bg-amber-50 text-amber-600 dark:bg-amber-900/20 dark:text-amber-400',
   }
 
   return (
-    <Card className="group rounded-xl border-border/60 transition-all hover:border-border">
+    <Card className="group border-border/60 hover:border-border rounded-xl transition-all">
       <CardContent className="p-5">
         <div className="mb-4 flex items-start justify-between">
-          <div
-            className={cn('rounded-lg p-2', colors[color])}
-          >
+          <div className={cn('rounded-lg p-2', colors[color])}>
             <Icon className="h-4 w-4" />
           </div>
-          <TrendingUp className="h-4 w-4 text-muted-foreground/30" />
+          <TrendingUp className="text-muted-foreground/30 h-4 w-4" />
         </div>
         <div>
-          <h4 className="mb-1 text-xs font-medium text-muted-foreground">{label}</h4>
+          <h4 className="text-muted-foreground mb-1 text-xs font-medium">
+            {label}
+          </h4>
           <div className="space-y-1">
-            <p className="text-2xl font-semibold text-foreground">
-              {value}
+            <p className="text-foreground text-2xl font-semibold">{value}</p>
+            <p className="text-xs font-medium text-emerald-600 dark:text-emerald-400">
+              {sub}
             </p>
-            <p className="text-xs font-medium text-emerald-600 dark:text-emerald-400">{sub}</p>
           </div>
         </div>
       </CardContent>

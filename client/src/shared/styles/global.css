@@ -15,71 +15,75 @@
   --card-foreground: oklch(0.15 0.01 75);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.15 0.01 75);
-  
+
   /* Primary - Sophisticated charcoal/black for premium feel */
-  --primary: oklch(0.20 0.005 75);
+  --primary: oklch(0.2 0.005 75);
   --primary-foreground: oklch(0.98 0.002 75);
-  
+
   /* Secondary - Warm neutral */
   --secondary: oklch(0.96 0.005 75);
-  --secondary-foreground: oklch(0.30 0.01 75);
-  
+  --secondary-foreground: oklch(0.3 0.01 75);
+
   /* Muted - Soft warm gray */
   --muted: oklch(0.955 0.003 75);
-  --muted-foreground: oklch(0.50 0.01 75);
-  
+  --muted-foreground: oklch(0.5 0.01 75);
+
   /* Accent - Subtle warm tone */
   --accent: oklch(0.94 0.008 75);
   --accent-foreground: oklch(0.25 0.01 75);
-  
+
   /* Status Colors - Muted and sophisticated */
   --destructive: oklch(0.55 0.15 25);
   --destructive-foreground: oklch(0.98 0.005 75);
   --success: oklch(0.55 0.12 145);
   --success-foreground: oklch(0.98 0.005 75);
-  --warning: oklch(0.70 0.12 75);
-  --warning-foreground: oklch(0.20 0.01 75);
-  
+  --warning: oklch(0.7 0.12 75);
+  --warning-foreground: oklch(0.2 0.01 75);
+
   /* Borders - Subtle and refined */
   --border: oklch(0.92 0.003 75);
   --input: oklch(0.94 0.003 75);
-  --ring: oklch(0.20 0.005 75);
-  
+  --ring: oklch(0.2 0.005 75);
+
   /* Chart colors - Sophisticated palette */
   --chart-1: oklch(0.25 0.01 75);
   --chart-2: oklch(0.45 0.01 75);
   --chart-3: oklch(0.55 0.12 145);
-  --chart-4: oklch(0.60 0.10 200);
-  --chart-5: oklch(0.50 0.08 75);
-  
+  --chart-4: oklch(0.6 0.1 200);
+  --chart-5: oklch(0.5 0.08 75);
+
   /* Sidebar - Clean and minimal */
   --sidebar: oklch(0.985 0.002 75);
-  --sidebar-foreground: oklch(0.20 0.01 75);
-  --sidebar-primary: oklch(0.20 0.005 75);
+  --sidebar-foreground: oklch(0.2 0.01 75);
+  --sidebar-primary: oklch(0.2 0.005 75);
   --sidebar-primary-foreground: oklch(0.98 0.002 75);
   --sidebar-accent: oklch(0.95 0.005 75);
-  --sidebar-accent-foreground: oklch(0.20 0.01 75);
+  --sidebar-accent-foreground: oklch(0.2 0.01 75);
   --sidebar-border: oklch(0.93 0.003 75);
-  --sidebar-ring: oklch(0.20 0.005 75);
-  
+  --sidebar-ring: oklch(0.2 0.005 75);
+
   /* Typography */
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-sans:
+    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-serif: 'Playfair Display', Georgia, serif;
   --font-mono: 'SF Mono', 'Fira Code', monospace;
-  
+
   /* Border Radius - Refined and subtle */
   --radius: 0.625rem;
-  
+
   /* Shadows - Minimal and elegant */
   --shadow-2xs: 0 1px 2px 0 rgb(0 0 0 / 0.03);
   --shadow-xs: 0 1px 3px 0 rgb(0 0 0 / 0.04);
   --shadow-sm: 0 2px 4px 0 rgb(0 0 0 / 0.04), 0 1px 2px -1px rgb(0 0 0 / 0.03);
   --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.03);
-  --shadow-md: 0 6px 10px -2px rgb(0 0 0 / 0.05), 0 3px 6px -3px rgb(0 0 0 / 0.03);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.06), 0 4px 6px -4px rgb(0 0 0 / 0.03);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.06), 0 8px 10px -6px rgb(0 0 0 / 0.03);
+  --shadow-md:
+    0 6px 10px -2px rgb(0 0 0 / 0.05), 0 3px 6px -3px rgb(0 0 0 / 0.03);
+  --shadow-lg:
+    0 10px 15px -3px rgb(0 0 0 / 0.06), 0 4px 6px -4px rgb(0 0 0 / 0.03);
+  --shadow-xl:
+    0 20px 25px -5px rgb(0 0 0 / 0.06), 0 8px 10px -6px rgb(0 0 0 / 0.03);
   --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.15);
-  
+
   /* Letter spacing - Refined typography */
   --tracking-normal: -0.011em;
   --spacing: 0.25rem;
@@ -93,54 +97,58 @@
   --card-foreground: oklch(0.95 0.005 75);
   --popover: oklch(0.15 0.005 250);
   --popover-foreground: oklch(0.95 0.005 75);
-  
+
   --primary: oklch(0.95 0.005 75);
   --primary-foreground: oklch(0.12 0.005 250);
-  
-  --secondary: oklch(0.20 0.005 250);
+
+  --secondary: oklch(0.2 0.005 250);
   --secondary-foreground: oklch(0.85 0.005 75);
-  
+
   --muted: oklch(0.18 0.005 250);
-  --muted-foreground: oklch(0.60 0.005 75);
-  
+  --muted-foreground: oklch(0.6 0.005 75);
+
   --accent: oklch(0.22 0.008 250);
-  --accent-foreground: oklch(0.90 0.005 75);
-  
-  --destructive: oklch(0.50 0.15 25);
+  --accent-foreground: oklch(0.9 0.005 75);
+
+  --destructive: oklch(0.5 0.15 25);
   --destructive-foreground: oklch(0.95 0.005 75);
-  
+
   --border: oklch(0.25 0.005 250);
-  --input: oklch(0.20 0.005 250);
-  --ring: oklch(0.70 0.005 75);
-  
+  --input: oklch(0.2 0.005 250);
+  --ring: oklch(0.7 0.005 75);
+
   --chart-1: oklch(0.85 0.005 75);
   --chart-2: oklch(0.65 0.005 75);
-  --chart-3: oklch(0.60 0.12 145);
-  --chart-4: oklch(0.65 0.10 200);
+  --chart-3: oklch(0.6 0.12 145);
+  --chart-4: oklch(0.65 0.1 200);
   --chart-5: oklch(0.55 0.08 75);
-  
+
   --sidebar: oklch(0.13 0.005 250);
-  --sidebar-foreground: oklch(0.90 0.005 75);
+  --sidebar-foreground: oklch(0.9 0.005 75);
   --sidebar-primary: oklch(0.95 0.005 75);
   --sidebar-primary-foreground: oklch(0.12 0.005 250);
-  --sidebar-accent: oklch(0.20 0.005 250);
-  --sidebar-accent-foreground: oklch(0.90 0.005 75);
+  --sidebar-accent: oklch(0.2 0.005 250);
+  --sidebar-accent-foreground: oklch(0.9 0.005 75);
   --sidebar-border: oklch(0.22 0.005 250);
-  --sidebar-ring: oklch(0.70 0.005 75);
-  
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --sidebar-ring: oklch(0.7 0.005 75);
+
+  --font-sans:
+    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-serif: 'Playfair Display', Georgia, serif;
   --font-mono: 'SF Mono', 'Fira Code', monospace;
-  
+
   --radius: 0.625rem;
-  
+
   --shadow-2xs: 0 1px 2px 0 rgb(0 0 0 / 0.3);
   --shadow-xs: 0 1px 3px 0 rgb(0 0 0 / 0.35);
   --shadow-sm: 0 2px 4px 0 rgb(0 0 0 / 0.35), 0 1px 2px -1px rgb(0 0 0 / 0.25);
   --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.25);
-  --shadow-md: 0 6px 10px -2px rgb(0 0 0 / 0.4), 0 3px 6px -3px rgb(0 0 0 / 0.25);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.45), 0 4px 6px -4px rgb(0 0 0 / 0.25);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.5), 0 8px 10px -6px rgb(0 0 0 / 0.25);
+  --shadow-md:
+    0 6px 10px -2px rgb(0 0 0 / 0.4), 0 3px 6px -3px rgb(0 0 0 / 0.25);
+  --shadow-lg:
+    0 10px 15px -3px rgb(0 0 0 / 0.45), 0 4px 6px -4px rgb(0 0 0 / 0.25);
+  --shadow-xl:
+    0 20px 25px -5px rgb(0 0 0 / 0.5), 0 8px 10px -6px rgb(0 0 0 / 0.25);
   --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.7);
 }
 
@@ -208,41 +216,50 @@
   * {
     @apply border-border outline-ring/50;
   }
-  
+
   html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
   }
-  
+
   body {
     @apply bg-background text-foreground font-sans;
     letter-spacing: var(--tracking-normal);
     font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
   }
-  
+
   /* Premium heading styles */
-  h1, h2, h3, h4, h5, h6 {
-    @apply tracking-tight font-semibold;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-semibold tracking-tight;
   }
-  
+
   h1 {
-    @apply text-3xl md:text-4xl font-bold;
+    @apply text-3xl font-bold md:text-4xl;
     letter-spacing: -0.025em;
   }
-  
+
   h2 {
     @apply text-xl md:text-2xl;
     letter-spacing: -0.02em;
   }
-  
+
   h3 {
     @apply text-lg md:text-xl;
     letter-spacing: -0.015em;
   }
-  
+
   /* Smooth transitions globally */
-  button, a, input, select, textarea {
+  button,
+  a,
+  input,
+  select,
+  textarea {
     @apply transition-all duration-200 ease-out;
   }
 }
@@ -260,21 +277,21 @@
     scrollbar-width: thin;
     scrollbar-color: var(--border) transparent;
   }
-  
+
   .scrollbar-minimal::-webkit-scrollbar {
     width: 6px;
     height: 6px;
   }
-  
+
   .scrollbar-minimal::-webkit-scrollbar-track {
     background: transparent;
   }
-  
+
   .scrollbar-minimal::-webkit-scrollbar-thumb {
     background-color: var(--border);
     border-radius: 3px;
   }
-  
+
   .scrollbar-minimal::-webkit-scrollbar-thumb:hover {
     background-color: var(--muted-foreground);
   }
