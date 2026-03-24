@@ -15,6 +15,7 @@ import {
   AvatarImage,
 } from '@/shared/components/ui/avatar'
 import { SidebarTrigger } from '@/shared/components/ui/sidebar'
+import ThemeToggle from '@/shared/components/ThemeToggle'
 
 export function Header() {
   const { user, logout } = useAuthStore()
@@ -49,7 +50,10 @@ export function Header() {
       </div>
 
       {/* Right Section: Actions & Profile */}
-      <div className="ml-4 flex items-center gap-2">
+      <div className="ml-4 flex items-center gap-1.5">
+        {/* Theme Toggle */}
+        <ThemeToggle />
+        
         {/* Notification */}
         <Button
           variant="ghost"

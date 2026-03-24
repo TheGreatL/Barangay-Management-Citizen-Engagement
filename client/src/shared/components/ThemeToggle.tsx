@@ -1,28 +1,36 @@
 import { useEffect, useState } from 'react'
+import { Sun, Moon, Monitor } from 'lucide-react'
+import { Button } from '@/shared/components/ui/button'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/shared/components/ui/dropdown-menu'
 
-type ThemeMode = 'light' | 'dark' | 'auto'
+type ThemeMode = 'light' | 'dark' | 'system'
 
 function getInitialMode(): ThemeMode {
   if (typeof window === 'undefined') {
-    return 'auto'
+    return 'system'
   }
 
   const stored = window.localStorage.getItem('theme')
-  if (stored === 'light' || stored === 'dark' || stored === 'auto') {
+  if (stored === 'light' || stored === 'dark' || stored === 'system') {
     return stored
   }
 
-  return 'auto'
+  return 'system'
 }
 
 function applyThemeMode(mode: ThemeMode) {
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-  const resolved = mode === 'auto' ? (prefersDark ? 'dark' : 'light') : mode
+  const resolved = mode === 'system' ? (prefersDark ? 'dark' : 'light') : mode
 
   document.documentElement.classList.remove('light', 'dark')
   document.documentElement.classList.add(resolved)
 
-  if (mode === 'auto') {
+  if (mode === 'system') {
     document.documentElement.removeAttribute('data-theme')
   } else {
     document.documentElement.setAttribute('data-theme', mode)
@@ -32,7 +40,7 @@ function applyThemeMode(mode: ThemeMode) {
 }
 
 export default function ThemeToggle() {
-  const [mode, setMode] = useState<ThemeMode>('auto')
+  const [mode, setMode] = useState<ThemeMode>('system')
 
   useEffect(() => {
     const initialMode = getInitialMode()
@@ -41,12 +49,12 @@ export default function ThemeToggle() {
   }, [])
 
   useEffect(() => {
-    if (mode !== 'auto') {
+    if (mode !== 'system') {
       return
     }
 
     const media = window.matchMedia('(prefers-color-scheme: dark)')
-    const onChange = () => applyThemeMode('auto')
+    const onChange = () => applyThemeMode('system')
 
     media.addEventListener('change', onChange)
     return () => {
@@ -54,28 +62,52 @@ export default function ThemeToggle() {
     }
   }, [mode])
 
-  function toggleMode() {
-    const nextMode: ThemeMode =
-      mode === 'light' ? 'dark' : mode === 'dark' ? 'auto' : 'light'
-    setMode(nextMode)
-    applyThemeMode(nextMode)
-    window.localStorage.setItem('theme', nextMode)
+  function selectMode(newMode: ThemeMode) {
+    setMode(newMode)
+    applyThemeMode(newMode)
+    window.localStorage.setItem('theme', newMode)
   }
 
-  const label =
-    mode === 'auto'
-      ? 'Theme mode: auto (system). Click to switch to light mode.'
-      : `Theme mode: ${mode}. Click to switch mode.`
+  const currentIcon = mode === 'light' ? Sun : mode === 'dark' ? Moon : Monitor
 
   return (
-    <button
-      type="button"
-      onClick={toggleMode}
-      aria-label={label}
-      title={label}
-      className="rounded-full border border-[var(--chip-line)] bg-[var(--chip-bg)] px-3 py-1.5 text-sm font-semibold text-[var(--sea-ink)] shadow-[0_8px_22px_rgba(30,90,72,0.08)] transition hover:-translate-y-0.5"
-    >
-      {mode === 'auto' ? 'Auto' : mode === 'dark' ? 'Dark' : 'Light'}
-    </button>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button
+          variant="ghost"
+          size="icon"
+          className="h-8 w-8 rounded-lg text-muted-foreground hover:text-foreground"
+        >
+          <currentIcon className="h-4 w-4" />
+          <span className="sr-only">Toggle theme</span>
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end" className="w-36 rounded-lg">
+        <DropdownMenuItem 
+          onClick={() => selectMode('light')}
+          className="text-sm gap-2 cursor-pointer"
+        >
+          <Sun className="h-4 w-4" />
+          Light
+          {mode === 'light' && <span className="ml-auto text-xs text-muted-foreground">Active</span>}
+        </DropdownMenuItem>
+        <DropdownMenuItem 
+          onClick={() => selectMode('dark')}
+          className="text-sm gap-2 cursor-pointer"
+        >
+          <Moon className="h-4 w-4" />
+          Dark
+          {mode === 'dark' && <span className="ml-auto text-xs text-muted-foreground">Active</span>}
+        </DropdownMenuItem>
+        <DropdownMenuItem 
+          onClick={() => selectMode('system')}
+          className="text-sm gap-2 cursor-pointer"
+        >
+          <Monitor className="h-4 w-4" />
+          System
+          {mode === 'system' && <span className="ml-auto text-xs text-muted-foreground">Active</span>}
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
   )
 }
