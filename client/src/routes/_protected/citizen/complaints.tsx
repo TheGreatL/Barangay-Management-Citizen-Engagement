@@ -36,8 +36,8 @@ function CitizenComplaintsComponent() {
       header: 'Complaint Details',
       cell: ({ row }) => (
         <div className="flex flex-col">
-          <span className="font-bold text-slate-900">{row.original.title}</span>
-          <span className="text-xs text-slate-500">
+          <span className="font-medium text-foreground">{row.original.title}</span>
+          <span className="text-xs text-muted-foreground">
             {row.original.category}
           </span>
         </div>
@@ -59,7 +59,7 @@ function CitizenComplaintsComponent() {
       accessorKey: 'updatedAt',
       header: 'Last Updated',
       cell: ({ row }) => (
-        <span className="text-sm font-medium text-slate-600">
+        <span className="text-sm text-muted-foreground">
           {new Date(row.original.updatedAt).toLocaleDateString()}
         </span>
       ),
@@ -120,14 +120,14 @@ function CitizenComplaintsComponent() {
           />
         </div>
 
-        <div className="flex flex-col gap-8 rounded-3xl border border-slate-100 bg-slate-50/50 p-6">
+        <div className="flex flex-col gap-6 rounded-xl border border-border/60 bg-muted/30 p-5">
           <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
             <div className="relative w-full sm:max-w-md">
-              <Search className="absolute top-1/2 left-4 h-4 w-4 -translate-y-1/2 text-slate-400" />
+              <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <input
                 type="text"
                 placeholder="Search your reports..."
-                className="focus:ring-primary/5 w-full rounded-2xl border border-slate-200 bg-white py-3 pr-4 pl-11 text-sm font-medium transition-all focus:ring-4 focus:outline-none"
+                className="w-full rounded-lg border border-border/60 bg-background py-2.5 pr-4 pl-10 text-sm transition-all outline-none focus:border-border focus:ring-1 focus:ring-border/50"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -140,7 +140,7 @@ function CitizenComplaintsComponent() {
                     variant={filterStatus === status ? 'default' : 'outline'}
                     size="sm"
                     onClick={() => setFilterStatus(status)}
-                    className="h-9 rounded-xl px-4 font-bold capitalize"
+                    className="h-8 rounded-lg px-3 text-xs font-medium capitalize"
                   >
                     {status}
                   </Button>
@@ -149,7 +149,7 @@ function CitizenComplaintsComponent() {
             </div>
           </div>
 
-          <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+          <div className="overflow-hidden rounded-xl border border-border/60 bg-card">
             <DataTable
               columns={columns}
               data={complaints}

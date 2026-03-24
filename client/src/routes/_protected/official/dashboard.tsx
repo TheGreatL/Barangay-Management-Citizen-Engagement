@@ -28,25 +28,25 @@ function OfficialDashboardComponent() {
       label: 'Pending Docs',
       value: '12',
       icon: FileText,
-      color: 'text-amber-600 bg-amber-50',
+      color: 'text-amber-600 bg-amber-50 dark:bg-amber-900/20 dark:text-amber-400',
     },
     {
       label: 'Active Reports',
       value: '8',
       icon: AlertCircle,
-      color: 'text-red-600 bg-red-50',
+      color: 'text-rose-600 bg-rose-50 dark:bg-rose-900/20 dark:text-rose-400',
     },
     {
       label: 'Total Verified',
       value: '1,248',
       icon: ShieldCheck,
-      color: 'text-green-600 bg-green-50',
+      color: 'text-emerald-600 bg-emerald-50 dark:bg-emerald-900/20 dark:text-emerald-400',
     },
     {
       label: 'Monthly Traffic',
       value: '4.2k',
       icon: BarChart3,
-      color: 'text-blue-600 bg-blue-50',
+      color: 'text-sky-600 bg-sky-50 dark:bg-sky-900/20 dark:text-sky-400',
     },
   ]
 
@@ -91,10 +91,10 @@ function OfficialDashboardComponent() {
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-slate-900">
+            <h1 className="text-2xl font-semibold tracking-tight text-foreground">
               Official Dashboard
             </h1>
-            <p className="mt-2 text-slate-600">
+            <p className="mt-1 text-sm text-muted-foreground">
               Manage resident requests and community affairs
             </p>
           </div>
@@ -104,25 +104,25 @@ function OfficialDashboardComponent() {
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4">
           {stats.map((stat, idx) => {
             const Icon = stat.icon
             return (
               <div
                 key={idx}
-                className="bg-card rounded-xl border border-slate-200 p-6 shadow-sm"
+                className="bg-card rounded-xl border border-border/60 p-5 transition-all hover:border-border"
               >
                 <div className="flex items-start justify-between">
                   <div>
-                    <p className="text-sm font-medium text-slate-500">
+                    <p className="text-xs font-medium text-muted-foreground">
                       {stat.label}
                     </p>
-                    <p className="mt-2 text-2xl font-bold text-slate-900">
+                    <p className="mt-2 text-2xl font-semibold text-foreground">
                       {stat.value}
                     </p>
                   </div>
                   <div className={cn('rounded-lg p-2', stat.color)}>
-                    <Icon className="h-5 w-5" />
+                    <Icon className="h-4 w-4" />
                   </div>
                 </div>
               </div>
@@ -130,43 +130,43 @@ function OfficialDashboardComponent() {
           })}
         </div>
 
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
           {/* Main Task List */}
           <div className="space-y-4 lg:col-span-2">
-            <h2 className="text-xl font-bold text-slate-900">
+            <h2 className="text-sm font-semibold text-foreground">
               Performance Queue
             </h2>
-            <Card className="overflow-hidden rounded-xl border-slate-200 shadow-sm">
-              <div className="divide-y border-slate-100">
+            <Card className="overflow-hidden rounded-xl border-border/60">
+              <div className="divide-y divide-border/50">
                 {recentTasks.map((task) => (
                   <div
                     key={task.id}
-                    className="group flex items-center justify-between p-4 transition-colors hover:bg-slate-50"
+                    className="group flex items-center justify-between p-4 transition-colors hover:bg-muted/50"
                   >
                     <div className="flex items-center gap-4">
                       <div
                         className={cn(
-                          'flex h-10 w-10 items-center justify-center rounded-lg border',
+                          'flex h-9 w-9 items-center justify-center rounded-lg',
                           task.status === 'pending'
-                            ? 'border-amber-100 bg-amber-50 text-amber-600'
+                            ? 'bg-amber-50 text-amber-600 dark:bg-amber-900/20 dark:text-amber-400'
                             : task.status === 'investigating'
-                              ? 'border-blue-100 bg-blue-50 text-blue-600'
-                              : 'border-green-100 bg-green-50 text-green-600',
+                              ? 'bg-sky-50 text-sky-600 dark:bg-sky-900/20 dark:text-sky-400'
+                              : 'bg-emerald-50 text-emerald-600 dark:bg-emerald-900/20 dark:text-emerald-400',
                         )}
                       >
                         {task.status === 'pending' ? (
-                          <Clock className="h-5 w-5" />
+                          <Clock className="h-4 w-4" />
                         ) : task.status === 'investigating' ? (
-                          <AlertCircle className="h-5 w-5" />
+                          <AlertCircle className="h-4 w-4" />
                         ) : (
-                          <CheckCircle2 className="h-5 w-5" />
+                          <CheckCircle2 className="h-4 w-4" />
                         )}
                       </div>
                       <div>
-                        <p className="leading-none font-semibold text-slate-900">
+                        <p className="leading-none text-sm font-medium text-foreground">
                           {task.title}
                         </p>
-                        <p className="mt-1 text-xs text-slate-500">
+                        <p className="mt-1 text-xs text-muted-foreground">
                           By {task.name} • {task.time}
                         </p>
                       </div>
@@ -174,12 +174,12 @@ function OfficialDashboardComponent() {
                     <Badge
                       variant="outline"
                       className={cn(
-                        'px-2 py-0.5 text-xs font-bold',
+                        'px-2 py-0.5 text-xs font-medium',
                         task.priority === 'high'
-                          ? 'border-red-100 bg-red-50 text-red-600'
+                          ? 'bg-rose-50 text-rose-600 border-rose-200 dark:bg-rose-900/20 dark:text-rose-400 dark:border-rose-800'
                           : task.priority === 'medium'
-                            ? 'border-blue-100 bg-blue-50 text-blue-600'
-                            : 'border-slate-100 font-medium text-slate-400',
+                            ? 'bg-sky-50 text-sky-600 border-sky-200 dark:bg-sky-900/20 dark:text-sky-400 dark:border-sky-800'
+                            : 'bg-muted text-muted-foreground border-border',
                       )}
                     >
                       {task.priority}
@@ -191,51 +191,50 @@ function OfficialDashboardComponent() {
           </div>
 
           {/* Sidebar Quick Actions */}
-          <div className="space-y-6">
-            <h3 className="text-xl font-bold text-slate-900">Portal Actions</h3>
-            <div className="grid grid-cols-1 gap-3">
+          <div className="space-y-4">
+            <h3 className="text-sm font-semibold text-foreground">Portal Actions</h3>
+            <div className="grid grid-cols-1 gap-2">
               <CommandLink
                 icon={Users}
                 label="Resident Management"
                 href="/_protected/official/residents"
-                color="bg-blue-50 text-blue-600"
+                color="bg-sky-50 text-sky-600 dark:bg-sky-900/20 dark:text-sky-400"
               />
               <CommandLink
                 icon={FileText}
                 label="Document Pipeline"
                 href="/_protected/official/documents"
-                color="bg-indigo-50 text-indigo-600"
+                color="bg-violet-50 text-violet-600 dark:bg-violet-900/20 dark:text-violet-400"
               />
               <CommandLink
                 icon={AlertCircle}
                 label="Complaint Resolution"
                 href="/_protected/official/complaints"
-                color="bg-red-50 text-red-600"
+                color="bg-rose-50 text-rose-600 dark:bg-rose-900/20 dark:text-rose-400"
               />
               <CommandLink
                 icon={BarChart3}
                 label="Performance Analytics"
                 href="/_protected/official/reports"
-                color="bg-green-50 text-green-600"
+                color="bg-emerald-50 text-emerald-600 dark:bg-emerald-900/20 dark:text-emerald-400"
               />
             </div>
 
-            <Card className="group relative overflow-hidden rounded-xl border-none bg-slate-900 p-6 text-white shadow-lg">
+            <Card className="group relative overflow-hidden rounded-xl border-border/60 bg-foreground p-5 text-background">
               <div className="relative z-10 space-y-4">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/20 bg-white/10">
-                  <Plus className="h-5 w-5" />
+                <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-background/20 bg-background/10">
+                  <Plus className="h-4 w-4" />
                 </div>
                 <div>
-                  <h4 className="mb-1 text-lg font-bold">New Announcement</h4>
-                  <p className="text-xs leading-relaxed text-slate-400">
+                  <h4 className="mb-1 text-sm font-semibold">New Announcement</h4>
+                  <p className="text-xs leading-relaxed text-background/60">
                     Broadcast news or alerts to citizens.
                   </p>
                 </div>
-                <Button className="h-10 w-full rounded-lg bg-white font-bold text-slate-900 shadow-sm transition-all hover:bg-slate-100 active:scale-95">
+                <Button className="h-9 w-full rounded-lg bg-background font-medium text-foreground transition-all hover:bg-background/90 active:scale-[0.98]">
                   Start Publishing
                 </Button>
               </div>
-              <div className="bg-primary/20 group-hover:bg-primary/30 absolute top-0 right-0 -mt-16 -mr-16 h-32 w-32 rounded-full opacity-50 blur-2xl transition-all duration-700" />
             </Card>
           </div>
         </div>
@@ -257,21 +256,21 @@ function CommandLink({
 }) {
   return (
     <Link to={href}>
-      <div className="group flex items-center justify-between rounded-xl border border-slate-200 bg-white p-4 transition-all duration-300 hover:border-slate-300 hover:shadow-sm">
+      <div className="group flex items-center justify-between rounded-lg border border-border/60 bg-card p-3 transition-all duration-200 hover:border-border hover:bg-muted/50">
         <div className="flex items-center gap-3">
           <div
             className={cn(
-              'flex h-10 w-10 items-center justify-center rounded-lg border border-transparent transition-all',
+              'flex h-9 w-9 items-center justify-center rounded-lg transition-all',
               color,
             )}
           >
-            <Icon className="h-5 w-5" />
+            <Icon className="h-4 w-4" />
           </div>
-          <span className="group-hover:text-primary text-sm font-semibold text-slate-900 transition-colors">
+          <span className="text-sm font-medium text-foreground transition-colors">
             {label}
           </span>
         </div>
-        <ArrowRight className="group-hover:text-primary h-4 w-4 text-slate-300 transition-all group-hover:translate-x-1" />
+        <ArrowRight className="h-4 w-4 text-muted-foreground transition-all group-hover:translate-x-0.5 group-hover:text-foreground" />
       </div>
     </Link>
   )

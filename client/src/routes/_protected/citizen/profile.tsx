@@ -52,26 +52,26 @@ function CitizenProfileComponent() {
   }
 
   return (
-    <div className="flex flex-col bg-slate-50/20">
-      <div className="relative overflow-hidden border-b bg-white py-12">
+    <div className="flex flex-col">
+      <div className="relative overflow-hidden border-b border-border/60 bg-card py-10">
         <div className="from-primary/5 absolute top-0 right-0 h-full w-1/3 bg-linear-to-l to-transparent" />
-        <div className="mx-auto flex flex-col items-center gap-10 md:flex-row">
+        <div className="mx-auto flex flex-col items-center gap-8 md:flex-row">
           <div className="group relative">
-            <div className="flex h-40 w-40 items-center justify-center overflow-hidden rounded-[40px] border-4 border-white bg-slate-100 shadow-2xl transition-transform duration-500 group-hover:scale-105">
-              <User className="h-20 w-20 text-slate-300" />
+            <div className="flex h-32 w-32 items-center justify-center overflow-hidden rounded-2xl border-2 border-border/60 bg-muted transition-transform duration-300 group-hover:scale-105">
+              <User className="h-16 w-16 text-muted-foreground" />
             </div>
             <button
-              className="bg-primary absolute right-2 bottom-2 rounded-2xl p-3 text-white shadow-xl transition-all hover:scale-110 active:scale-95"
+              className="bg-foreground absolute right-1 bottom-1 rounded-xl p-2.5 text-background shadow-lg transition-all hover:scale-105 active:scale-95"
               title="Upload Profile Picture"
             >
-              <Camera className="h-5 w-5" />
+              <Camera className="h-4 w-4" />
             </button>
           </div>
           <div className="flex-1 space-y-3 text-center md:text-left">
-            <h1 className="text-5xl font-bold text-slate-900">
+            <h1 className="text-3xl font-semibold text-foreground">
               {profile.firstName} {profile.lastName}
             </h1>
-            <div className="flex flex-wrap items-center justify-center gap-4 md:justify-start">
+            <div className="flex flex-wrap items-center justify-center gap-2 md:justify-start">
               <BadgeSmall
                 icon={Shield}
                 label="Verified Citizen"
@@ -86,24 +86,24 @@ function CitizenProfileComponent() {
             </div>
           </div>
           <div className="flex items-center gap-3">
-            <Button className="shadow-primary/30 h-14 rounded-2xl px-8 text-lg font-bold shadow-xl transition-all hover:scale-105 active:scale-95">
-              <Edit className="mr-2 h-5 w-5" /> Edit Profile
+            <Button className="h-10 rounded-lg px-5 text-sm font-medium transition-all active:scale-[0.98]">
+              <Edit className="mr-2 h-4 w-4" /> Edit Profile
             </Button>
           </div>
         </div>
       </div>
 
-      <div className="flex-1 py-8">
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-          <div className="space-y-8 lg:col-span-2">
-            <div className="space-y-8 rounded-[40px] border border-slate-200 bg-white p-8 shadow-sm">
-              <h3 className="flex items-center gap-3 text-xl font-bold text-slate-900">
-                <div className="bg-primary/10 text-primary flex h-8 w-8 items-center justify-center rounded-xl">
+      <div className="flex-1 py-6">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+          <div className="space-y-6 lg:col-span-2">
+            <div className="space-y-6 rounded-xl border border-border/60 bg-card p-6">
+              <h3 className="flex items-center gap-3 text-sm font-semibold text-foreground">
+                <div className="bg-foreground/5 text-foreground flex h-8 w-8 items-center justify-center rounded-lg">
                   <User className="h-4 w-4" />
                 </div>
                 Personal Information
               </h3>
-              <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 <InfoItem
                   icon={Mail}
                   label="Email Address"
@@ -130,14 +130,14 @@ function CitizenProfileComponent() {
               </div>
             </div>
 
-            <div className="space-y-8 rounded-[40px] border border-slate-200 bg-white p-8 shadow-sm">
-              <h3 className="flex items-center gap-3 text-xl font-bold text-slate-900">
-                <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-orange-50 text-orange-600">
+            <div className="space-y-6 rounded-xl border border-border/60 bg-card p-6">
+              <h3 className="flex items-center gap-3 text-sm font-semibold text-foreground">
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-amber-50 text-amber-600 dark:bg-amber-900/20 dark:text-amber-400">
                   <Activity className="h-4 w-4" />
                 </div>
                 Resident Activity
               </h3>
-              <div className="space-y-4">
+              <div className="space-y-3">
                 <ActivityRow
                   icon={FileText}
                   label="Document Request"
@@ -156,29 +156,28 @@ function CitizenProfileComponent() {
             </div>
           </div>
 
-          <div className="space-y-8">
-            <div className="bg-primary shadow-primary/20 space-y-6 rounded-[40px] p-8 text-white shadow-2xl">
-              <h3 className="flex items-center gap-3 text-xl font-bold">
+          <div className="space-y-6">
+            <div className="bg-foreground space-y-5 rounded-xl p-6 text-background">
+              <h3 className="flex items-center gap-3 text-sm font-semibold">
                 Digital ID Card
               </h3>
-              <div className="relative flex h-48 flex-col justify-between overflow-hidden rounded-3xl border border-white/20 bg-white/10 p-6 backdrop-blur-md">
-                <div className="absolute -top-10 -right-10 h-32 w-32 rounded-full bg-white/10 blur-3xl" />
+              <div className="relative flex h-40 flex-col justify-between overflow-hidden rounded-lg border border-background/20 bg-background/10 p-5 backdrop-blur-md">
                 <div className="flex items-start justify-between">
-                  <div className="h-10 w-10 rounded-lg bg-white/20" />
-                  <span className="text-xs font-bold opacity-60">
+                  <div className="h-8 w-8 rounded-lg bg-background/20" />
+                  <span className="text-xs font-medium opacity-60">
                     Barangay ID
                   </span>
                 </div>
                 <div className="space-y-1">
-                  <p className="text-sm font-bold">
+                  <p className="text-sm font-medium">
                     {profile.firstName} {profile.lastName}
                   </p>
-                  <p className="text-xs font-medium opacity-60">
+                  <p className="text-xs opacity-60">
                     BGY-MNL-2024-4291
                   </p>
                 </div>
               </div>
-              <Button className="text-primary h-14 w-full rounded-2xl bg-white font-bold hover:bg-white/90">
+              <Button className="text-foreground h-10 w-full rounded-lg bg-background font-medium hover:bg-background/90">
                 View QR Code
               </Button>
             </div>
@@ -199,19 +198,19 @@ function BadgeSmall({
   color: string
 }) {
   const colors: Record<string, string> = {
-    green: 'bg-green-50 text-green-600 border-green-100',
-    blue: 'bg-blue-50 text-blue-600 border-blue-100',
-    slate: 'bg-slate-50 text-slate-600 border-slate-100',
+    green: 'bg-emerald-50 text-emerald-600 border-emerald-100 dark:bg-emerald-900/20 dark:text-emerald-400 dark:border-emerald-800',
+    blue: 'bg-sky-50 text-sky-600 border-sky-100 dark:bg-sky-900/20 dark:text-sky-400 dark:border-sky-800',
+    slate: 'bg-muted text-muted-foreground border-border',
   }
 
   return (
     <div
       className={cn(
-        'flex items-center gap-2 rounded-2xl border px-4 py-2 text-sm font-bold shadow-sm',
+        'flex items-center gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs font-medium',
         colors[color],
       )}
     >
-      <Icon className="h-4 w-4" />
+      <Icon className="h-3.5 w-3.5" />
       {label}
     </div>
   )
@@ -227,12 +226,12 @@ function InfoItem({
   value: string
 }) {
   return (
-    <div className="space-y-2">
-      <div className="flex items-center gap-2 text-slate-400">
-        <Icon className="h-4 w-4" />
-        <span className="text-xs font-bold">{label}</span>
+    <div className="space-y-1.5">
+      <div className="flex items-center gap-2 text-muted-foreground">
+        <Icon className="h-3.5 w-3.5" />
+        <span className="text-xs font-medium">{label}</span>
       </div>
-      <p className="text-lg font-bold text-slate-800">{value}</p>
+      <p className="text-sm font-medium text-foreground">{value}</p>
     </div>
   )
 }
@@ -251,19 +250,19 @@ function ActivityRow({
   status: string
 }) {
   return (
-    <div className="flex items-center justify-between rounded-2xl border p-4 transition-colors hover:bg-slate-50">
-      <div className="flex items-center gap-4">
-        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 text-slate-500">
-          <Icon className="h-5 w-5" />
+    <div className="flex items-center justify-between rounded-lg border border-border/60 p-3 transition-colors hover:bg-muted/50">
+      <div className="flex items-center gap-3">
+        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-muted text-muted-foreground">
+          <Icon className="h-4 w-4" />
         </div>
         <div>
-          <p className="text-xs font-bold text-slate-400">{label}</p>
-          <p className="font-bold text-slate-800">{title}</p>
+          <p className="text-xs text-muted-foreground">{label}</p>
+          <p className="text-sm font-medium text-foreground">{title}</p>
         </div>
       </div>
       <div className="text-right">
-        <p className="text-xs font-bold text-slate-400">{date}</p>
-        <p className="text-xs font-bold text-green-600">{status}</p>
+        <p className="text-xs text-muted-foreground">{date}</p>
+        <p className="text-xs font-medium text-emerald-600 dark:text-emerald-400">{status}</p>
       </div>
     </div>
   )

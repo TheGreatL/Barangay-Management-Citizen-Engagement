@@ -62,18 +62,18 @@ function OfficialReportsComponent() {
       <div className="space-y-8">
         <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
           <div>
-            <h1 className="text-3xl font-bold text-slate-900">
+            <h1 className="text-2xl font-semibold tracking-tight text-foreground">
               Community Analytics
             </h1>
-            <p className="mt-1 text-slate-500">
+            <p className="mt-1 text-sm text-muted-foreground">
               Data-driven overview of barangay operations and demographics.
             </p>
           </div>
-          <div className="flex items-center gap-3">
-            <Button variant="outline">
+          <div className="flex items-center gap-2">
+            <Button variant="outline" size="sm">
               <Calendar className="mr-2 h-4 w-4" /> Date Range
             </Button>
-            <Button>
+            <Button size="sm">
               <Download className="mr-2 h-4 w-4" /> Export Insights
             </Button>
           </div>
@@ -110,14 +110,14 @@ function OfficialReportsComponent() {
           />
         </div>
 
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-          <Card className="overflow-hidden rounded-xl shadow-sm lg:col-span-2">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-7">
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+          <Card className="overflow-hidden rounded-xl border-border/60 lg:col-span-2">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-6">
               <div className="space-y-1">
-                <CardTitle className="text-xl font-bold text-slate-900">
+                <CardTitle className="text-sm font-semibold text-foreground">
                   Weekly Trends
                 </CardTitle>
-                <CardDescription className="text-xs font-medium text-slate-400">
+                <CardDescription className="text-xs text-muted-foreground">
                   Activity volume for complaints and documents
                 </CardDescription>
               </div>
@@ -135,25 +135,27 @@ function OfficialReportsComponent() {
                     <CartesianGrid
                       strokeDasharray="3 3"
                       vertical={false}
-                      stroke="#f1f5f9"
+                      className="stroke-border/50"
                     />
                     <XAxis
                       dataKey="day"
                       axisLine={false}
                       tickLine={false}
-                      tick={{ fill: '#94a3b8', fontSize: 11, fontWeight: 500 }}
+                      className="text-muted-foreground"
+                      tick={{ fontSize: 11, fontWeight: 500 }}
                       dy={10}
                     />
                     <YAxis
                       axisLine={false}
                       tickLine={false}
-                      tick={{ fill: '#94a3b8', fontSize: 11, fontWeight: 500 }}
+                      className="text-muted-foreground"
+                      tick={{ fontSize: 11, fontWeight: 500 }}
                     />
                     <Tooltip
                       content={({ active, payload }) => {
                         if (active && payload && payload.length) {
                           return (
-                            <div className="rounded-lg border bg-white p-2 text-xs font-medium shadow-sm">
+                            <div className="rounded-lg border border-border bg-card p-2 text-xs font-medium shadow-sm">
                               {payload.map((entry: any, index: number) => (
                                 <div
                                   key={index}
@@ -163,10 +165,10 @@ function OfficialReportsComponent() {
                                     className="h-1.5 w-1.5 rounded-full"
                                     style={{ backgroundColor: entry.fill }}
                                   />
-                                  <span className="text-slate-500">
+                                  <span className="text-muted-foreground">
                                     {entry.name}:
                                   </span>
-                                  <span className="font-bold text-slate-900">
+                                  <span className="font-medium text-foreground">
                                     {entry.value}
                                   </span>
                                 </div>
@@ -195,12 +197,12 @@ function OfficialReportsComponent() {
             </CardContent>
           </Card>
 
-          <Card className="flex flex-col overflow-hidden rounded-xl shadow-sm">
+          <Card className="flex flex-col overflow-hidden rounded-xl border-border/60">
             <CardHeader className="space-y-1">
-              <CardTitle className="text-xl font-bold text-slate-900">
+              <CardTitle className="text-sm font-semibold text-foreground">
                 Demographics
               </CardTitle>
-              <CardDescription className="text-xs font-medium text-slate-400">
+              <CardDescription className="text-xs text-muted-foreground">
                 Age distribution of citizens
               </CardDescription>
             </CardHeader>
@@ -229,7 +231,7 @@ function OfficialReportsComponent() {
                       content={({ active, payload }) => {
                         if (active && payload && payload.length) {
                           return (
-                            <div className="rounded-lg border bg-white p-2 text-xs font-medium shadow-sm">
+                            <div className="rounded-lg border border-border bg-card p-2 text-xs font-medium shadow-sm">
                               <div className="flex items-center gap-2 py-0.5">
                                 <div
                                   className="h-1.5 w-1.5 rounded-full"
@@ -237,10 +239,10 @@ function OfficialReportsComponent() {
                                     backgroundColor: payload[0].payload.fill,
                                   }}
                                 />
-                                <span className="text-slate-500">
+                                <span className="text-muted-foreground">
                                   {payload[0].name}:
                                 </span>
-                                <span className="font-bold text-slate-900">
+                                <span className="font-medium text-foreground">
                                   {payload[0].value}
                                 </span>
                               </div>
@@ -253,14 +255,14 @@ function OfficialReportsComponent() {
                   </PieChart>
                 </ResponsiveContainer>
               </div>
-              <div className="mt-6 grid w-full grid-cols-2 gap-x-6 gap-y-3 px-2">
+              <div className="mt-5 grid w-full grid-cols-2 gap-x-4 gap-y-2 px-2">
                 {demographicData.map((item, index) => (
                   <div key={item.name} className="flex items-center gap-2">
                     <div
                       className="h-2 w-2 rounded-full"
                       style={{ backgroundColor: COLORS[index % COLORS.length] }}
                     />
-                    <span className="truncate text-xs font-semibold text-slate-600">
+                    <span className="truncate text-xs font-medium text-muted-foreground">
                       {item.name} ({Math.round(item.value / 15.5)}%)
                     </span>
                   </div>
@@ -288,30 +290,30 @@ function ReportStat({
   color: string
 }) {
   const colors: Record<string, string> = {
-    blue: 'bg-blue-50 text-blue-600 border-blue-100',
-    indigo: 'bg-indigo-50 text-indigo-600 border-indigo-100',
-    green: 'bg-green-50 text-green-600 border-green-100',
-    orange: 'bg-orange-50 text-orange-600 border-orange-100',
+    blue: 'bg-sky-50 text-sky-600 dark:bg-sky-900/20 dark:text-sky-400',
+    indigo: 'bg-violet-50 text-violet-600 dark:bg-violet-900/20 dark:text-violet-400',
+    green: 'bg-emerald-50 text-emerald-600 dark:bg-emerald-900/20 dark:text-emerald-400',
+    orange: 'bg-amber-50 text-amber-600 dark:bg-amber-900/20 dark:text-amber-400',
   }
 
   return (
-    <Card className="group rounded-xl border shadow-sm">
-      <CardContent className="p-6">
+    <Card className="group rounded-xl border-border/60 transition-all hover:border-border">
+      <CardContent className="p-5">
         <div className="mb-4 flex items-start justify-between">
           <div
-            className={cn('rounded-lg border p-2 shadow-inner', colors[color])}
+            className={cn('rounded-lg p-2', colors[color])}
           >
-            <Icon className="h-5 w-5" />
+            <Icon className="h-4 w-4" />
           </div>
-          <TrendingUp className="h-4 w-4 text-slate-200" />
+          <TrendingUp className="h-4 w-4 text-muted-foreground/30" />
         </div>
         <div>
-          <h4 className="mb-1 text-xs font-semibold text-slate-400">{label}</h4>
+          <h4 className="mb-1 text-xs font-medium text-muted-foreground">{label}</h4>
           <div className="space-y-1">
-            <p className="text-2xl leading-none font-bold text-slate-900">
+            <p className="text-2xl font-semibold text-foreground">
               {value}
             </p>
-            <p className="text-xs font-bold text-green-600">{sub}</p>
+            <p className="text-xs font-medium text-emerald-600 dark:text-emerald-400">{sub}</p>
           </div>
         </div>
       </CardContent>

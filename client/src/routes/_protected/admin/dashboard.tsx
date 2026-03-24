@@ -64,10 +64,10 @@ function AdminDashboardComponent() {
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-slate-900">
+            <h1 className="text-2xl font-semibold tracking-tight text-foreground">
               Admin Dashboard
             </h1>
-            <p className="mt-2 text-slate-600">
+            <p className="mt-1 text-sm text-muted-foreground">
               System administration and configuration panel
             </p>
           </div>
@@ -78,24 +78,24 @@ function AdminDashboardComponent() {
         </div>
 
         {/* System Stats */}
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4">
           {systemStats.map((stat, idx) => {
             const Icon = stat.icon
             return (
               <div
                 key={idx}
-                className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm"
+                className="rounded-xl border border-border/60 bg-card p-5 transition-all hover:border-border"
               >
                 <div className="flex items-start justify-between">
                   <div>
-                    <p className="text-sm font-medium text-slate-500">
+                    <p className="text-xs font-medium text-muted-foreground">
                       {stat.label}
                     </p>
-                    <p className="mt-2 text-2xl font-bold text-slate-900">
+                    <p className="mt-2 text-2xl font-semibold text-foreground">
                       {stat.value}
                     </p>
                   </div>
-                  <Icon className="h-6 w-6 text-slate-400" />
+                  <Icon className="h-5 w-5 text-muted-foreground" />
                 </div>
               </div>
             )
@@ -104,22 +104,22 @@ function AdminDashboardComponent() {
 
         {/* Admin Actions */}
         <div>
-          <h2 className="mb-4 text-xl font-bold text-slate-900">
+          <h2 className="mb-4 text-sm font-semibold text-foreground">
             Administration
           </h2>
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4">
             {adminLinks.map((link) => {
               const Icon = link.icon
               return (
                 <Link key={link.href} to={link.href}>
-                  <div className="group rounded-lg border border-slate-200 bg-white p-6 shadow-sm transition hover:border-slate-300 hover:shadow-md">
-                    <div className={`inline-flex rounded-lg ${link.color} p-3`}>
-                      <Icon className="h-6 w-6" />
+                  <div className="group rounded-xl border border-border/60 bg-card p-5 transition-all hover:border-border hover:shadow-sm">
+                    <div className={`inline-flex rounded-lg ${link.color} dark:bg-opacity-20 p-2.5`}>
+                      <Icon className="h-5 w-5" />
                     </div>
-                    <h3 className="mt-4 font-semibold text-slate-900 group-hover:text-blue-600">
+                    <h3 className="mt-4 text-sm font-medium text-foreground">
                       {link.title}
                     </h3>
-                    <p className="mt-1 text-sm text-slate-600">
+                    <p className="mt-1 text-xs text-muted-foreground">
                       {link.description}
                     </p>
                   </div>

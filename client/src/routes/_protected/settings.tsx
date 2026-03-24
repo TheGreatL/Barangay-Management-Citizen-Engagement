@@ -54,48 +54,48 @@ function SettingsComponent() {
       />
 
       <div className="flex-1 px-6 py-8 sm:px-8">
-        <div className="mx-auto w-full max-w-4xl space-y-6">
+        <div className="mx-auto w-full max-w-4xl space-y-4">
           {settingSections.map((section, idx) => {
             const Icon = section.icon
             return (
               <div
                 key={idx}
-                className="rounded-lg border border-slate-200 bg-white"
+                className="rounded-xl border border-border/60 bg-card"
               >
-                <div className="border-b border-slate-200 px-6 py-4">
+                <div className="border-b border-border/50 px-5 py-4">
                   <div className="flex items-start gap-4">
-                    <div className="rounded-lg bg-blue-50 p-3 text-blue-600">
-                      <Icon className="h-5 w-5" />
+                    <div className="rounded-lg bg-foreground/5 p-2.5 text-foreground">
+                      <Icon className="h-4 w-4" />
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-lg font-semibold text-slate-900">
+                      <h3 className="text-sm font-semibold text-foreground">
                         {section.title}
                       </h3>
-                      <p className="mt-1 text-sm text-slate-600">
+                      <p className="mt-0.5 text-xs text-muted-foreground">
                         {section.description}
                       </p>
                     </div>
                   </div>
                 </div>
 
-                <div className="px-6 py-4">
-                  <div className="space-y-4">
+                <div className="px-5 py-4">
+                  <div className="space-y-3">
                     {section.items.map((item, itemIdx) => (
                       <div
                         key={itemIdx}
-                        className="flex items-center justify-between border-b border-slate-100 pb-4 last:border-b-0 last:pb-0"
+                        className="flex items-center justify-between border-b border-border/40 pb-3 last:border-b-0 last:pb-0"
                       >
-                        <span className="text-sm font-medium text-slate-600">
+                        <span className="text-sm text-muted-foreground">
                           {item.label}
                         </span>
-                        <span className="text-sm font-semibold text-slate-900">
+                        <span className="text-sm font-medium text-foreground">
                           {item.value}
                         </span>
                       </div>
                     ))}
                   </div>
 
-                  <div className="mt-6 flex justify-end">
+                  <div className="mt-5 flex justify-end">
                     <Button variant="outline" size="sm">
                       {section.action}
                     </Button>

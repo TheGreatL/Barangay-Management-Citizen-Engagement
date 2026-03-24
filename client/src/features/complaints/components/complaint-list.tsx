@@ -16,9 +16,9 @@ export function ComplaintList() {
 
   if (isLoading) {
     return (
-      <div className="flex flex-col items-center justify-center space-y-4 rounded-3xl border border-slate-200 bg-slate-50/50 p-12">
-        <div className="border-primary h-10 w-10 animate-spin rounded-full border-b-2" />
-        <p className="text-sm font-bold text-slate-500">
+      <div className="flex flex-col items-center justify-center space-y-4 rounded-xl border border-border/60 bg-muted/30 p-12">
+        <div className="border-foreground h-8 w-8 animate-spin rounded-full border-b-2" />
+        <p className="text-sm text-muted-foreground">
           Loading your complaints...
         </p>
       </div>
@@ -27,16 +27,16 @@ export function ComplaintList() {
 
   if (error) {
     return (
-      <div className="rounded-4xl border border-red-100/50 bg-red-50/50 p-10">
+      <div className="rounded-xl border border-rose-200/50 bg-rose-50/50 dark:bg-rose-900/10 dark:border-rose-800/50 p-8">
         <div className="flex flex-col items-center gap-4 text-center">
-          <div className="flex h-16 w-16 items-center justify-center rounded-3xl bg-red-100 text-red-600">
-            <AlertCircle className="h-8 w-8" />
+          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-rose-100 text-rose-600 dark:bg-rose-900/30 dark:text-rose-400">
+            <AlertCircle className="h-6 w-6" />
           </div>
           <div>
-            <h3 className="text-xl leading-tight font-bold text-red-900">
+            <h3 className="text-lg font-semibold text-rose-900 dark:text-rose-200">
               Failed to load complaints
             </h3>
-            <p className="mt-2 font-medium text-red-700">
+            <p className="mt-1 text-sm text-rose-700 dark:text-rose-300">
               Please try again later or contact support.
             </p>
           </div>
@@ -49,20 +49,20 @@ export function ComplaintList() {
   const totalPages = data?.meta?.totalPages || 1
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6">
       {complaints.length === 0 ? (
-        <div className="flex flex-col items-center justify-center rounded-4xl border border-dashed border-slate-300 bg-slate-50/30 p-20 text-center">
-          <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-slate-100">
-            <AlertCircle className="h-10 w-10 text-slate-400" />
+        <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-border bg-muted/30 p-16 text-center">
+          <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-muted">
+            <AlertCircle className="h-7 w-7 text-muted-foreground" />
           </div>
-          <p className="text-xl font-bold text-slate-900">No complaints yet</p>
-          <p className="mt-2 mb-8 font-medium text-slate-500">
+          <p className="text-lg font-semibold text-foreground">No complaints yet</p>
+          <p className="mt-1 mb-6 text-sm text-muted-foreground">
             Submit your first complaint to get started with the resolution
             process.
           </p>
           <Link to="/citizen/complaints-new">
-            <Button className="shadow-primary/20 h-12 rounded-2xl px-8 leading-none font-bold shadow-xl">
-              <Plus className="mr-2 h-5 w-5" />
+            <Button className="h-10 rounded-lg px-5 font-medium">
+              <Plus className="mr-2 h-4 w-4" />
               File a New Complaint
             </Button>
           </Link>
@@ -87,23 +87,25 @@ export function ComplaintList() {
       )}
 
       {totalPages > 1 && (
-        <div className="flex items-center justify-center gap-4 pt-4">
+        <div className="flex items-center justify-center gap-3 pt-4">
           <Button
             onClick={() => setPage((p) => Math.max(1, p - 1))}
             disabled={page === 1}
             variant="outline"
-            className="rounded-xl font-bold"
+            size="sm"
+            className="rounded-lg"
           >
             Previous
           </Button>
-          <span className="rounded-xl bg-slate-100 px-4 py-2 text-xs font-bold text-slate-400">
+          <span className="rounded-lg bg-muted px-3 py-1.5 text-xs font-medium text-muted-foreground">
             Page {page} of {totalPages}
           </span>
           <Button
             onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
             disabled={page === totalPages}
             variant="outline"
-            className="rounded-xl font-bold"
+            size="sm"
+            className="rounded-lg"
           >
             Next
           </Button>

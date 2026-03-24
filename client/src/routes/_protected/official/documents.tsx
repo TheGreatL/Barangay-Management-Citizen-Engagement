@@ -76,7 +76,7 @@ function OfficialDocumentsComponent() {
       accessorKey: 'trackingNumber',
       header: 'Tracking #',
       cell: ({ row }) => (
-        <span className="rounded-md border border-slate-200 bg-slate-50 px-1.5 py-0.5 text-xs font-medium text-slate-600">
+        <span className="rounded-md border border-border/60 bg-muted px-1.5 py-0.5 text-xs font-medium text-muted-foreground">
           {row.original.trackingNumber}
         </span>
       ),
@@ -86,10 +86,10 @@ function OfficialDocumentsComponent() {
       header: 'Requestor',
       cell: ({ row }) => (
         <div className="flex flex-col">
-          <span className="font-semibold text-slate-900">
+          <span className="font-medium text-foreground">
             {row.original.residentName}
           </span>
-          <span className="text-xs text-slate-400">
+          <span className="text-xs text-muted-foreground">
             ID: {row.original.residentId}
           </span>
         </div>
@@ -100,8 +100,8 @@ function OfficialDocumentsComponent() {
       header: 'Document Type',
       cell: ({ row }) => (
         <div className="flex items-center gap-2">
-          <FileText className="h-4 w-4 text-slate-400" />
-          <span className="text-sm font-medium text-slate-700">
+          <FileText className="h-4 w-4 text-muted-foreground" />
+          <span className="text-sm font-medium text-foreground">
             {row.original.type}
           </span>
         </div>
@@ -112,11 +112,11 @@ function OfficialDocumentsComponent() {
       header: 'Status',
       cell: ({ row }) => {
         const statuses = {
-          pending: 'bg-amber-50 text-amber-700 border-amber-100',
-          processing: 'bg-blue-50 text-blue-700 border-blue-100',
-          approved: 'bg-green-50 text-green-700 border-green-100',
-          rejected: 'bg-red-50 text-red-700 border-red-100',
-          ready: 'bg-indigo-50 text-indigo-700 border-indigo-100',
+          pending: 'bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-900/20 dark:text-amber-400 dark:border-amber-800',
+          processing: 'bg-sky-50 text-sky-700 border-sky-200 dark:bg-sky-900/20 dark:text-sky-400 dark:border-sky-800',
+          approved: 'bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-900/20 dark:text-emerald-400 dark:border-emerald-800',
+          rejected: 'bg-rose-50 text-rose-700 border-rose-200 dark:bg-rose-900/20 dark:text-rose-400 dark:border-rose-800',
+          ready: 'bg-violet-50 text-violet-700 border-violet-200 dark:bg-violet-900/20 dark:text-violet-400 dark:border-violet-800',
         }
         return (
           <Badge
@@ -135,9 +135,9 @@ function OfficialDocumentsComponent() {
       accessorKey: 'requestDate',
       header: 'Request Date',
       cell: ({ row }) => (
-        <div className="flex flex-col text-sm text-slate-600">
+        <div className="flex flex-col text-sm text-muted-foreground">
           <span>{new Date(row.original.requestDate).toLocaleDateString()}</span>
-          <span className="text-xs text-slate-400">
+          <span className="text-xs">
             {new Date(row.original.requestDate).toLocaleTimeString([], {
               hour: '2-digit',
               minute: '2-digit',
@@ -215,18 +215,18 @@ function OfficialDocumentsComponent() {
       <div className="space-y-8">
         <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
           <div>
-            <h1 className="text-3xl font-bold text-slate-900">
+            <h1 className="text-2xl font-semibold tracking-tight text-foreground">
               Document Approvals
             </h1>
-            <p className="mt-1 text-slate-500">
+            <p className="mt-1 text-sm text-muted-foreground">
               Review and manage certification requests from citizens.
             </p>
           </div>
-          <div className="flex items-center gap-3">
-            <Button variant="outline">
+          <div className="flex items-center gap-2">
+            <Button variant="outline" size="sm">
               <Download className="mr-2 h-4 w-4" /> Export
             </Button>
-            <Button>
+            <Button size="sm">
               <Printer className="mr-2 h-4 w-4" /> Bulk Print
             </Button>
           </div>
@@ -259,26 +259,26 @@ function OfficialDocumentsComponent() {
           />
         </div>
 
-        <div className="bg-card space-y-6 rounded-xl border border-slate-200 p-6 shadow-sm">
+        <div className="bg-card space-y-6 rounded-xl border border-border/60 p-5">
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
             <div className="relative w-full md:max-w-md">
-              <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-slate-400" />
+              <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <input
                 type="text"
                 placeholder="Search tracking #, name, or type..."
-                className="focus:ring-primary/10 w-full rounded-lg border border-slate-200 bg-slate-50/50 py-2 pr-4 pl-10 text-sm transition-all outline-none focus:ring-2"
+                className="w-full rounded-lg border border-border/60 bg-muted/30 py-2 pr-4 pl-10 text-sm transition-all outline-none focus:border-border focus:bg-background focus:ring-1 focus:ring-border/50"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
-            <div className="flex w-full items-center gap-2 overflow-x-auto md:w-auto">
+            <div className="flex w-full items-center gap-1 overflow-x-auto md:w-auto">
               {['all', 'pending', 'processing', 'ready'].map((status) => (
                 <Button
                   key={status}
                   variant={filterStatus === status ? 'default' : 'ghost'}
                   size="sm"
                   onClick={() => setFilterStatus(status)}
-                  className="h-8 rounded-lg capitalize"
+                  className="h-8 rounded-lg text-xs capitalize"
                 >
                   {status}
                 </Button>
@@ -312,22 +312,22 @@ function SummaryCard({
   color: string
 }) {
   const colors: Record<string, string> = {
-    amber: 'bg-amber-50 text-amber-600',
-    blue: 'bg-blue-50 text-blue-600',
-    indigo: 'bg-indigo-50 text-indigo-600',
-    red: 'bg-red-50 text-red-600',
+    amber: 'bg-amber-50 text-amber-600 dark:bg-amber-900/20 dark:text-amber-400',
+    blue: 'bg-sky-50 text-sky-600 dark:bg-sky-900/20 dark:text-sky-400',
+    indigo: 'bg-violet-50 text-violet-600 dark:bg-violet-900/20 dark:text-violet-400',
+    red: 'bg-rose-50 text-rose-600 dark:bg-rose-900/20 dark:text-rose-400',
   }
 
   return (
-    <div className="bg-card rounded-xl border border-slate-200 p-6 shadow-sm">
+    <div className="bg-card rounded-xl border border-border/60 p-5 transition-all hover:border-border">
       <div className="mb-4 flex items-start justify-between">
         <div className={cn('rounded-lg p-2', colors[color])}>
-          <Icon className="h-5 w-5" />
+          <Icon className="h-4 w-4" />
         </div>
       </div>
       <div>
-        <p className="mb-1 text-sm font-medium text-slate-500">{label}</p>
-        <span className="text-2xl font-bold text-slate-900">{value}</span>
+        <p className="mb-1 text-xs font-medium text-muted-foreground">{label}</p>
+        <span className="text-2xl font-semibold text-foreground">{value}</span>
       </div>
     </div>
   )

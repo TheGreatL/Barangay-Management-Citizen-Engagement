@@ -57,10 +57,10 @@ function OfficialResidentsComponent() {
       header: 'Resident Name',
       cell: ({ row }) => (
         <div className="flex flex-col">
-          <span className="font-semibold text-slate-900">
+          <span className="font-semibold text-foreground">
             {row.original.firstName} {row.original.lastName}
           </span>
-          <span className="text-xs font-medium text-slate-400">
+          <span className="text-xs font-medium text-muted-foreground">
             {row.original.residentId}
           </span>
         </div>
@@ -71,9 +71,9 @@ function OfficialResidentsComponent() {
       header: 'Status',
       cell: ({ row }) => {
         const statuses = {
-          active: 'bg-green-50 text-green-700 border-green-100',
-          inactive: 'bg-slate-50 text-slate-600 border-slate-100',
-          pending: 'bg-amber-50 text-amber-700 border-amber-100',
+          active: 'bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-900/20 dark:text-emerald-400 dark:border-emerald-800',
+          inactive: 'bg-muted text-muted-foreground border-border',
+          pending: 'bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-900/20 dark:text-amber-400 dark:border-amber-800',
         }
         return (
           <Badge
@@ -92,8 +92,8 @@ function OfficialResidentsComponent() {
       accessorKey: 'lastVerified',
       header: 'Last Verified',
       cell: ({ row }) => (
-        <div className="flex items-center gap-2 text-sm text-slate-600">
-          <ShieldCheck className="h-3.5 w-3.5 text-blue-500" />
+        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+          <ShieldCheck className="h-3.5 w-3.5 text-sky-500" />
           {new Date(row.original.lastVerified).toLocaleDateString()}
         </div>
       ),
@@ -102,7 +102,7 @@ function OfficialResidentsComponent() {
       id: 'contact',
       header: 'Contact Info',
       cell: ({ row }) => (
-        <div className="flex flex-col text-xs text-slate-500">
+        <div className="flex flex-col text-xs text-muted-foreground">
           <span>{row.original.email}</span>
           <span>{row.original.phone}</span>
         </div>
@@ -134,10 +134,10 @@ function OfficialResidentsComponent() {
       <div className="space-y-8">
         <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
           <div>
-            <h1 className="text-3xl font-bold text-slate-900">
+            <h1 className="text-2xl font-semibold tracking-tight text-foreground">
               Resident Directory
             </h1>
-            <p className="mt-1 text-slate-500">
+            <p className="mt-1 text-sm text-muted-foreground">
               Access, verify, and manage all community member profiles.
             </p>
           </div>
@@ -174,14 +174,14 @@ function OfficialResidentsComponent() {
           />
         </div>
 
-        <div className="bg-card space-y-6 rounded-xl border border-slate-200 p-6 shadow-sm">
+        <div className="bg-card space-y-6 rounded-xl border border-border/60 p-6">
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
             <div className="relative w-full sm:max-w-md">
-              <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-slate-400" />
+              <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <input
                 type="text"
                 placeholder="Search by name, ID, or email..."
-                className="focus:ring-primary/10 w-full rounded-lg border border-slate-200 bg-slate-50/50 py-2 pr-4 pl-10 text-sm transition-all outline-none focus:ring-2"
+                className="w-full rounded-lg border border-border/60 bg-muted/30 py-2 pr-4 pl-10 text-sm transition-all outline-none focus:border-border focus:bg-background focus:ring-1 focus:ring-border/50"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -189,7 +189,7 @@ function OfficialResidentsComponent() {
             <div className="flex items-center gap-2">
               <Badge
                 variant="outline"
-                className="text-xs font-bold text-slate-500"
+                className="text-xs font-medium text-muted-foreground"
               >
                 Filters
               </Badge>
@@ -224,17 +224,17 @@ function StatsTile({
   color: string
 }) {
   const colors: Record<string, string> = {
-    blue: 'bg-blue-50 text-blue-600',
-    green: 'bg-green-50 text-green-600',
-    amber: 'bg-amber-50 text-amber-600',
-    slate: 'bg-slate-50 text-slate-600',
+    blue: 'bg-sky-50 text-sky-600 dark:bg-sky-900/20 dark:text-sky-400',
+    green: 'bg-emerald-50 text-emerald-600 dark:bg-emerald-900/20 dark:text-emerald-400',
+    amber: 'bg-amber-50 text-amber-600 dark:bg-amber-900/20 dark:text-amber-400',
+    slate: 'bg-muted text-muted-foreground',
   }
 
   return (
-    <div className="bg-card rounded-xl border border-slate-200 p-6 shadow-sm">
+    <div className="bg-card rounded-xl border border-border/60 p-5 transition-all hover:border-border">
       <div className="mb-4 flex items-center justify-between">
         <div className={cn('rounded-lg p-2', colors[color])}>
-          <ShieldCheck className="h-5 w-5" />
+          <ShieldCheck className="h-4 w-4" />
         </div>
         <Badge
           variant={growth.includes('+') ? 'default' : 'secondary'}
@@ -243,8 +243,8 @@ function StatsTile({
           {growth}
         </Badge>
       </div>
-      <p className="mb-1 text-sm font-medium text-slate-500">{label}</p>
-      <h3 className="text-2xl font-bold text-slate-900">{value}</h3>
+      <p className="mb-1 text-xs font-medium text-muted-foreground">{label}</p>
+      <h3 className="text-2xl font-semibold text-foreground">{value}</h3>
     </div>
   )
 }

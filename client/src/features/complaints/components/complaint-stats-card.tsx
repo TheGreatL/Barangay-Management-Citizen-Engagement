@@ -18,23 +18,23 @@ export function ComplaintStatsCard({
   return (
     <div
       className={cn(
-        'flex h-full flex-col justify-between rounded-4xl border border-slate-100 bg-white p-6 shadow-sm transition-all hover:shadow-md',
+        'flex h-full flex-col justify-between rounded-xl border border-border/60 bg-card p-5 transition-all hover:border-border',
         className,
       )}
     >
       <div
         className={cn(
-          'flex items-center justify-center rounded-2xl p-4',
+          'flex h-10 w-10 items-center justify-center rounded-lg',
           color,
         )}
       >
-        <Icon className="h-6 w-6" />
+        <Icon className="h-5 w-5" />
       </div>
-      <div>
-        <p className="mb-1.5 text-[10px] leading-none font-bold text-slate-400">
+      <div className="mt-4">
+        <p className="mb-1 text-xs font-medium text-muted-foreground">
           {label}
         </p>
-        <p className="text-2xl leading-none font-bold text-slate-900">
+        <p className="text-2xl font-semibold text-foreground">
           {value}
         </p>
       </div>
