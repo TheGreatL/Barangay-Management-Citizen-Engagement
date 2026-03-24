@@ -14,41 +14,41 @@ interface DashboardStatsProps {
 
 export function DashboardStats({ stats }: DashboardStatsProps) {
   return (
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
       {stats.map((stat, idx) => (
         <div
           key={idx}
-          className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800"
+          className="group relative rounded-xl border border-border/60 bg-card p-5 transition-all duration-200 hover:border-border hover:shadow-sm"
         >
           <div className="flex items-start justify-between">
-            <div>
-              <p className="text-sm font-medium text-slate-600 dark:text-slate-400">
+            <div className="space-y-1">
+              <p className="text-[11px] uppercase tracking-wider font-medium text-muted-foreground/70">
                 {stat.label}
               </p>
-              <p className="mt-2 text-2xl font-bold text-slate-900 dark:text-slate-50">
+              <p className="text-2xl font-semibold tracking-tight text-foreground">
                 {stat.value}
               </p>
             </div>
             {stat.trend && (
               <div
-                className={`rounded-lg p-2 ${
+                className={`rounded-lg p-1.5 ${
                   stat.trend === 'up'
-                    ? 'bg-green-50 text-green-600 dark:bg-green-900/20'
-                    : 'bg-red-50 text-red-600 dark:bg-red-900/20'
+                    ? 'bg-emerald-50 text-emerald-600 dark:bg-emerald-900/20 dark:text-emerald-400'
+                    : 'bg-rose-50 text-rose-600 dark:bg-rose-900/20 dark:text-rose-400'
                 }`}
               >
                 {stat.trend === 'up' ? (
-                  <TrendingUp className="h-4 w-4" />
+                  <TrendingUp className="h-3.5 w-3.5" />
                 ) : (
-                  <TrendingDown className="h-4 w-4" />
+                  <TrendingDown className="h-3.5 w-3.5" />
                 )}
               </div>
             )}
           </div>
           {stat.change !== undefined && (
             <p
-              className={`mt-3 text-sm font-medium ${
-                stat.trend === 'up' ? 'text-green-600' : 'text-red-600'
+              className={`mt-3 text-xs font-medium ${
+                stat.trend === 'up' ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400'
               }`}
             >
               {stat.trend === 'up' ? '+' : '-'}

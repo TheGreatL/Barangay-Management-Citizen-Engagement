@@ -14,38 +14,20 @@ export function PageHeader({
   action,
 }: PageHeaderProps) {
   return (
-    <div
-      className="border-b"
-      style={{
-        borderColor: 'var(--color-border)',
-        backgroundColor: 'var(--color-bg-primary)',
-      }}
-    >
-      <div className="flex items-start justify-between px-6 py-8 sm:px-8">
-        <div className="flex items-start gap-4">
+    <div className="border-b border-border/50 bg-background">
+      <div className="flex items-center justify-between px-6 py-6 lg:px-8">
+        <div className="flex items-center gap-3">
           {icon && (
-            <div
-              className="mt-1 rounded-lg p-3"
-              style={{
-                backgroundColor: 'var(--color-bg-secondary)',
-                color: 'var(--color-primary)',
-              }}
-            >
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-foreground text-background">
               {icon}
             </div>
           )}
           <div>
-            <h1
-              className="text-3xl font-bold"
-              style={{ color: 'var(--color-text-primary)' }}
-            >
+            <h1 className="text-xl font-semibold tracking-tight text-foreground">
               {title}
             </h1>
             {description && (
-              <p
-                className="mt-2"
-                style={{ color: 'var(--color-text-secondary)' }}
-              >
+              <p className="text-sm text-muted-foreground mt-0.5">
                 {description}
               </p>
             )}

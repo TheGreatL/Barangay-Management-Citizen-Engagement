@@ -65,21 +65,21 @@ export default function LoginForm() {
   }
 
   return (
-    <div className="animate-in fade-in slide-in-from-bottom-4 w-full max-w-md space-y-8 duration-700">
+    <div className="animate-in fade-in slide-in-from-bottom-4 w-full max-w-sm space-y-8 duration-700">
       <div className="space-y-2 text-center">
-        <h1 className="bg-linear-to-r from-indigo-500 to-purple-600 bg-clip-text text-3xl font-bold text-transparent">
-          Welcome Back
+        <h1 className="text-2xl font-semibold tracking-tight text-foreground">
+          Welcome back
         </h1>
-        <p className="text-muted-foreground">
+        <p className="text-sm text-muted-foreground">
           Enter your credentials to access your account
         </p>
       </div>
 
       {mutation.isError && (
-        <Alert variant="destructive">
+        <Alert variant="destructive" className="rounded-lg">
           <AlertCircleIcon className="h-4 w-4" />
-          <AlertTitle>Failed to login</AlertTitle>
-          <AlertDescription>
+          <AlertTitle className="text-sm">Failed to login</AlertTitle>
+          <AlertDescription className="text-xs">
             {(
               mutation.error as Error & {
                 response?: { data?: { message?: string } }
@@ -89,29 +89,27 @@ export default function LoginForm() {
         </Alert>
       )}
 
-      {/* Error Alert */}
-
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
         <div className="space-y-4">
           <div className="space-y-2">
             <label
               htmlFor="email"
-              className="text-sm leading-none font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              className="text-xs font-medium text-foreground"
             >
               Email Address
             </label>
             <div className="relative">
-              <Mail className="text-muted-foreground absolute top-3 left-3 z-10 h-4 w-4" />
+              <Mail className="text-muted-foreground/50 absolute top-1/2 left-3 z-10 h-4 w-4 -translate-y-1/2" />
               <Input
                 {...register('email')}
                 id="email"
                 type="email"
                 placeholder="name@example.com"
-                className="pl-9"
+                className="pl-9 h-10 rounded-lg border-border/60 bg-muted/30 focus:bg-background text-sm"
               />
             </div>
             {errors.email && (
-              <p className="text-destructive animate-in fade-in zoom-in-95 text-xs font-medium">
+              <p className="text-destructive animate-in fade-in zoom-in-95 text-xs">
                 {errors.email.message}
               </p>
             )}
@@ -121,28 +119,28 @@ export default function LoginForm() {
             <div className="flex items-center justify-between">
               <label
                 htmlFor="password"
-                className="text-sm leading-none font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                className="text-xs font-medium text-foreground"
               >
                 Password
               </label>
               <a
                 href="#"
-                className="text-xs text-indigo-500 transition-colors hover:text-indigo-600"
+                className="text-xs text-muted-foreground transition-colors hover:text-foreground"
               >
                 Forgot password?
               </a>
             </div>
             <div className="relative">
-              <Lock className="text-muted-foreground absolute top-3 left-3 z-10 h-4 w-4" />
+              <Lock className="text-muted-foreground/50 absolute top-1/2 left-3 z-10 h-4 w-4 -translate-y-1/2" />
               <PasswordInput
                 {...register('password')}
                 id="password"
-                placeholder="••••••••"
-                className="pl-9"
+                placeholder="Enter your password"
+                className="pl-9 h-10 rounded-lg border-border/60 bg-muted/30 focus:bg-background text-sm"
               />
             </div>
             {errors.password && (
-              <p className="text-destructive animate-in fade-in zoom-in-95 text-xs font-medium">
+              <p className="text-destructive animate-in fade-in zoom-in-95 text-xs">
                 {errors.password.message}
               </p>
             )}
@@ -152,7 +150,7 @@ export default function LoginForm() {
         <button
           disabled={mutation.isPending}
           type="submit"
-          className="relative flex w-full items-center justify-center gap-2 rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-xl shadow-indigo-500/20 transition-all hover:bg-indigo-700 hover:shadow-indigo-500/40 active:scale-[0.98] disabled:opacity-70"
+          className="relative flex w-full items-center justify-center gap-2 rounded-lg bg-foreground px-4 py-2.5 text-sm font-medium text-background transition-all hover:bg-foreground/90 active:scale-[0.98] disabled:opacity-70"
         >
           {mutation.isPending ? (
             <Loader2 className="h-4 w-4 animate-spin" />
@@ -170,7 +168,7 @@ export default function LoginForm() {
           Don&apos;t have an account?{' '}
           <button
             onClick={() => navigate({ to: '/register' })}
-            className="font-medium text-indigo-500 transition-colors hover:text-indigo-600"
+            className="font-medium text-foreground transition-colors hover:underline"
           >
             Create an account
           </button>

@@ -1,5 +1,5 @@
 import { useAuthStore } from '@/shared/stores/auth.store'
-import { Bell, Search, Plus, Gift, ChevronDown } from 'lucide-react'
+import { Bell, Search, Plus, ChevronDown, Command } from 'lucide-react'
 import { Button } from '@/shared/components/ui/button'
 import {
   DropdownMenu,
@@ -24,84 +24,86 @@ export function Header() {
   }
 
   return (
-    <header className="border-border bg-background sticky top-0 z-20 flex h-16 w-full items-center justify-between border-b px-6 shadow-sm transition-all duration-200">
+    <header className="bg-background/80 backdrop-blur-xl sticky top-0 z-20 flex h-14 w-full items-center justify-between border-b border-border/50 px-4 lg:px-6">
       {/* Left Section: Sidebar Trigger & Search */}
-      <div className="flex flex-1 items-center gap-4">
-        <SidebarTrigger className="text-muted-foreground hover:text-foreground -ml-1" />
-        <div className="relative hidden w-full max-w-md md:block">
+      <div className="flex flex-1 items-center gap-3">
+        <SidebarTrigger className="text-muted-foreground hover:text-foreground h-8 w-8 -ml-1" />
+        
+        {/* Premium Search Bar */}
+        <div className="relative hidden w-full max-w-sm md:block">
           <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-            <Search className="text-muted-foreground h-4 w-4" />
+            <Search className="text-muted-foreground/60 h-4 w-4" />
           </div>
           <input
             type="text"
-            className="border-border bg-muted/50 placeholder-muted-foreground focus:border-primary focus:bg-background focus:ring-primary/10 block w-full rounded-lg border py-2 pr-3 pl-10 text-sm outline-hidden transition-all focus:ring-2"
-            placeholder="Search..."
+            className="bg-muted/40 placeholder-muted-foreground/60 focus:bg-background focus:ring-1 focus:ring-border block w-full rounded-lg border-0 py-2 pr-20 pl-9 text-sm outline-none transition-all"
+            placeholder="Search anything..."
           />
-          <div className="pointer-events-none absolute inset-y-0 right-0 hidden items-center pr-3 lg:flex">
-            <kbd className="border-border bg-background text-muted-foreground rounded-md border px-1.5 py-0.5 text-xs font-medium">
-              ⌘ + F
-            </kbd>
+          <div className="pointer-events-none absolute inset-y-0 right-0 hidden items-center pr-2 lg:flex">
+            <div className="flex items-center gap-0.5 rounded-md bg-background/80 px-1.5 py-1 text-[10px] font-medium text-muted-foreground/70">
+              <Command className="h-2.5 w-2.5" />
+              <span>K</span>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Right Section: Actions & Profile */}
-      <div className="ml-4 flex items-center gap-3">
-        {/* Quick Actions */}
-        <div className="border-border hidden items-center gap-2 border-r pr-4 lg:flex">
-          <Button
-            variant="ghost"
-            size="icon"
-            className="text-muted-foreground hover:text-primary h-9 w-9"
-          >
-            <Gift className="h-5 w-5" />
-          </Button>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="text-muted-foreground hover:text-primary relative h-9 w-9"
-          >
-            <Bell className="h-5 w-5" />
-            <span className="absolute top-2 right-2 flex h-2 w-2">
-              <span className="bg-error absolute inline-flex h-full w-full animate-ping rounded-full opacity-75"></span>
-              <span className="bg-error relative inline-flex h-2 w-2 rounded-full"></span>
-            </span>
-          </Button>
-          <Button size="sm" className="ml-2 items-center gap-2 shadow-sm">
-            <Plus className="h-4 w-4" />
-            <span className="hidden sm:inline">Quick Action</span>
-          </Button>
-        </div>
+      <div className="ml-4 flex items-center gap-2">
+        {/* Notification */}
+        <Button
+          variant="ghost"
+          size="icon"
+          className="text-muted-foreground hover:text-foreground relative h-8 w-8 rounded-lg"
+        >
+          <Bell className="h-4 w-4" />
+          <span className="absolute top-1.5 right-1.5 flex h-1.5 w-1.5">
+            <span className="bg-foreground absolute inline-flex h-full w-full animate-ping rounded-full opacity-75"></span>
+            <span className="bg-foreground relative inline-flex h-1.5 w-1.5 rounded-full"></span>
+          </span>
+        </Button>
+
+        {/* Quick Action - Hidden on mobile */}
+        <Button 
+          size="sm" 
+          className="hidden lg:flex h-8 px-3 text-xs font-medium bg-foreground text-background hover:bg-foreground/90 rounded-lg gap-1.5"
+        >
+          <Plus className="h-3.5 w-3.5" />
+          New Request
+        </Button>
+
+        {/* Divider */}
+        <div className="hidden lg:block h-5 w-px bg-border/60 mx-1" />
 
         {/* User Profile */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <button className="hover:bg-muted/50 flex items-center gap-3 rounded-lg p-1 text-left outline-hidden transition-colors">
-              <Avatar className="border-border h-9 w-9 border">
+            <button className="hover:bg-muted/50 flex items-center gap-2.5 rounded-lg py-1 px-1.5 text-left outline-none transition-colors">
+              <Avatar className="h-7 w-7 ring-1 ring-border/50">
                 <AvatarImage src="" />
-                <AvatarFallback className="bg-primary text-primary-foreground text-xs font-bold">
+                <AvatarFallback className="bg-foreground text-background text-[10px] font-semibold">
                   {getInitials(user?.firstName, user?.lastName)}
                 </AvatarFallback>
               </Avatar>
-              <div className="hidden flex-col pr-1 lg:flex">
-                <span className="text-foreground line-clamp-1 text-sm font-semibold">
+              <div className="hidden flex-col lg:flex">
+                <span className="text-foreground text-xs font-medium leading-none">
                   {user?.firstName} {user?.lastName}
                 </span>
-                <span className="text-muted-foreground text-xs font-medium">
+                <span className="text-muted-foreground text-[10px] mt-0.5 capitalize">
                   {user?.role.replace('_', ' ')}
                 </span>
               </div>
-              <ChevronDown className="text-muted-foreground h-4 w-4" />
+              <ChevronDown className="text-muted-foreground h-3 w-3 hidden lg:block" />
             </button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="w-56">
-            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+          <DropdownMenuContent align="end" className="w-48 rounded-lg">
+            <DropdownMenuLabel className="text-xs font-medium text-muted-foreground">My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Profile Settings</DropdownMenuItem>
-            <DropdownMenuItem>My Certificates</DropdownMenuItem>
-            <DropdownMenuItem>Support</DropdownMenuItem>
+            <DropdownMenuItem className="text-sm">Profile Settings</DropdownMenuItem>
+            <DropdownMenuItem className="text-sm">My Certificates</DropdownMenuItem>
+            <DropdownMenuItem className="text-sm">Support</DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="text-error" onClick={() => logout()}>
+            <DropdownMenuItem className="text-sm text-destructive" onClick={() => logout()}>
               Log out
             </DropdownMenuItem>
           </DropdownMenuContent>

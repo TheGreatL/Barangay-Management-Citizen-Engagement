@@ -122,77 +122,70 @@ function DashboardComponent() {
       description: 'Report issues or complaints',
       icon: AlertCircle,
       href: '/citizen/complaints',
-      color: 'bg-red-50 text-red-600 dark:bg-red-900/20 dark:text-red-400',
     },
     {
       title: 'Document Requests',
       description: 'Request barangay documents',
       icon: FileText,
       href: '/citizen/documents',
-      color: 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400',
     },
     {
       title: 'Announcements',
       description: 'Latest barangay updates',
       icon: Bell,
       href: '/citizen/announcements',
-      color:
-        'bg-yellow-50 text-yellow-600 dark:bg-yellow-900/20 dark:text-yellow-400',
     },
     {
       title: 'Services',
       description: 'Available community services',
       icon: Wrench,
       href: '/citizen/services',
-      color:
-        'bg-green-50 text-green-600 dark:bg-green-900/20 dark:text-green-400',
     },
   ]
 
   return (
-    <div className="flex flex-col bg-slate-50 dark:bg-slate-900">
+    <div className="flex flex-col min-h-full">
       <PageHeader
-        title={`Welcome back, ${user?.firstName}!`}
+        title={`Welcome back, ${user?.firstName}`}
         description="Here's what's happening in your barangay today"
-        icon={<Home className="h-6 w-6" />}
+        icon={<Home className="h-5 w-5" />}
       />
 
       {/* Main Content */}
-      <div className="flex-1 px-6 py-8 sm:px-8">
+      <div className="flex-1 px-4 py-6 lg:px-8 lg:py-8">
         <div className="mx-auto w-full max-w-7xl space-y-8">
           {/* Statistics Overview */}
-          <div>
-            <h2 className="mb-6 text-lg font-semibold text-slate-900 dark:text-slate-50">
+          <section>
+            <h2 className="text-sm font-semibold text-foreground mb-4">
               Your Activity
             </h2>
             <DashboardStats stats={stats} />
-          </div>
+          </section>
 
           {/* Quick Actions */}
-          <div>
-            <h2 className="mb-6 text-lg font-semibold text-slate-900 dark:text-slate-50">
+          <section>
+            <h2 className="text-sm font-semibold text-foreground mb-4">
               Quick Actions
             </h2>
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
               {quickLinks.map((link) => {
                 const Icon = link.icon
                 return (
                   <Link key={link.href} to={link.href}>
-                    <Card className="group h-full transition-all duration-200 hover:border-slate-300 hover:shadow-lg dark:border-slate-700 dark:bg-slate-800">
-                      <CardContent className="p-6">
-                        <div
-                          className={`inline-flex rounded-lg ${link.color} p-3`}
-                        >
-                          <Icon className="h-6 w-6" />
+                    <Card className="group h-full border-border/60 bg-card transition-all duration-200 hover:border-border hover:shadow-sm">
+                      <CardContent className="p-5">
+                        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-foreground/5 group-hover:bg-foreground group-hover:text-background transition-all duration-200">
+                          <Icon className="h-4 w-4" />
                         </div>
-                        <h3 className="mt-4 font-semibold text-slate-900 group-hover:text-blue-600 dark:text-slate-50 dark:group-hover:text-blue-400">
+                        <h3 className="mt-4 text-sm font-medium text-foreground">
                           {link.title}
                         </h3>
-                        <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">
+                        <p className="mt-1 text-xs text-muted-foreground">
                           {link.description}
                         </p>
-                        <div className="mt-4 flex items-center text-sm font-medium text-blue-600 opacity-0 transition-opacity group-hover:opacity-100 dark:text-blue-400">
-                          Get Started →
+                        <div className="mt-3 flex items-center text-xs font-medium text-foreground opacity-0 transition-all duration-200 group-hover:opacity-100">
+                          Get Started
+                          <span className="ml-1 transition-transform group-hover:translate-x-0.5">→</span>
                         </div>
                       </CardContent>
                     </Card>
@@ -200,10 +193,10 @@ function DashboardComponent() {
                 )
               })}
             </div>
-          </div>
+          </section>
 
           {/* Recent Activity and Upcoming Events */}
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
             <RecentActivity activities={recentActivities} />
             <UpcomingEvents events={upcomingEvents} />
           </div>

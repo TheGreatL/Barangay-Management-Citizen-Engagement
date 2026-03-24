@@ -17,9 +17,7 @@ import {
   UserCheck,
   History,
   ChevronsUpDown,
-  Sparkles,
   BadgeCheck,
-  CreditCard,
 } from 'lucide-react'
 import { useAuthStore } from '@/shared/stores/auth.store'
 import { cn } from '@/shared/lib/utils'
@@ -268,18 +266,18 @@ export function AppSidebar() {
   return (
     <Sidebar
       collapsible="icon"
-      className="border-sidebar-border bg-sidebar text-sidebar-foreground"
+      className="border-sidebar-border/50 bg-sidebar"
     >
-      <SidebarHeader className="border-sidebar-border border-b p-4">
+      <SidebarHeader className="border-sidebar-border/50 border-b px-4 py-5">
         <div className="flex items-center gap-3">
-          <div className="bg-primary text-primary-foreground flex h-9 w-9 shrink-0 items-center justify-center rounded-lg font-bold shadow-sm">
+          <div className="bg-foreground text-background flex h-8 w-8 shrink-0 items-center justify-center rounded-md text-xs font-bold tracking-tight">
             BM
           </div>
           <div className="flex-1 overflow-hidden group-data-[collapsible=icon]:hidden">
-            <h1 className="mb-0.5 truncate text-lg leading-tight font-bold">
+            <h1 className="truncate text-sm font-semibold tracking-tight leading-none">
               {header.title}
             </h1>
-            <p className="text-muted-foreground truncate text-xs font-medium">
+            <p className="text-muted-foreground truncate text-[11px] mt-1">
               {header.subtitle}
             </p>
           </div>
@@ -287,11 +285,11 @@ export function AppSidebar() {
       </SidebarHeader>
 
       <SidebarContent className="p-0">
-        <ScrollArea className="h-full">
-          <SidebarMenu className="px-2 py-4">
+        <ScrollArea className="h-full scrollbar-minimal">
+          <SidebarMenu className="px-3 py-4">
             {navGroups.map((group, groupIdx) => (
               <SidebarGroup key={group.label}>
-                <SidebarGroupLabel className="px-3 text-sm font-bold group-data-[collapsible=icon]:hidden">
+                <SidebarGroupLabel className="px-2 text-[10px] uppercase tracking-wider font-medium text-muted-foreground/70 mb-2 group-data-[collapsible=icon]:hidden">
                   {group.label}
                 </SidebarGroupLabel>
                 <SidebarGroupContent>
@@ -304,24 +302,25 @@ export function AppSidebar() {
                             asChild
                             isActive={active}
                             tooltip={item.label}
-                            className="w-full justify-start rounded-md px-3 transition-colors duration-200"
+                            className={cn(
+                              "w-full justify-start rounded-lg px-2.5 py-2 h-9 transition-all duration-150",
+                              active 
+                                ? "bg-foreground text-background font-medium" 
+                                : "hover:bg-muted/60 text-muted-foreground hover:text-foreground"
+                            )}
                           >
                             <Link to={item.href}>
-                              <span
-                                className={cn(
-                                  'mr-2.5 transition-colors',
-                                  active
-                                    ? 'text-sidebar-accent-foreground'
-                                    : 'text-sidebar-foreground/60 group-hover/menu-button:text-sidebar-accent-foreground',
-                                )}
-                              >
+                              <span className="mr-2.5">
                                 {item.icon}
                               </span>
-                              <span className="flex-1 truncate text-sm font-medium group-data-[collapsible=icon]:hidden">
+                              <span className="flex-1 truncate text-[13px] group-data-[collapsible=icon]:hidden">
                                 {item.label}
                               </span>
                               {item.badge && (
-                                <span className="bg-primary/10 text-primary ml-auto flex h-5 min-w-5 items-center justify-center rounded-md px-1 text-xs font-bold group-data-[collapsible=icon]:hidden">
+                                <span className={cn(
+                                  "ml-auto flex h-4 min-w-4 items-center justify-center rounded px-1 text-[10px] font-medium group-data-[collapsible=icon]:hidden",
+                                  active ? "bg-background/20 text-background" : "bg-muted text-muted-foreground"
+                                )}>
                                   {item.badge}
                                 </span>
                               )}
@@ -333,7 +332,7 @@ export function AppSidebar() {
                   </SidebarMenu>
                 </SidebarGroupContent>
                 {groupIdx < navGroups.length - 1 && (
-                  <SidebarSeparator className="bg-sidebar-border/50 my-4 group-data-[collapsible=icon]:hidden" />
+                  <SidebarSeparator className="bg-border/40 my-4 group-data-[collapsible=icon]:hidden" />
                 )}
               </SidebarGroup>
             ))}
@@ -341,48 +340,48 @@ export function AppSidebar() {
         </ScrollArea>
       </SidebarContent>
 
-      <SidebarFooter className="border-sidebar-border border-t p-4">
+      <SidebarFooter className="border-sidebar-border/50 border-t px-3 py-3">
         <SidebarMenu>
           <SidebarMenuItem>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <SidebarMenuButton
                   size="lg"
-                  className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+                  className="data-[state=open]:bg-muted rounded-lg h-auto py-2"
                 >
-                  <Avatar className="h-8 w-8 rounded-lg">
+                  <Avatar className="h-7 w-7 rounded-md ring-1 ring-border/50">
                     <AvatarImage src={user?.avatar || ''} alt={user?.email} />
-                    <AvatarFallback className="rounded-lg">
+                    <AvatarFallback className="rounded-md bg-foreground text-background text-[10px] font-semibold">
                       {userInitials}
                     </AvatarFallback>
                   </Avatar>
-                  <div className="grid flex-1 text-left text-sm leading-tight group-data-[collapsible=icon]:hidden">
-                    <span className="truncate font-semibold">
+                  <div className="grid flex-1 text-left leading-tight group-data-[collapsible=icon]:hidden">
+                    <span className="truncate text-xs font-medium">
                       {user?.email || 'User'}
                     </span>
-                    <span className="text-muted-foreground truncate text-xs">
+                    <span className="text-muted-foreground truncate text-[10px]">
                       {user?.email || 'm@example.com'}
                     </span>
                   </div>
-                  <ChevronsUpDown className="ml-auto size-4 group-data-[collapsible=icon]:hidden" />
+                  <ChevronsUpDown className="ml-auto size-3 text-muted-foreground group-data-[collapsible=icon]:hidden" />
                 </SidebarMenuButton>
               </DropdownMenuTrigger>
               <DropdownMenuContent
-                className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg"
+                className="w-(--radix-dropdown-menu-trigger-width) min-w-52 rounded-lg"
                 side="top"
                 align="end"
-                sideOffset={4}
+                sideOffset={8}
               >
                 <DropdownMenuLabel className="p-0 font-normal">
-                  <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-                    <Avatar className="h-8 w-8 rounded-lg">
+                  <div className="flex items-center gap-2 px-2 py-2 text-left">
+                    <Avatar className="h-8 w-8 rounded-md">
                       <AvatarImage src={user?.avatar || ''} alt={user?.email} />
-                      <AvatarFallback className="rounded-lg">
+                      <AvatarFallback className="rounded-md bg-foreground text-background text-xs">
                         {userInitials}
                       </AvatarFallback>
                     </Avatar>
-                    <div className="grid flex-1 text-left text-sm leading-tight">
-                      <span className="truncate font-semibold">
+                    <div className="grid flex-1 text-left leading-tight">
+                      <span className="truncate text-sm font-medium">
                         {user?.email || 'User'}
                       </span>
                       <span className="text-muted-foreground truncate text-xs">
@@ -393,30 +392,23 @@ export function AppSidebar() {
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
-                  <DropdownMenuItem>
-                    <Sparkles className="mr-2 size-4" />
-                    Upgrade to Pro
-                  </DropdownMenuItem>
-                </DropdownMenuGroup>
-                <DropdownMenuSeparator />
-                <DropdownMenuGroup>
-                  <DropdownMenuItem>
+                  <DropdownMenuItem className="text-sm">
                     <BadgeCheck className="mr-2 size-4" />
                     Account
                   </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <CreditCard className="mr-2 size-4" />
-                    Billing
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
+                  <DropdownMenuItem className="text-sm">
                     <Bell className="mr-2 size-4" />
                     Notifications
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="text-sm">
+                    <Settings className="mr-2 size-4" />
+                    Settings
                   </DropdownMenuItem>
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem
                   onClick={logout}
-                  className="text-destructive focus:bg-destructive/10 focus:text-destructive"
+                  className="text-sm text-destructive focus:bg-destructive/10 focus:text-destructive"
                 >
                   <LogOut className="mr-2 size-4" />
                   Log out

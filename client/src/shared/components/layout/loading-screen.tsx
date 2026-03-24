@@ -1,16 +1,15 @@
 export function LoadingScreen() {
   return (
-    <div className="animate-in fade-in fixed inset-0 z-100 flex items-center justify-center bg-white/60 backdrop-blur-[2px] duration-300">
+    <div className="animate-in fade-in fixed inset-0 z-100 flex items-center justify-center bg-background/80 backdrop-blur-sm duration-300">
       <div className="flex flex-col items-center gap-4">
-        <div className="relative flex h-16 w-16">
-          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-indigo-400 opacity-20"></span>
-          <div className="relative inline-flex h-16 w-16 animate-spin rounded-full border-4 border-indigo-600 border-t-transparent"></div>
+        <div className="relative flex h-10 w-10">
+          <div className="relative inline-flex h-10 w-10 animate-spin rounded-full border-2 border-foreground/20 border-t-foreground"></div>
         </div>
         <div className="flex flex-col items-center gap-1">
-          <p className="animate-pulse text-sm font-semibold text-indigo-900">
-            Loading...
+          <p className="text-sm font-medium text-foreground">
+            Loading
           </p>
-          <p className="text-xs text-slate-400">Please wait a moment</p>
+          <p className="text-xs text-muted-foreground">Please wait a moment</p>
         </div>
       </div>
     </div>

@@ -12,10 +12,10 @@ export function MainLayout({ children }: MainLayoutProps) {
     <SidebarProvider>
       <div className="bg-background flex min-h-screen w-full">
         <AppSidebar />
-        <main className="flex flex-1 flex-col">
+        <main className="flex flex-1 flex-col overflow-hidden">
           <Header />
-          <div className="flex-1">
-            <div className="animate-in fade-in p-4 lg:p-8">{children}</div>
+          <div className="flex-1 overflow-auto scrollbar-minimal">
+            <div className="animate-in fade-in duration-300">{children}</div>
           </div>
         </main>
       </div>
