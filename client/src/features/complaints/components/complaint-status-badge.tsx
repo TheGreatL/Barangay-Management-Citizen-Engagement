@@ -41,7 +41,7 @@ export function ComplaintStatusBadge({
     <Badge
       variant="outline"
       className={cn(
-        'h-5 border px-2 text-[10px] font-black shadow-sm',
+        'h-5 border px-2 text-[10px] font-bold shadow-sm',
         variantMap[status].className,
         className,
       )}

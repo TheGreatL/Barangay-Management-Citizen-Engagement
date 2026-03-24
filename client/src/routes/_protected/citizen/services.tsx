@@ -93,7 +93,7 @@ function ServicesComponent() {
     <div className="space-y-8 py-8">
       <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
         <div>
-          <h1 className="text-4xl font-black">Community Services</h1>
+          <h1 className="text-4xl font-bold">Community Services</h1>
           <p className="text-muted-foreground mt-2 text-lg font-medium">
             Discover programs and utilities provided by your Barangay.
           </p>
@@ -119,7 +119,7 @@ function ServicesComponent() {
               >
                 <category.icon className="h-8 w-8" />
               </div>
-              <h2 className="group-hover:text-primary ml-4 flex-1 text-2xl font-black transition-colors">
+              <h2 className="group-hover:text-primary ml-4 flex-1 text-2xl font-bold transition-colors">
                 {category.title}
               </h2>
               <ArrowRight className="text-muted-foreground group-hover:text-primary h-6 w-6 translate-x-1 transition-all group-hover:translate-x-2" />
@@ -137,7 +137,7 @@ function ServicesComponent() {
                     </h4>
                     <Badge
                       variant="outline"
-                      className="h-4 bg-white px-1.5 text-xs font-black shadow-xs"
+                      className="h-4 bg-white px-1.5 text-xs font-bold shadow-xs"
                     >
                       {service.tag}
                     </Badge>
@@ -205,10 +205,10 @@ function ServiceQuickStat({
     <div className="flex items-center gap-3 px-4 py-2">
       <div className={cn('h-2 w-2 rounded-full', colors[color])} />
       <div className="leading-none">
-        <p className="text-muted-foreground text-xs leading-none font-black">
+        <p className="text-muted-foreground text-xs leading-none font-bold">
           {label}
         </p>
-        <p className="text-lg font-black">{value}</p>
+        <p className="text-lg font-bold">{value}</p>
       </div>
     </div>
   )
@@ -236,7 +236,7 @@ function PromotionCard({
     >
       <div className="relative z-10">
         <Icon className="mb-4 h-10 w-10 opacity-80" />
-        <h3 className="mb-2 text-xl font-black">{title}</h3>
+        <h3 className="mb-2 text-xl font-bold">{title}</h3>
         <p className="max-w-50 text-sm leading-relaxed font-medium opacity-70">
           {description}
         </p>

@@ -68,7 +68,7 @@ function CitizenMapComponent() {
             <div className="bg-primary/10 text-primary mx-auto flex h-16 w-16 animate-pulse items-center justify-center rounded-full">
               <Navigation className="h-8 w-8" />
             </div>
-            <h2 className="text-2xl font-black">Interactive Map Preview</h2>
+            <h2 className="text-2xl font-bold">Interactive Map Preview</h2>
             <p className="text-muted-foreground leading-relaxed font-medium">
               Explore your barangay's critical infrastructure, evacuation
               routes, and community facilities in real-time.

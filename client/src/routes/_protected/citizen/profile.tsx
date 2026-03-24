@@ -68,7 +68,7 @@ function CitizenProfileComponent() {
             </button>
           </div>
           <div className="flex-1 space-y-3 text-center md:text-left">
-            <h1 className="text-5xl font-black text-slate-900">
+            <h1 className="text-5xl font-bold text-slate-900">
               {profile.firstName} {profile.lastName}
             </h1>
             <div className="flex flex-wrap items-center justify-center gap-4 md:justify-start">
@@ -86,7 +86,7 @@ function CitizenProfileComponent() {
             </div>
           </div>
           <div className="flex items-center gap-3">
-            <Button className="shadow-primary/30 h-14 rounded-2xl px-8 text-lg font-black shadow-xl transition-all hover:scale-105 active:scale-95">
+            <Button className="shadow-primary/30 h-14 rounded-2xl px-8 text-lg font-bold shadow-xl transition-all hover:scale-105 active:scale-95">
               <Edit className="mr-2 h-5 w-5" /> Edit Profile
             </Button>
           </div>
@@ -97,7 +97,7 @@ function CitizenProfileComponent() {
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div className="space-y-8 lg:col-span-2">
             <div className="space-y-8 rounded-[40px] border border-slate-200 bg-white p-8 shadow-sm">
-              <h3 className="flex items-center gap-3 text-xl font-black text-slate-900">
+              <h3 className="flex items-center gap-3 text-xl font-bold text-slate-900">
                 <div className="bg-primary/10 text-primary flex h-8 w-8 items-center justify-center rounded-xl">
                   <User className="h-4 w-4" />
                 </div>
@@ -131,7 +131,7 @@ function CitizenProfileComponent() {
             </div>
 
             <div className="space-y-8 rounded-[40px] border border-slate-200 bg-white p-8 shadow-sm">
-              <h3 className="flex items-center gap-3 text-xl font-black text-slate-900">
+              <h3 className="flex items-center gap-3 text-xl font-bold text-slate-900">
                 <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-orange-50 text-orange-600">
                   <Activity className="h-4 w-4" />
                 </div>
@@ -158,19 +158,19 @@ function CitizenProfileComponent() {
 
           <div className="space-y-8">
             <div className="bg-primary shadow-primary/20 space-y-6 rounded-[40px] p-8 text-white shadow-2xl">
-              <h3 className="flex items-center gap-3 text-xl font-black">
+              <h3 className="flex items-center gap-3 text-xl font-bold">
                 Digital ID Card
               </h3>
               <div className="relative flex h-48 flex-col justify-between overflow-hidden rounded-3xl border border-white/20 bg-white/10 p-6 backdrop-blur-md">
                 <div className="absolute -top-10 -right-10 h-32 w-32 rounded-full bg-white/10 blur-3xl" />
                 <div className="flex items-start justify-between">
                   <div className="h-10 w-10 rounded-lg bg-white/20" />
-                  <span className="text-xs font-black opacity-60">
+                  <span className="text-xs font-bold opacity-60">
                     Barangay ID
                   </span>
                 </div>
                 <div className="space-y-1">
-                  <p className="text-sm font-black">
+                  <p className="text-sm font-bold">
                     {profile.firstName} {profile.lastName}
                   </p>
                   <p className="text-xs font-medium opacity-60">
@@ -178,7 +178,7 @@ function CitizenProfileComponent() {
                   </p>
                 </div>
               </div>
-              <Button className="text-primary h-14 w-full rounded-2xl bg-white font-black hover:bg-white/90">
+              <Button className="text-primary h-14 w-full rounded-2xl bg-white font-bold hover:bg-white/90">
                 View QR Code
               </Button>
             </div>
@@ -230,7 +230,7 @@ function InfoItem({
     <div className="space-y-2">
       <div className="flex items-center gap-2 text-slate-400">
         <Icon className="h-4 w-4" />
-        <span className="text-xs font-black">{label}</span>
+        <span className="text-xs font-bold">{label}</span>
       </div>
       <p className="text-lg font-bold text-slate-800">{value}</p>
     </div>
@@ -257,13 +257,13 @@ function ActivityRow({
           <Icon className="h-5 w-5" />
         </div>
         <div>
-          <p className="text-xs font-black text-slate-400">{label}</p>
+          <p className="text-xs font-bold text-slate-400">{label}</p>
           <p className="font-bold text-slate-800">{title}</p>
         </div>
       </div>
       <div className="text-right">
         <p className="text-xs font-bold text-slate-400">{date}</p>
-        <p className="text-xs font-black text-green-600">{status}</p>
+        <p className="text-xs font-bold text-green-600">{status}</p>
       </div>
     </div>
   )

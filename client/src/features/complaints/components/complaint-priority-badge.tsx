@@ -23,7 +23,7 @@ export function ComplaintPriorityBadge({
     <Badge
       variant="outline"
       className={cn(
-        'flex h-5 items-center gap-1.5 px-2 py-0.5 text-[10px] font-black',
+        'flex h-5 items-center gap-1.5 px-2 py-0.5 text-[10px] font-bold',
         config[priority],
         className,
       )}

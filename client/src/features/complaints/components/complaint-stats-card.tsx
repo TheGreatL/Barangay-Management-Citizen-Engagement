@@ -31,10 +31,10 @@ export function ComplaintStatsCard({
         <Icon className="h-6 w-6" />
       </div>
       <div>
-        <p className="mb-1.5 text-[10px] leading-none font-black text-slate-400">
+        <p className="mb-1.5 text-[10px] leading-none font-bold text-slate-400">
           {label}
         </p>
-        <p className="text-2xl leading-none font-black text-slate-900">
+        <p className="text-2xl leading-none font-bold text-slate-900">
           {value}
         </p>
       </div>

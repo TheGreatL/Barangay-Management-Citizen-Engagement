@@ -62,7 +62,7 @@ function AdminComplaintsComponent() {
           <span className="max-w-50 truncate font-bold text-slate-900">
             {row.original.title}
           </span>
-          <span className="text-[10px] font-black text-slate-400">
+          <span className="text-[10px] font-bold text-slate-400">
             ID: {row.original.id.slice(0, 8)}
           </span>
         </div>
@@ -72,7 +72,7 @@ function AdminComplaintsComponent() {
       accessorKey: 'category',
       header: 'Category',
       cell: ({ row }) => (
-        <span className="rounded-lg border border-slate-100 bg-slate-50 px-2 py-1 text-xs font-black text-slate-500 italic">
+        <span className="rounded-lg border border-slate-100 bg-slate-50 px-2 py-1 text-xs font-bold text-slate-500 italic">
           {row.original.category}
         </span>
       ),
@@ -114,7 +114,7 @@ function AdminComplaintsComponent() {
             align="end"
             className="w-56 rounded-2xl border-slate-100 p-2 shadow-xl"
           >
-            <DropdownMenuLabel className="px-3 py-2 text-[10px] font-black text-slate-400">
+            <DropdownMenuLabel className="px-3 py-2 text-[10px] font-bold text-slate-400">
               Manage Case
             </DropdownMenuLabel>
             <DropdownMenuSeparator className="bg-slate-50" />
@@ -146,7 +146,7 @@ function AdminComplaintsComponent() {
         description="Oversee and orchestrate the resolution of community-wide concerns"
         icon={<ShieldAlert className="h-6 w-6" />}
         action={
-          <Button className="shadow-primary/20 h-12 rounded-2xl px-6 leading-none font-black shadow-xl">
+          <Button className="leading-none font-bold">
             <Plus className="mr-2 h-5 w-5" />
             Global Incident Log
           </Button>

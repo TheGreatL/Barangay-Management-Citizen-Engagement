@@ -149,21 +149,21 @@ function AdminActivityLogsComponent() {
         <Card className="flex items-center justify-between border-blue-200 bg-blue-50 p-4 text-blue-600 shadow-sm">
           <div>
             <p className="mb-1 text-xs font-bold opacity-70">Login Events</p>
-            <p className="text-2xl font-black">1,245</p>
+            <p className="text-2xl font-bold">1,245</p>
           </div>
           <Shield className="h-8 w-8 opacity-20" />
         </Card>
         <Card className="flex items-center justify-between border-orange-200 bg-orange-50 p-4 text-orange-600 shadow-sm">
           <div>
             <p className="mb-1 text-xs font-bold opacity-70">Data Mutations</p>
-            <p className="text-2xl font-black">452</p>
+            <p className="text-2xl font-bold">452</p>
           </div>
           <Database className="h-8 w-8 opacity-20" />
         </Card>
         <Card className="flex items-center justify-between border-red-200 bg-red-50 p-4 text-red-600 shadow-sm">
           <div>
             <p className="mb-1 text-xs font-bold opacity-70">Security Alerts</p>
-            <p className="text-2xl font-black">3</p>
+            <p className="text-2xl font-bold">3</p>
           </div>
           <Shield className="h-8 w-8 opacity-20" />
         </Card>

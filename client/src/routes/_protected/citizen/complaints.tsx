@@ -71,7 +71,7 @@ function CitizenComplaintsComponent() {
         <Button
           variant="ghost"
           size="sm"
-          className="text-primary hover:bg-primary/5 rounded-xl text-[10px] font-black"
+          className="text-primary hover:bg-primary/5 rounded-xl text-[10px] font-bold"
         >
           View Resolution
         </Button>
@@ -90,7 +90,7 @@ function CitizenComplaintsComponent() {
         icon={<MessageSquare className="h-6 w-6" />}
         action={
           <Link to="/citizen/complaints-new">
-            <Button className="shadow-primary/20 h-12 rounded-2xl px-6 leading-none font-black shadow-xl transition-all hover:scale-105 active:scale-95">
+            <Button className="shadow-primary/20 h-12 rounded-2xl px-6 leading-none font-bold shadow-xl transition-all hover:scale-105 active:scale-95">
               <Plus className="mr-2 h-5 w-5" />
               File a New Complaint
             </Button>

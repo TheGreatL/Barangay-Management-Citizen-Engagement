@@ -26,7 +26,7 @@ export function ComplaintCard({
       <div className="mb-4 flex items-start justify-between gap-4">
         <div className="flex-1">
           <div className="mb-2 flex items-center gap-2">
-            <h3 className="truncate text-lg leading-tight font-black text-slate-900">
+            <h3 className="truncate text-lg leading-tight font-bold text-slate-900">
               {complaint.title}
             </h3>
             <span className="rounded-lg border border-slate-100 bg-slate-50 px-2 py-0.5 text-[10px] font-bold text-slate-400">
@@ -51,7 +51,7 @@ export function ComplaintCard({
         {complaint.description}
       </p>
 
-      <div className="flex flex-wrap items-center gap-6 text-[10px] font-black text-slate-400">
+      <div className="flex flex-wrap items-center gap-6 text-[10px] font-bold text-slate-400">
         <div className="flex items-center gap-2">
           <MapPin className="text-primary/60 h-4 w-4" />
           {complaint.location}
@@ -65,7 +65,7 @@ export function ComplaintCard({
           })}
         </div>
         {complaint.complainantName && (
-          <div className="text-primary ml-auto font-black">
+          <div className="text-primary ml-auto font-bold">
             Reported by: {complaint.complainantName}
           </div>
         )}

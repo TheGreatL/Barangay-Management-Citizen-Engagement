@@ -64,7 +64,7 @@ export function ComplaintForm() {
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
       <div className="space-y-8 rounded-4xl border border-slate-100 bg-white p-8 shadow-sm">
         <div className="space-y-4">
-          <label className="flex items-center gap-2 text-[10px] font-black text-slate-400">
+          <label className="flex items-center gap-2 text-[10px] font-bold text-slate-400">
             <MessageSquare className="h-4 w-4" />
             Basic Information
           </label>
@@ -104,7 +104,7 @@ export function ComplaintForm() {
 
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
           <div className="space-y-4">
-            <label className="flex items-center gap-2 text-[10px] font-black text-slate-400">
+            <label className="flex items-center gap-2 text-[10px] font-bold text-slate-400">
               <Tag className="h-4 w-4" />
               Category
             </label>
@@ -133,7 +133,7 @@ export function ComplaintForm() {
           </div>
 
           <div className="space-y-4">
-            <label className="flex items-center gap-2 text-[10px] font-black text-slate-400">
+            <label className="flex items-center gap-2 text-[10px] font-bold text-slate-400">
               <AlertTriangle className="h-4 w-4" />
               Urgency Level
             </label>
@@ -160,7 +160,7 @@ export function ComplaintForm() {
         </div>
 
         <div className="space-y-4">
-          <label className="flex items-center gap-2 text-[10px] font-black text-slate-400">
+          <label className="flex items-center gap-2 text-[10px] font-bold text-slate-400">
             <MapPin className="h-4 w-4" />
             Exact Location
           </label>
@@ -182,7 +182,7 @@ export function ComplaintForm() {
         </div>
 
         <div className="space-y-4">
-          <label className="flex items-center gap-2 text-[10px] font-black text-slate-400">
+          <label className="flex items-center gap-2 text-[10px] font-bold text-slate-400">
             <Upload className="h-4 w-4" />
             Evidence/Photos (Optional)
           </label>
@@ -217,7 +217,7 @@ export function ComplaintForm() {
                     <div className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-lg bg-slate-50">
                       <Tag className="h-4 w-4 text-slate-300" />
                     </div>
-                    <span className="truncate text-[10px] font-black text-slate-500">
+                    <span className="truncate text-[10px] font-bold text-slate-500">
                       {file.name}
                     </span>
                   </div>
@@ -233,14 +233,14 @@ export function ComplaintForm() {
           type="button"
           variant="ghost"
           onClick={() => navigate({ to: '/citizen/complaints' })}
-          className="h-14 rounded-2xl px-8 text-xs font-black text-slate-400 transition-all hover:bg-slate-100 hover:text-slate-600"
+          className="h-14 rounded-2xl px-8 text-xs font-bold text-slate-400 transition-all hover:bg-slate-100 hover:text-slate-600"
         >
           Cancel
         </Button>
         <Button
           type="submit"
           disabled={mutation.isPending}
-          className="shadow-primary/20 h-14 rounded-2xl px-12 leading-none font-black shadow-xl transition-all hover:scale-105 active:scale-95"
+          className="shadow-primary/20 h-14 rounded-2xl px-12 leading-none font-bold shadow-xl transition-all hover:scale-105 active:scale-95"
         >
           {mutation.isPending ? (
             <>

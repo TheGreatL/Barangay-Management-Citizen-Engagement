@@ -61,7 +61,7 @@ export function ComplaintList() {
             process.
           </p>
           <Link to="/citizen/complaints-new">
-            <Button className="shadow-primary/20 h-12 rounded-2xl px-8 leading-none font-black shadow-xl">
+            <Button className="shadow-primary/20 h-12 rounded-2xl px-8 leading-none font-bold shadow-xl">
               <Plus className="mr-2 h-5 w-5" />
               File a New Complaint
             </Button>
@@ -76,7 +76,7 @@ export function ComplaintList() {
               footer={
                 <Button
                   variant="ghost"
-                  className="text-primary hover:bg-primary/5 h-10 w-full rounded-xl text-[10px] font-black"
+                  className="text-primary hover:bg-primary/5 h-10 w-full rounded-xl text-[10px] font-bold"
                 >
                   View Resolution Progress
                 </Button>
@@ -96,7 +96,7 @@ export function ComplaintList() {
           >
             Previous
           </Button>
-          <span className="rounded-xl bg-slate-100 px-4 py-2 text-xs font-black text-slate-400">
+          <span className="rounded-xl bg-slate-100 px-4 py-2 text-xs font-bold text-slate-400">
             Page {page} of {totalPages}
           </span>
           <Button

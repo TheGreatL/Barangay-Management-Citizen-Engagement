@@ -171,10 +171,7 @@ function AdminCertificatesComponent() {
             <FileText className="mr-2 h-4 w-4" />
             Manage Templates
           </Button>
-          <Button
-            size="lg"
-            className="shadow-xs transition-all hover:-translate-y-px"
-          >
+          <Button className="shadow-xs transition-all hover:-translate-y-px">
             <Plus className="mr-2 h-4 w-4" />
             New Request
           </Button>

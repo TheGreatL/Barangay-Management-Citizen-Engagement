@@ -194,7 +194,7 @@ export function OfficialComplaintList({ search }: TOfficialComplaintListProps) {
           >
             Previous
           </Button>
-          <span className="rounded-xl bg-slate-100 px-4 py-2 text-xs font-black text-slate-400">
+          <span className="rounded-xl bg-slate-100 px-4 py-2 text-xs font-bold text-slate-400">
             Page {page} of {totalPages}
           </span>
           <Button
